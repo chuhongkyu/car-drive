@@ -32,9 +32,7 @@ const Layout = ({ children }) => {
             className='mx-auto w-full'>
 
             <div className='flex w-96 flex-col items-start justify-center p-12 fixed z-10'>
-              <p className='w-full'>mr.chu three</p>
               <h1 className='my-4 text-5xl font-bold leading-tight'>{path == '/' ? "Default": path.replace('/','').toUpperCase()}</h1>
-              <p className='mb-8 text-2xl leading-normal'>We can be anything.</p>
             </div>
 
             <div className='flex flex-col gap-4 fixed z-10 top-5 right-5'>

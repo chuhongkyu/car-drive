@@ -15,14 +15,15 @@ export default function Scene({ ...props }) {
   return (
     <Canvas 
       {...props} 
-      camera={{position: [3, 18, 25]}}
+      shadows
+      camera={{fov:45, position: [3, 18, 25]}}
       onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
     >
       <Lights/>
       <Preload all />
         {pathname == "/" && <Default/>}
         {pathname == "/world" && <World/>}
-      <OrbitControls makeDefault maxDistance={42} minDistance={5} enablePan={false} />
+      {/* <OrbitControls makeDefault maxDistance={42} minDistance={5} enablePan={false} /> */}
     </Canvas>
   )
 }
