@@ -16,7 +16,7 @@ export default function Scene({ ...props }) {
     <Canvas 
       {...props} 
       shadows
-      camera={{fov:45, position: [3, 18, 25]}}
+      camera={{fov: 55, position: [3, 18, 25]}}
       onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
     >
       <Lights/>

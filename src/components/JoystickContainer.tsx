@@ -99,7 +99,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     }
 
     return (
-        <Html wrapperClass="ui-root" className="ui-container" transform={false}>
+        <Html wrapperClass="ui-root" className="ui-container">
             <div className="steering-wheel-bg" {...bind()}>
                 <div className="steering-wheel" ref={steeringWheelRef} style={{ transform: `rotate(${rotation * 500}deg)` }}></div>
             </div>

@@ -4,5 +4,5 @@ import { useRecoilValue } from "recoil";
 
 export default function DebugWrapper({ children }) {
   const debugMode = useRecoilValue(debugAtom);
-  return <>{debugMode ? <Debug color={0x008800}>{children}</Debug> : <>{children}</>}</>
+  return <>{debugMode ? <Debug color={0x000000}>{children}</Debug> : <>{children}</>}</>
 }
