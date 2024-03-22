@@ -90,7 +90,7 @@ export function Car() {
     chassisBody.current.getWorldQuaternion(worldQuaternion);
     
     pivot.position.lerp(worldPosition, 0.9);
-    // pivot.quaternion.slerp(worldQuaternion, 0.9);
+    
     pivot.setRotationFromQuaternion(worldQuaternion);
   }
 

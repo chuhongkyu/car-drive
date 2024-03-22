@@ -153,16 +153,16 @@ export function Map(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <group>
-        <mesh ref={ref0} geometry={nodes.model.geometry} material={materials['material.001']} />
-        <mesh ref={ref1} geometry={nodes.model_1.geometry} material={materials['material.002']} />
-        <mesh ref={ref2} geometry={nodes.model_2.geometry} material={materials['material.003']} />
-        <mesh ref={ref3} geometry={nodes.model_3.geometry} material={materials['material.004']} />
-        <mesh ref={ref4} geometry={nodes.model_4.geometry} material={materials['material.005']} />
-        <mesh ref={ref5} geometry={nodes.model_5.geometry} material={materials['material.006']} />
-        <mesh ref={ref6} geometry={nodes.model_6.geometry} material={materials['material.007']} />
-        <mesh ref={ref7} geometry={nodes.model_7.geometry} material={materials['material.008']} />
-        <mesh ref={ref8} geometry={nodes.model_8.geometry} material={materials['material.009']} />
-        <mesh ref={ref9} geometry={nodes.model_9.geometry} material={materials['material.010']} />
+        <mesh receiveShadow castShadow ref={ref0} geometry={nodes.model.geometry} material={materials['material.001']} />
+        <mesh receiveShadow castShadow ref={ref1} geometry={nodes.model_1.geometry} material={materials['material.002']} />
+        <mesh receiveShadow castShadow ref={ref2} geometry={nodes.model_2.geometry} material={materials['material.003']} />
+        <mesh receiveShadow castShadow ref={ref3} geometry={nodes.model_3.geometry} material={materials['material.004']} />
+        <mesh receiveShadow castShadow ref={ref4} geometry={nodes.model_4.geometry} material={materials['material.005']} />
+        <mesh receiveShadow castShadow ref={ref5} geometry={nodes.model_5.geometry} material={materials['material.006']} />
+        <mesh receiveShadow castShadow ref={ref6} geometry={nodes.model_6.geometry} material={materials['material.007']} />
+        <mesh receiveShadow castShadow ref={ref7} geometry={nodes.model_7.geometry} material={materials['material.008']} />
+        <mesh receiveShadow castShadow ref={ref8} geometry={nodes.model_8.geometry} material={materials['material.009']} />
+        <mesh receiveShadow castShadow ref={ref9} geometry={nodes.model_9.geometry} material={materials['material.010']} />
       </group>
     </group>
   )
