@@ -24,6 +24,13 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             // console.log(newRotation);
             vehicleApi.setSteeringValue(-newRotation, 2);
             vehicleApi.setSteeringValue(-newRotation, 3);
+            if(newRotation > 0){
+                vehicleApi.setSteeringValue(0.1, 0);
+                vehicleApi.setSteeringValue(0.1, 1);
+            }else{
+                vehicleApi.setSteeringValue(-0.1, 0);
+                vehicleApi.setSteeringValue(-0.1, 1);
+            }
             setIsDragging(dragging);
         }
     });
@@ -69,6 +76,8 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         if(selectedGear === "P"){
             console.log(vehicleApi)
             chassisApi.velocity.set(0,0,0)
+            vehicleApi.setBrake(0,2)
+            vehicleApi.setBrake(0,3)
         }
 
     },[selectedGear, chassisApi, vehicleApi])
@@ -92,9 +101,9 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             vehicleApi.applyEngineForce(0, 3);
             chassisApi.velocity.set(0,0,0)
         }else{
-            // vehicleApi.setBrake(0.1, 2);
-            // vehicleApi.setBrake(0.1, 3);
-            chassisApi.velocity.set(0,0,0)
+            vehicleApi.setBrake(0.1,2)
+            vehicleApi.setBrake(0.1,3)
+            // chassisApi.velocity.set(0,0,0)
         }
     }
 

@@ -12,8 +12,6 @@ import JoystickContainer from "@/components/JoystickContainer";
 import { CarModel } from "./CarModel";
 import { Wheel } from "./Wheel";
 
-const FORWARD_BOUNDARY = 5.5;
-const BACKWARD_BOUNDARY = -6;
 
 export function Car() {
   const game = useRecoilValue(onGameStart);
@@ -43,8 +41,6 @@ export function Car() {
     useRef(null),
   );
 
-  const vehiclePos = useRef([0, 0, 0]);
-
   const [wheels, wheelInfos]:[RefObject<Mesh>[], any[]] = useWheels(front, wheelRadius);
 
   const [vehicle, vehicleApi] = useRaycastVehicle(
@@ -57,21 +53,6 @@ export function Car() {
   );
 
   useControls(vehicleApi, chassisApi);
-
-  useFrame(() => {
-    if (vehiclePos.current[2] > FORWARD_BOUNDARY) {
-      chassisApi.position.set(0, 0.2, 0);
-      chassisApi.velocity.set(0, 0, 0);
-      chassisApi.angularVelocity.set(0, 0.5, 0);
-      return;
-    }
-    if (vehiclePos.current[2] < BACKWARD_BOUNDARY) {
-      chassisApi.position.set(0, 0.2, 0);
-      chassisApi.velocity.set(0, 0, 0);
-      chassisApi.angularVelocity.set(0, 0.5, 0);
-      return;
-    }
-  });
 
   useEffect(() => {
     window?.document?.body.classList.remove("active")
@@ -97,22 +78,22 @@ export function Car() {
 
   return (
     <>
-        <motion.group
-          initial={{scale: 0 }}
-          animate={isStart ? {scale: 1}: {scale: 0}}
-          ref={vehicle}
-          name="vehicle"
-          >
-          <group ref={chassisBody} position={[0,0.2,0]} name="chassisBody">
-            <CarModel/>
-          </group>
-          <Wheel wheelRef={wheels[0]} radius={wheelRadius} back={0.03} />
-          <Wheel wheelRef={wheels[1]} radius={wheelRadius} back={-0.03} lefSide={true}/>
-          <Wheel wheelRef={wheels[2]} radius={wheelRadius} back={0} />
-          <Wheel wheelRef={wheels[3]} radius={wheelRadius} back={0} lefSide={true}/>
-          
-        </motion.group>
-        <JoystickContainer vehicleApi={vehicleApi} chassisApi={chassisApi} />
+      <motion.group
+        initial={{scale: 0 }}
+        animate={isStart ? {scale: 1}: {scale: 0}}
+        ref={vehicle}
+        name="vehicle"
+        >
+        <group ref={chassisBody} position={[0,0.2,0]} name="chassisBody">
+          <CarModel/>
+        </group>
+        <Wheel wheelRef={wheels[0]} radius={wheelRadius} back={0.03} />
+        <Wheel wheelRef={wheels[1]} radius={wheelRadius} back={-0.03} lefSide={true}/>
+        <Wheel wheelRef={wheels[2]} radius={wheelRadius} back={0} />
+        <Wheel wheelRef={wheels[3]} radius={wheelRadius} back={0} lefSide={true}/>
+        
+      </motion.group>
+      <JoystickContainer vehicleApi={vehicleApi} chassisApi={chassisApi} />
     </>
   );
 }

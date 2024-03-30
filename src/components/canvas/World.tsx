@@ -6,7 +6,6 @@ import { Ground } from "../Ground"
 import { Suspense, useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { debugAtom, onGameStart } from "@/utils/atom"
-import DebugWrapper from "../DebugWrapper"
 
 export const World = ({ route = '/world', ...props }) => {
   const [ game, setGame] = useRecoilState(onGameStart);
@@ -23,19 +22,11 @@ export const World = ({ route = '/world', ...props }) => {
 
   },[])
 
-  useEffect(()=>{
-    
-  },[])
-
   return (
-    <Physics broadphase="SAP" gravity={[0, -2.6, 0]} allowSleep>
-      <DebugWrapper>
-        <Suspense fallback={<></>}>
-          <Ground/>
-          <Car/>
-        </Suspense>
-      </DebugWrapper>
-    </Physics>
+    <Suspense fallback={<></>}>
+      <Ground/>
+      <Car/>
+    </Suspense>
   )
 }
 

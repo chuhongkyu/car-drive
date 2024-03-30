@@ -34,6 +34,10 @@ type GLTFResult = GLTF & {
 export function Map(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models/map.glb') as GLTFResult
 
+  const onCollide = (e) => {
+    console.log(e)
+  }
+
   const [ref0] = useTrimesh(
     () => ({
       args: [
@@ -41,6 +45,7 @@ export function Map(props: JSX.IntrinsicElements['group']) {
         nodes.model.geometry.index.array,
       ],
       type: "Static",
+      onCollide: onCollide
     }),
     useRef(null)
   )
@@ -152,7 +157,8 @@ export function Map(props: JSX.IntrinsicElements['group']) {
 
   return (
     <group {...props} dispose={null}>
-      <group>
+      <group receiveShadow castShadow>
+        {/* 벽면 */}
         <mesh receiveShadow castShadow ref={ref0} geometry={nodes.model.geometry} material={materials['material.001']} />
         <mesh receiveShadow castShadow ref={ref1} geometry={nodes.model_1.geometry} material={materials['material.002']} />
         <mesh receiveShadow castShadow ref={ref2} geometry={nodes.model_2.geometry} material={materials['material.003']} />

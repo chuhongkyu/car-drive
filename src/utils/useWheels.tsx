@@ -8,8 +8,6 @@ export const useWheels = (front: number, radius: number): [RefObject<Mesh>[], an
 
   const wheelPosition = 0.01
   const wheelPositionZ = front - 0.15
-  const wheelDampingRelaxation = 1;
-  const wheelDampingCompression = 1;
 
   const wheelInfo = {
     radius,
@@ -18,8 +16,8 @@ export const useWheels = (front: number, radius: number): [RefObject<Mesh>[], an
     suspensionStiffness: 25,
     suspensionRestLength: 0.1,
     frictionSlip: 5,
-    dampingRelaxation: wheelDampingRelaxation,
-    dampingCompression: wheelDampingCompression,
+    dampingRelaxation: 2,
+    dampingCompression: 2,
     maxSuspensionForce: 100000,
     rollInfluence: 0.01,
     maxSuspensionTravel: 0.3,

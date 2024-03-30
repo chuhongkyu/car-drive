@@ -8,6 +8,8 @@ import Lights from './Lights'
 import { World } from './World'
 import { usePathname } from 'next/navigation'
 import { Default } from './Default'
+import { Physics } from '@react-three/cannon'
+import DebugWrapper from '../DebugWrapper'
 
 export default function Scene({ ...props }) {
   const pathname = usePathname()
@@ -20,10 +22,13 @@ export default function Scene({ ...props }) {
       onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
     >
       <Lights/>
-      <Preload all />
-        {pathname == "/" && <Default/>}
-        {pathname == "/world" && <World/>}
-      {/* <OrbitControls makeDefault maxDistance={42} minDistance={5} enablePan={false} /> */}
+      <Physics broadphase="SAP" gravity={[0, -2.6, 0]} allowSleep>
+        <DebugWrapper>
+          <Preload all />
+          {pathname == "/" && <Default/>}
+          {pathname == "/world" && <World/>}
+        </DebugWrapper>
+      </Physics>
     </Canvas>
   )
 }
