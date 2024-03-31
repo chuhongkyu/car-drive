@@ -21,7 +21,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         onDrag: ({ movement: [x], dragging }) => {
             const newRotation = Math.max(-0.35, Math.min(0.35, startRotation + x / 300));
             setRotation(newRotation);
-            // console.log(newRotation);
+
             vehicleApi.setSteeringValue(-newRotation, 2);
             vehicleApi.setSteeringValue(-newRotation, 3);
             if(newRotation > 0){
@@ -32,6 +32,9 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                 vehicleApi.setSteeringValue(-0.1, 1);
             }
             setIsDragging(dragging);
+        },
+        onDragEnd: () => {
+
         }
     });
 
@@ -48,20 +51,25 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             const interval = setInterval(() => {
                 setRotation((prevRotation) => {
                     const changeAmount = 0.008;
-                    let newRotation = prevRotation > 0 ? Math.max(0, prevRotation - changeAmount) : Math.min(0, prevRotation + changeAmount);
+                    // 바퀴의 회전 방향을 고려하여 조절
+                    let newRotation = prevRotation > 0 
+                        ? Math.max(0, prevRotation - changeAmount) 
+                        : Math.min(0, prevRotation + changeAmount);
+
 
                     if (newRotation === prevRotation) {
                         clearInterval(interval);
                         newRotation = 0;
                     }
 
+
                     if (newRotation === 0) {
                         for (let i = 0; i < 4; i++) {
                             vehicleApi.setSteeringValue(0, i);
                         }
                     } else {
-                        vehicleApi.setSteeringValue(newRotation, 2);
-                        vehicleApi.setSteeringValue(newRotation, 3);
+                        vehicleApi.setSteeringValue(-newRotation, 2);
+                        vehicleApi.setSteeringValue(-newRotation, 3);
                     }
 
                     return newRotation;
@@ -72,12 +80,13 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         }
     }, [isDragging, vehicleApi]);
 
+
     useEffect(()=> {
         if(selectedGear === "P"){
             console.log(vehicleApi)
+            vehicleApi.applyEngineForce(0, 2);
+            vehicleApi.applyEngineForce(0, 3);
             chassisApi.velocity.set(0,0,0)
-            vehicleApi.setBrake(0,2)
-            vehicleApi.setBrake(0,3)
         }
 
     },[selectedGear, chassisApi, vehicleApi])
@@ -100,6 +109,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
             chassisApi.velocity.set(0,0,0)
+            
         }else{
             vehicleApi.setBrake(0.1,2)
             vehicleApi.setBrake(0.1,3)
