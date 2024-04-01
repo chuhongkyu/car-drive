@@ -1,3 +1,24 @@
+.info{
+    position: relative;
+    min-width: 210px;
+    font-size: 18px;
+    line-height: 130%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: white;
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 20px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
+    }
+}
+
 .ui-root{
     position: absolute !important;
     top: initial !important;

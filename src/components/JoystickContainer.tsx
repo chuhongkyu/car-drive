@@ -80,18 +80,24 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         }
     }, [isDragging, vehicleApi]);
 
-
     useEffect(()=> {
         if(selectedGear === "P"){
             console.log(vehicleApi)
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
             chassisApi.velocity.set(0,0,0)
+            setEngineForce(0)
         }
 
     },[selectedGear, chassisApi, vehicleApi])
 
     const onHandleAccel = ()=> {
+        if(engineForce < 50){
+            setEngineForce((prev) => prev + 10)
+        }else{
+            setEngineForce(10)
+        }
+
         if(selectedGear === "D"){
             vehicleApi.applyEngineForce(engineForce, 2);
             vehicleApi.applyEngineForce(engineForce, 3);
@@ -105,6 +111,8 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     }
 
     const onHandleBrake = ()=> {
+        setEngineForce(0)
+
         if(selectedGear === "D" || "R" ){ 
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
@@ -163,7 +171,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                 </form>
                 <div className="icon-container gear-container2">
                     <button className="brake" onClick={onHandleBrake}>브</button>
-                    <button className="accel" onClick={onHandleAccel}>엑</button>
+                    <button className="accel" onClick={onHandleAccel}>엑{engineForce}</button>
                 </div>
             </div>
         </Html>
