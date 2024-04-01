@@ -24,26 +24,7 @@ const Layout = ({ children }) => {
         }}
       >
         <AnimatePresence initial={false}>
-          <motion.div 
-            key={path + "KEY"}
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1}}
-            exit={{opacity: 0}}
-            className='mx-auto w-full'>
 
-            <div className='flex w-96 flex-col items-start justify-center p-12 fixed z-10'>
-              <h1 className='my-4 text-5xl font-bold leading-tight'>{path == '/' ? "Default": path.replace('/','').toUpperCase()}</h1>
-            </div>
-
-            <div className='flex flex-col gap-4 fixed z-10 top-5 right-5'>
-              <Link href={'/'}>
-                Default
-              </Link>
-              <Link href={'/world'}>
-                World
-              </Link>
-            </div>
-          </motion.div>
         </AnimatePresence>
         {children}
         <Scene

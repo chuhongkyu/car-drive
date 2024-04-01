@@ -3,17 +3,16 @@ import { Environment } from "@react-three/drei";
 const Lights = () => {
     return(
         <>
-            <Environment preset="forest"/>
             <directionalLight 
                 castShadow
                 intensity={2}
-                shadow-camera-top={10}
-                shadow-camera-bottom={-10}
-                shadow-camera-left={-10}
-                shadow-camera-right={10}
+                shadow-camera-top={80}
+                shadow-camera-bottom={-80}
+                shadow-camera-left={-80}
+                shadow-camera-right={80}
                 shadow-mapSize-height={1024}
                 shadow-mapSize-width={1024}
-                position={[2, 5, -2]}
+                position={[8, 10, 5]}
                 color="white"
             />
         </>
