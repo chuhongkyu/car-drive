@@ -1,21 +1,33 @@
-import Image from "next/image"
+import React from 'react';
+import Image from "next/image";
 
 const FullscreenBtn = () => {
-    const toggleFullScreen = () => {
-        if (!document.fullscreenElement) {
-            document.body.requestFullscreen().catch((err) => {
-                alert(`전체 화면 모드 진입에 실패했습니다: ${err.message}`);
-            });
-        } else {
+
+    const openFullScreen = () => {
+        if (document.body.requestFullscreen) {
+            document.body.requestFullscreen();
+        }
+    };
+
+    const closeFullScreen = () => {
+        if (document.exitFullscreen) {
             document.exitFullscreen();
         }
     };
 
-    return(
-        <span className="fullscreen-btn" onClick={toggleFullScreen}>
-            <Image width={20} height={20} src={"/ui/fullscreen.svg"} alt="fullscreenbtn"/>
-        </span>
-    )
-}
+    const toggleFullScreen = () => {
+        if (!document.fullscreenElement) {
+            openFullScreen();
+        } else {
+            closeFullScreen();
+        }
+    };
 
-export default FullscreenBtn
+    return (
+        <span className="fullscreen-btn" onClick={toggleFullScreen}>
+            <Image width={20} height={20} src={"/ui/fullscreen.svg"} alt="fullscreen button" />
+        </span>
+    );
+};
+
+export default FullscreenBtn;
