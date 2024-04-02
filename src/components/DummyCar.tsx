@@ -1,7 +1,7 @@
 
 import * as THREE from 'three'
 import React, { useEffect, useRef, useState } from 'react'
-import { Html, Line, Outlines, useCursor, useGLTF, useTexture } from '@react-three/drei'
+import { Html, Sparkles, useCursor, useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { motion } from "framer-motion-3d";
 
@@ -52,16 +52,16 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
   )
 
   const [hovered, set] = useState<boolean>(false)
-  useCursor(hovered, /*'pointer', 'auto', document.body*/)
+  useCursor(hovered)
 
   const onClick = (e) => {
     const name = e.eventObject.name
-    console.log(name)
     carSetState(carState.map((car)=> car.name === name ? { ...car, isActive: !car.isActive } : car))
   }
 
   useEffect(()=>{
-    console.log(carState)
+    const all = carState.every((state)=> state.isActive)
+
   },[carState])
 
   return (
@@ -123,7 +123,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             onPointerOut={() => set(false)}
             onClick={onClick}
             initial={{ x: 0, y: -20 }}
-            animate={carState[3].isActive ? { x: 6.084, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2]}: { x: 0, y: -22, z: -2, rotateX: 0 }}
+            animate={carState[3].isActive ? { x: 6.084, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2]}: { x: 5, y: -22, z: -2, rotateX: 0 }}
             transition={{ duration: 1, type: "spring" }}  
             castShadow geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <motion.mesh
@@ -132,7 +132,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             onPointerOut={() => set(false)}
             onClick={onClick}
             initial={{ x: -10, y: -20 }} 
-            animate={carState[3].isActive ? { x: -6.952, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -10, y: -22, z: -2, rotateX: 0}} 
+            animate={carState[3].isActive ? { x: -6.952, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -8, y: -22, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
             castShadow geometry={nodes['ChamferCyl003_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <motion.mesh 
@@ -141,7 +141,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             onPointerOut={() => set(false)}
             onClick={onClick}
             initial={{ x: 0, y: -10}} 
-            animate={carState[3].isActive ?{ x: 6.084, y: 1.552, rotateX:[Math.PI/2, Math.PI/2, Math.PI/2] }: { x: 0, y: -15, z: -2, rotateX: 0}} 
+            animate={carState[3].isActive ?{ x: 6.084, y: 1.552, rotateX:[Math.PI/2, Math.PI/2, Math.PI/2] }: { x: 5, y: -15, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
             castShadow geometry={nodes['ChamferCyl004_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <motion.mesh
@@ -150,7 +150,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             onPointerOut={() => set(false)}
             onClick={onClick}
             initial={{ x: -10, y: -10}} 
-            animate={carState[3].isActive ?{ x: -6.952, y: 1.552, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -10, y: -15, z: -2, rotateX: 0}} 
+            animate={carState[3].isActive ?{ x: -6.952, y: 1.552, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -8, y: -15, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
             castShadow geometry={nodes['ChamferCyl005_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
         </group>
@@ -164,7 +164,8 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
         >
           <planeGeometry args={[25,15]}/>
           <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
-          {info && <Html center><div className="info">It seems necessary to assemble the car.</div></Html>}
+          {info && !carState.some((state)=> state.isActive) ? <Html center><div className="info">It seems necessary to assemble the car.</div></Html> : null}
+          {carState.every((state)=> state.isActive) && <Sparkles position={[0,0,2]} count={80} scale={[24,15,0.5]} size={20} speed={0.4} color={"#fef9e5"}/>}
         </mesh>
       </group>
     </group>

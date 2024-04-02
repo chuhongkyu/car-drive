@@ -44,6 +44,7 @@ export function Map(props: JSX.IntrinsicElements['group']) {
         nodes.model.geometry.attributes.position.array,
         nodes.model.geometry.index.array,
       ],
+     
       type: "Static",
       onCollide: onCollide
     }),

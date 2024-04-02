@@ -21,7 +21,7 @@ export function Car() {
   const worldPosition = useMemo(() => new Vector3(), [])
   const worldQuaternion = useMemo(() => new Quaternion(), []);
 
-  const position:Triplet = [0, 0.5, 4];
+  const position:Triplet = [0, 0.5, 0];
   let width, height, front, wheelRadius;
   width = 0.35;
   height = 0.15;
@@ -53,7 +53,7 @@ export function Car() {
     useRef(null),
   );
 
-  useControls(vehicleApi, chassisApi);
+  // useControls(vehicleApi, chassisApi);
 
   useEffect(() => {
     window?.document?.body.classList.remove("active")

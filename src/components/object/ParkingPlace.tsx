@@ -1,27 +1,15 @@
 import { useBox, usePlane } from "@react-three/cannon";
 import { useRef } from "react";
 import { motion } from "framer-motion-3d";
+import { useTexture } from "@react-three/drei";
 
-const ParkingPlace = ({position}) => {
-
-    const [ref] = useBox(
-        () => ({ 
-            type: 'Static', 
-            args: [1.3,0.05,0.9],
-            position,
-            onCollide: onCheckPlace
-        }), 
-        useRef(null)
-    );
-
-    const onCheckPlace = (e) => {
-        console.log(e)
-    }
+const ParkingPlace = (props) => {
+    const texture = useTexture('/img/parking.png')
 
     return(
-        <mesh ref={ref} castShadow receiveShadow > 
-            <boxGeometry args={[1.3,0.05,0.9]}/>  
-            <meshBasicMaterial transparent color="#fff" opacity={0.8}/>
+        <mesh {...props} rotation={[-Math.PI/2,0,0]}>
+          <planeGeometry args={[1.5,1]}/>
+          <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
         </mesh>
     )
 }

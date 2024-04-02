@@ -7,7 +7,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const [rotation, setRotation] = useState(0);
     const [startRotation, setStartRotation] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const [selectedGear, setSelectedGear] = useState('P');
+    const [selectedGear, setSelectedGear] = useState('D');
     const [engineForce, setEngineForce] = useState(10)
 
     const onHandleGearChange = (event) => {
@@ -92,8 +92,8 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     },[selectedGear, chassisApi, vehicleApi])
 
     const onHandleAccel = ()=> {
-        if(engineForce < 50){
-            setEngineForce((prev) => prev + 10)
+        if(engineForce < 20){
+            setEngineForce((prev) => prev + 5)
         }else{
             setEngineForce(10)
         }

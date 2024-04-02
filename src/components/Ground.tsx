@@ -6,6 +6,9 @@ import { onGameStart } from "@/utils/atom";
 import { ColliderBox } from "@/components/ColliderBox";
 import ParkingPlace from "./object/ParkingPlace";
 import { Map } from "./object/Map";
+import Road from "./object/Road";
+import RoadRightPoint from "./object/RoadRightPoint";
+import RoadRight from "./object/RoadRight";
 
 export function Ground() {
   const game = useRecoilValue(onGameStart);
@@ -27,13 +30,20 @@ export function Ground() {
         </mesh>
       </group> */}
       {game && <Floor size={[10.2,0.1,10.2]} position={[20,0.05,0]}/>}
-      {/* {game && <ParkingPlace position={[-4,0.08,-4]} />} */}
+      <Road position={[0,-0.5,0]}/>
+      <RoadRightPoint position={[0,-0.5,-5]}/>
+      <RoadRight position={[5,-0.5,-5]}/>
+      <RoadRight position={[10,-0.5,-5]}/>
 
+      <ParkingPlace position={[-1,-0.2,-5]}/>
+      {/* <Road position={[0,-0.5,-10]}/>
+      <Road position={[0,-0.5,-15]}/> */}
+      {/* {game && <ParkingPlace position={[-4,0.08,-4]} />} */}
+      
       {/* <ColliderBox position={[0,1,-5.5]} scale={[10,2,1]}/>
       <ColliderBox position={[0,1,5.5]} scale={[10,2,1]}/>
       <ColliderBox position={[-5.5,1,0]} scale={[1,2,10]}/>
       <ColliderBox position={[5.5,1,0]} scale={[1,2,10]}/> */}
-      <Map position={[0,0,0]}/>
     </>
   );
 }

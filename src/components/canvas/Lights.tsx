@@ -3,6 +3,7 @@ import { Environment } from "@react-three/drei";
 const Lights = () => {
     return(
         <>
+            {/* <Environment files="/skybox/bg.hdr" resolution={256} background blur={1}/> */}
             <directionalLight 
                 castShadow
                 intensity={2}
