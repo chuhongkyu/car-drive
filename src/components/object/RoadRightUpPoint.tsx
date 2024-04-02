@@ -2,7 +2,7 @@ import { useBox } from "@react-three/cannon"
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 
-export default function RoadRightPoint (props) {
+export default function RoadRightUpPoint(props) {
     const texturemap = useTexture({
         roughnessMap: "/materials/roughness.png",
         map: "/materials/base.png",

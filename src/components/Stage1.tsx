@@ -3,7 +3,7 @@ import Road from "./object/Road";
 import RoadRight from "./object/RoadRight";
 import RoadRightUpPoint from "./object/RoadRightUpPoint";
 
-export function Ground() {
+export function Stage1() {
   return (
     <>
       <Road position={[0,-0.5,0]}/>
@@ -12,13 +12,6 @@ export function Ground() {
       <RoadRight position={[10,-0.5,-5]}/>
 
       <ParkingPlace position={[-1,-0.2,-5]}/>
-      {/* <Road position={[0,-0.5,-10]}/>
-      <Road position={[0,-0.5,-15]}/> */}
-      
-      {/* <ColliderBox position={[0,1,-5.5]} scale={[10,2,1]}/>
-      <ColliderBox position={[0,1,5.5]} scale={[10,2,1]}/>
-      <ColliderBox position={[-5.5,1,0]} scale={[1,2,10]}/>
-      <ColliderBox position={[5.5,1,0]} scale={[1,2,10]}/> */}
     </>
   );
 }

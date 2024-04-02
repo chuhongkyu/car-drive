@@ -49,6 +49,7 @@ export function Car() {
       chassisBody,
       wheelInfos,
       wheels,
+      collisionFilterGroup: 6, 
     }),
     useRef(null),
   );

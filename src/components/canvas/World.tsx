@@ -5,16 +5,23 @@ import { Car } from "../Car"
 import { Ground } from "../Ground"
 import { Suspense, useEffect } from "react"
 import { useRecoilState } from "recoil"
-import { debugAtom, onGameStart } from "@/utils/atom"
-import { Environment } from "@react-three/drei"
+import { currentStageNumber, debugAtom, onGameStart, onStartScene, stageData } from "@/utils/atom"
+import { Environment, Html } from "@react-three/drei"
+import { Stage1 } from "../Stage1"
 
 export const World = ({ route = '/world', ...props }) => {
   const [ game, setGame] = useRecoilState(onGameStart);
   const [debug, setDebug] = useRecoilState(debugAtom);
 
+  const [ isStart, setStart] = useRecoilState(onStartScene);
+  const [ stage, setStage] = useRecoilState(stageData);
+  const [ current, setCurrent] = useRecoilState(currentStageNumber);
+
   useEffect(()=>{
-    setGame(true)
-    
+    console.log(stage[current])
+  },[])
+
+  useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);
     const modeParam = urlParams.get('mode');
     if (modeParam === 'debug') {
@@ -23,11 +30,27 @@ export const World = ({ route = '/world', ...props }) => {
 
   },[])
 
+  useEffect(()=>{
+    let time;
+    if(game){
+      time = setTimeout(()=> setStart(true) , 1000)
+    }
+    return ()=> clearTimeout(time)
+  },[game])
+
+
   return (
     <Suspense fallback={<></>}>
       <Environment preset="forest"/>
-      <Ground/>
-      <Car/>
+      {!game && 
+        <Html>
+          <div className="info" onClick={()=> setGame(true)}>Start</div>
+        </Html>
+      }
+      
+      {stage[current].name === "stage1" && <Stage1/>}
+      
+      {game && <Car/>}
     </Suspense>
   )
 }
