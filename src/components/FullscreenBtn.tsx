@@ -25,7 +25,7 @@ const FullscreenBtn = () => {
 
     return (
         <span className="fullscreen-btn" onClick={toggleFullScreen}>
-            <Image width={20} height={20} src={"/ui/fullscreen.svg"} alt="fullscreen button" />
+            <Image width={20} height={20} src={"/ui/fullscreen.svg"} alt="fullscreen button" priority />
         </span>
     );
 };
