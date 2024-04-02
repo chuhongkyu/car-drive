@@ -2,7 +2,6 @@ import { Triplet, useBox, useRaycastVehicle } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
 import { RefObject, useEffect, useMemo, useRef } from "react";
 import { useWheels } from "@/utils/useWheels";
-import { useControls } from "@/utils/useControls";
 import { Mesh, Quaternion, Vector3 } from "three";
 import { useRecoilValue } from "recoil";
 import { onGameStart, onStartScene } from "@/utils/atom";
@@ -11,7 +10,6 @@ import useFollowCam from "@/utils/useFollowCam"
 import JoystickContainer from "@/components/JoystickContainer";
 import { CarModel } from "./CarModel";
 import { Wheel } from "./Wheel";
-import { ContactShadows } from "@react-three/drei";
 
 
 export function Car() {
