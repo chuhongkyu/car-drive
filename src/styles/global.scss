@@ -33,6 +33,11 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
+button,a{
+	color: inherit;
+	border: none;
+}
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';

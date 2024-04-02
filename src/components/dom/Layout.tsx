@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from "framer-motion"
+import FullscreenBtn from '../FullscreenBtn'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
@@ -27,6 +28,7 @@ const Layout = ({ children }) => {
 
         </AnimatePresence>
         {children}
+        <FullscreenBtn/>
         <Scene
           style={{
             position: 'fixed',

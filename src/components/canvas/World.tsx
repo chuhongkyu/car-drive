@@ -2,7 +2,6 @@
 
 import { Debug, Physics } from "@react-three/cannon"
 import { Car } from "../Car"
-import { Ground } from "../Ground"
 import { Suspense, useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { currentStageNumber, debugAtom, onGameStart, onStartScene, stageData } from "@/utils/atom"
@@ -43,8 +42,8 @@ export const World = ({ route = '/world', ...props }) => {
     <Suspense fallback={<></>}>
       <Environment preset="forest"/>
       {!game && 
-        <Html>
-          <div className="info" onClick={()=> setGame(true)}>Start</div>
+        <Html center>
+          <button className="start" onClick={()=> setGame(true)}>Start</button>
         </Html>
       }
       

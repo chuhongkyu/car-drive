@@ -19,6 +19,38 @@
     }
 }
 
+.start{
+    font-size: 18px;
+    line-height: 130%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: white;
+}
+
+.fullscreen-btn{
+    z-index: 99;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    opacity: 0.3;
+    &:hover{
+        opacity: 1;
+        transition: 300ms ease-in-out;
+        img{
+            scale: 1.1;
+            transition: 300ms ease-in-out;
+        }
+    }
+    cursor: pointer;
+}
+
 .ui-root{
     position: absolute !important;
     top: initial !important;

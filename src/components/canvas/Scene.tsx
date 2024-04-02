@@ -1,15 +1,15 @@
 'use client'
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Preload } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { Preload } from '@react-three/drei'
 import * as THREE from 'three'
-import React, { useEffect } from 'react'
 import Lights from './Lights'
 import { World } from './World'
 import { usePathname } from 'next/navigation'
 import { Default } from './Default'
 import { Physics } from '@react-three/cannon'
 import DebugWrapper from '../DebugWrapper'
+
 
 export default function Scene({ ...props }) {
   const pathname = usePathname()
