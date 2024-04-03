@@ -3,8 +3,8 @@ import { useFrame } from "@react-three/fiber";
 import { RefObject, useEffect, useMemo, useRef } from "react";
 import { useWheels } from "@/utils/useWheels";
 import { Mesh, Quaternion, Vector3 } from "three";
-import { useRecoilValue } from "recoil";
-import { onGameStart, onStartScene } from "@/utils/atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { checkParking, onGameStart, onStartScene } from "@/utils/atom";
 import { motion } from "framer-motion-3d";
 import useFollowCam from "@/utils/useFollowCam"
 import JoystickContainer from "@/components/JoystickContainer";
@@ -15,11 +15,12 @@ import { Wheel } from "./Wheel";
 export function Car() {
   const game = useRecoilValue(onGameStart);
   const isStart = useRecoilValue(onStartScene);
+  const setParking = useSetRecoilState(checkParking)
   const { pivot } = useFollowCam();
   const worldPosition = useMemo(() => new Vector3(), [])
   const worldQuaternion = useMemo(() => new Quaternion(), []);
 
-  const position:Triplet = [0, 0.5, 0];
+  const position:Triplet = [7, 0.5, 0];
   let width, height, front, wheelRadius;
   width = 0.35;
   height = 0.15;
@@ -52,16 +53,14 @@ export function Car() {
     useRef(null),
   );
 
-  // useControls(vehicleApi, chassisApi);
 
   useEffect(() => {
     window?.document?.body.classList.remove("active")
   }, [game])
 
   useFrame(() => {
-    if (isStart) {
-      makeFollowCam();
-    }
+    if (isStart) makeFollowCam();
+    makeStage()
   });
 
   function makeFollowCam() {
@@ -75,6 +74,15 @@ export function Car() {
     pivot.setRotationFromQuaternion(worldQuaternion);
   }
 
+  function makeStage(){
+    const chassisPosition = new Vector3().setFromMatrixPosition(chassisBody.current.matrixWorld);
+    if ( Math.abs(-9 - chassisPosition.x) < 0.3 && Math.abs(-5 - chassisPosition.z) < 0.3){
+      console.log('setParking')
+      setParking(true)
+    }else{
+      setParking(false);
+    }
+  }
 
   return (
     <>

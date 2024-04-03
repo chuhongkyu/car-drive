@@ -2,16 +2,20 @@
 
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { AnimatePresence, motion } from "framer-motion"
-import FullscreenBtn from '../FullscreenBtn'
+import { motion } from "framer-motion"
+import FullscreenBtn from '../ui/FullscreenBtn'
+import GoGame from '../ui/GoGame'
+import GameStatus from '../game/GameStatus'
+import { useRecoilState } from 'recoil'
+import { onStartScene } from '@/utils/atom'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
   const ref = useRef()
-  const path = usePathname()
+  const pathname = usePathname()
+  const [ isStart, setStart] = useRecoilState(onStartScene);
 
   return (
       <motion.div
@@ -24,9 +28,8 @@ const Layout = ({ children }) => {
           touchAction: 'auto',
         }}
       >
-        <AnimatePresence initial={false}>
-
-        </AnimatePresence>
+        {pathname == "/world" && isStart && <GameStatus/>}
+        {pathname == "/" && <GoGame/>}
         {children}
         <FullscreenBtn/>
         <Scene

@@ -5,6 +5,7 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { ToyPeople } from '../object/ToyPeople'
 import { DummyCar } from '../DummyCar'
+import { DefaultLights } from './Lights'
 
 export const Default = () => {
   const three = useThree()
@@ -25,7 +26,8 @@ export const Default = () => {
           <shadowMaterial attach='material' color="#aa7d39" />
         </mesh>
       </Suspense>
-      <Environment files="/skybox/bg.hdr" resolution={256} background blur={1}/>
+      
+      <DefaultLights/>
       <OrbitControls 
         makeDefault 
         maxDistance={42} 

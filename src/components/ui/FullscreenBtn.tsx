@@ -2,7 +2,6 @@ import React from 'react';
 import Image from "next/image";
 
 const FullscreenBtn = () => {
-
     const openFullScreen = () => {
         if (document.body.requestFullscreen) {
             document.body.requestFullscreen();

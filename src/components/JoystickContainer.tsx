@@ -1,14 +1,15 @@
+import { selectedGearState } from "@/utils/atom";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
-import GameStatus from "./game/GameStatus";
+import { useRecoilState } from "recoil";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const steeringWheelRef = useRef(null);
     const [rotation, setRotation] = useState(0);
     const [startRotation, setStartRotation] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const [selectedGear, setSelectedGear] = useState('D');
+    const [selectedGear, setSelectedGear] = useRecoilState(selectedGearState);
     const [engineForce, setEngineForce] = useState(10)
 
     const onHandleGearChange = (event) => {
@@ -128,7 +129,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
 
     return (
         <Html wrapperClass="ui-root" className="ui-container">
-            <GameStatus/>
+            <div></div>
             <div className="bottom">
                 <div className="steering-wheel-bg" {...bind()}>
                     <div className="steering-wheel" ref={steeringWheelRef} style={{ transform: `rotate(${rotation * 500}deg)` }}></div>

@@ -5,6 +5,11 @@ export const debugAtom = atom({
     default: false
 })
 
+export const introStart = atom({
+    key: "introStart",
+    default: false
+})
+
 export const onStartScene = atom({
     key: 'isStart',
     default: false,
@@ -29,16 +34,18 @@ export const stageData = atom({
             quest: [
                 {
                     id: '001',
+                    desc: "Park the car in the parking area and change the gear shift to 'P'.",
                     clear: false,
                 },
                 {
                     id: '002',
+                    desc: "Come back to the starting point.",
                     clear: false,
                 },
-                {
-                    id: '003',
-                    clear: false,
-                }
+                // {
+                //     id: '003',
+                //     clear: false,
+                // }
             ]
         },
         {
@@ -60,4 +67,15 @@ export const stageData = atom({
             ]
         }
     ]
+})
+
+
+export const selectedGearState = atom({
+    key: 'selectedGearState', // 고유한 상태의 key
+    default: 'D', // 기본값 설정
+});
+
+export const checkParking = atom({
+    key: 'checkParking',
+    default: false
 })

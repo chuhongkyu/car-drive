@@ -3,7 +3,6 @@
 import { Canvas } from '@react-three/fiber'
 import { Loader, Preload } from '@react-three/drei'
 import * as THREE from 'three'
-import Lights from './Lights'
 import { World } from './World'
 import { usePathname } from 'next/navigation'
 import { Default } from './Default'
@@ -19,10 +18,9 @@ export default function Scene({ ...props }) {
       <Canvas 
         {...props} 
         shadows
-        camera={{fov: 55, position: [3, 18, 25]}}
+        camera={{fov: 45, position: [3, 18, 25]}}
         onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
       >
-        <Lights/>
         <Physics broadphase="SAP" gravity={[0, -2.6, 0]} allowSleep>
           <DebugWrapper>
             <Preload all />

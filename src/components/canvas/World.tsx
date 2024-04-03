@@ -48,7 +48,6 @@ export const World = ({ route = '/world', ...props }) => {
       }
       
       {stage[current].name === "stage1" && <Stage1/>}
-      
       {game && <Car/>}
     </Suspense>
   )
