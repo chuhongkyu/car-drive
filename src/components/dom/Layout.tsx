@@ -19,6 +19,7 @@ const Layout = ({ children }) => {
 
   return (
       <motion.div
+        className="body"
         ref={ref}
         style={{
           position: 'relative',
@@ -31,7 +32,7 @@ const Layout = ({ children }) => {
         {pathname == "/world" && isStart && <GameStatus/>}
         {pathname == "/" && <GoGame/>}
         {children}
-        <FullscreenBtn/>
+        {/* <FullscreenBtn/> */}
         <Scene
           style={{
             position: 'fixed',

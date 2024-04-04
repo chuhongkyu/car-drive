@@ -1,8 +1,7 @@
-const title = 'Hexagon'
-const url = 'https://react-three-next.vercel.app/'
-const description = 'a hexagonal world'
+const title = 'car drive'
+const url = 'https://car-drive-practice.vercel.app/'
+const description = 'car drive'
 const author = 'mr.chu'
-const twitter = '@pmndrs'
 
 export default function Head() {
   return (
@@ -49,12 +48,15 @@ export default function Head() {
       <meta name='theme-color' content='#000' />
       <link rel='shortcut icon' href='/icons/apple-touch-icon.png' />
 
+
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+      <meta name="apple-mobile-web-app-title" content="Notentool"/>  
       {/* 
       Twitter Summary card
         documentation: https://dev.twitter.com/cards/getting-started
         Be sure validate your Twitter card markup on the documentation site. */}
       <meta name='twitter:card' content='summary' />
-      <meta name='twitter:site' content={twitter} />
     </>
   )
 }

@@ -7,9 +7,10 @@ import { useRecoilState } from "recoil";
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const steeringWheelRef = useRef(null);
     const [rotation, setRotation] = useState(0);
+    const [startRotation, setStartRotation] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [selectedGear, setSelectedGear] = useRecoilState(selectedGearState);
-    const [engineForce, setEngineForce] = useState(10);
+    const [engineForce, setEngineForce] = useState(10)
 
     const onHandleGearChange = (event) => {
         setSelectedGear(event.target.value);
@@ -17,20 +18,14 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
 
     const bind:any = useGesture({
         onDragStart: () => {
-            
+            setStartRotation(rotation);
         },
-        onDrag: ({ movement: [x, y], dragging }) => {
-            let rotationDistance = Math.sqrt(x * x + y * y);
-            const rotationDirection = x > 0 ? 1 : -1;
-
-            let newRotation = rotationDistance / 300 * rotationDirection; // 예시 비율
-            newRotation = Math.max(-0.35, Math.min(0.35, newRotation));
-
+        onDrag: ({ movement: [x], dragging }) => {
+            const newRotation = Math.max(-0.35, Math.min(0.35, startRotation + x / 300));
             setRotation(newRotation);
 
             vehicleApi.setSteeringValue(-newRotation, 2);
             vehicleApi.setSteeringValue(-newRotation, 3);
-
             if(newRotation > 0){
                 vehicleApi.setSteeringValue(0.1, 0);
                 vehicleApi.setSteeringValue(0.1, 1);
@@ -135,51 +130,52 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     return (
         <Html wrapperClass="ui-root" className="ui-container">
             <div className="bottom">
+                <form className="gear-container">
+                    <div className="btn-gear">
+                        <input 
+                            type="radio" 
+                            id="drive" 
+                            name="gear" 
+                            value="D" 
+                            checked={selectedGear === 'D'} 
+                            onChange={onHandleGearChange}
+                        />
+                        <label htmlFor="drive" className="btn">D</label>
+                    </div>
+                    <div className="btn-gear">
+                        <div className="btn">N</div>
+                    </div>
+                    <div className="btn-gear">
+                        <input 
+                            type="radio" 
+                            id="park" 
+                            name="gear" 
+                            value="P"
+                            checked={selectedGear === 'P'} 
+                            onChange={onHandleGearChange}
+                        />
+                        <label htmlFor="park" className="btn">P</label>
+                    </div>
+                    <div className="btn-gear">
+                        <input 
+                            type="radio" 
+                            id="reverse" 
+                            name="gear" 
+                            value="R"
+                            checked={selectedGear === 'R'} 
+                            onChange={onHandleGearChange}
+                        />
+                        <label htmlFor="reverse" className="btn">R</label>
+                    </div>
+                </form>
                 <div className="joystick-container">
-                    <form className="icon-container gear-container">
-                        <div className="btn-gear">
-                            <input 
-                                type="radio" 
-                                id="drive" 
-                                name="gear" 
-                                value="D" 
-                                checked={selectedGear === 'D'} 
-                                onChange={onHandleGearChange}
-                            />
-                            <label htmlFor="drive" className="btn">D</label>
-                        </div>
-                        <div className="btn-gear">
-                            <div className="btn">N</div>
-                        </div>
-                        <div className="btn-gear">
-                            <input 
-                                type="radio" 
-                                id="park" 
-                                name="gear" 
-                                value="P"
-                                checked={selectedGear === 'P'} 
-                                onChange={onHandleGearChange}
-                            />
-                            <label htmlFor="park" className="btn">P</label>
-                        </div>
-                        <div className="btn-gear">
-                            <input 
-                                type="radio" 
-                                id="reverse" 
-                                name="gear" 
-                                value="R"
-                                checked={selectedGear === 'R'} 
-                                onChange={onHandleGearChange}
-                            />
-                            <label htmlFor="reverse" className="btn">R</label>
-                        </div>
-                    </form>
-                    <div className="icon-container gear-container2">
+                    <div className="brake-container">
                         <button className="brake" onClick={onHandleBrake}>브</button>
                         <button className="accel" onClick={onHandleAccel}>엑{engineForce}</button>
                     </div>
                 </div>
                 <div className="steering-wheel-bg" {...bind()}>
+                    <div className="steering-panel"></div>
                     <div className="steering-wheel" ref={steeringWheelRef} style={{ transform: `rotate(${rotation * 1530}deg)` }}></div>
                 </div>
             </div>

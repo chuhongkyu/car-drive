@@ -84,26 +84,38 @@
     z-index: 99;
     width: 100%;
     height: 100vh;
+    position: relative;
     .bottom{
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 200px;
+        height: 100vh;
         padding: 20px;
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
         .steering-wheel-bg {
             position: relative;
-            width: 150px;
+            width: 250px;
             height: 150px;
-            background-color: #2c2c2c6e;
             border-radius: 50%;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             touch-action: none;
+        }
+
+        .steering-panel {
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            background-color: $transparent-bg;
+            border-radius: 25px;
+            z-index: 4;
+            touch-action: none;
+            pointer-events: none;
         }
     
         .steering-wheel {
@@ -116,28 +128,25 @@
             background-size: cover;
             transition: transform 0.2s;
             z-index: 3;
+            opacity: 0.7;
         }
-    
-        .joystick-container {
-            width: 280px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-    
-            .gear-container {
+
+        .gear-container{
+            display: block;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            .btn {
+                width: 40px;
+                height: 40px;
                 display: flex;
                 justify-content: center;
-                margin-right: 20px;
+                align-items: center;
+                border: 1px solid #333;
             }
-    
-            .gear-container2 {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-            }
-    
-            .icon-container {
-                .btn {
+        
+            .btn-gear {
+                label {
                     width: 40px;
                     height: 40px;
                     display: flex;
@@ -145,25 +154,26 @@
                     align-items: center;
                     border: 1px solid #333;
                 }
-    
-                .btn-gear {
-                    label {
-                        width: 40px;
-                        height: 40px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border: 1px solid #333;
-                    }
-    
-                    input[type="radio"]:checked+label {
-                        background: black;
-                    }
-    
-                    input[type="radio"] {
-                        display: none;
-                    }
+        
+                input[type="radio"]:checked+label {
+                    background: black;
                 }
+        
+                input[type="radio"] {
+                    display: none;
+                }
+            }
+            
+        }
+    
+        .joystick-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            .brake-container {
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
             }
     
             .brake {
@@ -188,14 +198,26 @@
 }
 
 .game-status{
-    z-index: 9999;
+    z-index: 16757946;
     left: 20px;
     top: 20px;
     position: fixed;
     color: white;
-    background: $transparent-bg;
-    padding: 15px 20px;
+    .game-icon{
+        width: 25px;
+        height: 25px;
+    }
+    &:hover{
+        opacity: 1;
+        transition: 300ms ease-in-out;
+    }
     .quests{
+        border-radius: 25px;
+        &.active{
+            display: none;
+        }
+        padding: 15px 20px;
+        background: $transparent-bg;
         h5{
             font-size: 18px;
             margin-bottom: 10px;
@@ -204,12 +226,12 @@
             display: flex;
             align-items: center;
             line-height: 135%;
-            font-size: 12px;
+            font-size: 14px;
             &:not(:last-of-type){
                 margin-bottom: 5px;
             }
             &[data-clear="true"] {
-                span{
+                .dot {
                     background: #fff;
                     transition: 300ms ease-in-out;
                 }
@@ -217,12 +239,12 @@
                     text-decoration: line-through;
                 }
             }
-            span{
+            .dot{
                 border: 1px solid #fff;
                 border-radius: 50%;
                 display: block;
-                width: 0.5rem;
-                height: 0.5rem;
+                width: 5px;
+                height: 5px;
                 margin-right: 0.5rem;
             }
         }
@@ -231,17 +253,41 @@
 
 @media screen and (max-width: 1024px){
     .game-status{
-        max-width: 200px;
         padding: 10px;
-        h1{
-            font-size: 14px;
+        top: 5px;
+        left: 5px;
+        .quests{
+            h5 {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
         }
         .quest{
-            display: block;
-            p{ @include ellipseText(1);}
+            p{font-size: 12px;}
+            .dot { }
+            // p{ @include ellipseText(1);}
         }
     }
     .ui-container{
         padding: 5px;
+        .bottom{
+            padding: 5px;
+            height: 100vh;
+            .gear-container {
+                top: 0;
+                right: 5px;
+            }
+            .steering-wheel-bg {
+                height: 100px;
+            }
+            .steering-panel {
+                width: 250px;
+                height: 50px;
+            }
+            .steering-wheel {
+                width: 100px;
+                height: 100px;
+            }
+        }
     }
 }

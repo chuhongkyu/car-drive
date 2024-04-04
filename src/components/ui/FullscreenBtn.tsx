@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const FullscreenBtn = () => {
     const openFullScreen = () => {
-        if (document.body.requestFullscreen) {
-            document.body.requestFullscreen();
+        if (document.querySelector('.body').requestFullscreen) {
+            document.querySelector('.body').requestFullscreen();
         }
     };
 
