@@ -142,9 +142,9 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                         />
                         <label htmlFor="drive" className="btn">D</label>
                     </div>
-                    <div className="btn-gear">
+                    {/* <div className="btn-gear">
                         <div className="btn">N</div>
-                    </div>
+                    </div> */}
                     <div className="btn-gear">
                         <input 
                             type="radio" 
