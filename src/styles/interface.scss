@@ -1,3 +1,6 @@
+@import "./variables";
+@import "./mixins";
+
 .intro-panel{
     color: black;
     padding: 15px 20px;
@@ -16,7 +19,7 @@
     min-width: 210px;
     font-size: 18px;
     line-height: 130%;
-    background: rgba(0, 0, 0, 0.6);
+    background: $transparent-bg;
     border-radius: 12px;
     padding: 12px 20px;
     color: white;
@@ -28,7 +31,7 @@
         left: 20px;
         border-width: 10px;
         border-style: solid;
-        border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
+        border-color: $transparent-bg transparent transparent transparent;
     }
 }
 
@@ -76,19 +79,20 @@
 }
 
 .ui-container{
+    top: 0;
+    left: 0;
     z-index: 99;
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     .bottom{
+        position: absolute;
+        bottom: 0;
+        left: 0;
         width: 100%;
         height: 200px;
+        padding: 20px;
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
-        padding: 20px;
         .steering-wheel-bg {
             position: relative;
             width: 150px;
@@ -115,7 +119,7 @@
         }
     
         .joystick-container {
-            width: 350px;
+            width: 280px;
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
@@ -123,6 +127,7 @@
             .gear-container {
                 display: flex;
                 justify-content: center;
+                margin-right: 20px;
             }
     
             .gear-container2 {
@@ -132,8 +137,6 @@
             }
     
             .icon-container {
-                margin-left: 20px;
-    
                 .btn {
                     width: 40px;
                     height: 40px;
@@ -189,8 +192,8 @@
     left: 20px;
     top: 20px;
     position: fixed;
-    color: black;
-    background: white;
+    color: white;
+    background: $transparent-bg;
     padding: 15px 20px;
     .quests{
         h5{
@@ -201,13 +204,13 @@
             display: flex;
             align-items: center;
             line-height: 135%;
-            font-size: 16px;
+            font-size: 12px;
             &:not(:last-of-type){
                 margin-bottom: 5px;
             }
             &[data-clear="true"] {
                 span{
-                    background: #333;
+                    background: #fff;
                     transition: 300ms ease-in-out;
                 }
                 p{
@@ -215,7 +218,7 @@
                 }
             }
             span{
-                border: 1px solid black;
+                border: 1px solid #fff;
                 border-radius: 50%;
                 display: block;
                 width: 0.5rem;
@@ -226,9 +229,17 @@
     }
 }
 
-@media screen and (max-width: 680px){
-    .ui-root{
-        height: 160px;
+@media screen and (max-width: 1024px){
+    .game-status{
+        max-width: 200px;
+        padding: 10px;
+        h1{
+            font-size: 14px;
+        }
+        .quest{
+            display: block;
+            p{ @include ellipseText(1);}
+        }
     }
     .ui-container{
         padding: 5px;
