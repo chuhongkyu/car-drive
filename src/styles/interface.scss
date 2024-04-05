@@ -227,6 +227,38 @@
     }    
 }
 
+.game-over-panel{
+    z-index: 16757946;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .panel{
+        padding: 20px;
+        width: 300px;
+        background: $transparent-bg;
+        color: white;
+        border-radius: 25px;
+        h5{
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 135%;
+        }
+        .desc{
+            margin-top: 0.5rem;
+            font-size: 16px;
+            line-height: 135%;
+        }
+        .btn-container{
+            margin-top: 0.5rem;
+            color: black;
+        }
+    }
+}
+
 .game-status{
     z-index: 16757946;
     left: 20px;

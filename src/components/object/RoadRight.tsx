@@ -1,8 +1,12 @@
+import useGameStore from "@/utils/gameStore";
 import { useBox } from "@react-three/cannon"
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 
 export default function RoadRight(props) {
+    const { setGameState } = useGameStore()
+    const onCollide = () => setGameState("GAMEOVER")
+
     const texturemap = useTexture({
         roughnessMap: "/materials/roughness.png",
         map: "/materials/base.png",
@@ -31,7 +35,8 @@ export default function RoadRight(props) {
             type: 'Static', 
             material: 'ground',
             args: [width,1,0.5],
-            position: [position[0], position[1] + 0.75, position[2] - depth/2]
+            position: [position[0], position[1] + 0.75, position[2] - depth/2],
+            onCollide: onCollide,
         }), useRef(null)
     );
 
@@ -40,7 +45,8 @@ export default function RoadRight(props) {
             type: 'Static', 
             material: 'ground',
             args: [width,1,0.5],
-            position: [position[0], position[1] + 0.75, position[2] + depth/2]
+            position: [position[0], position[1] + 0.75, position[2] + depth/2],
+            onCollide: onCollide,
         }), useRef(null)
     );
 

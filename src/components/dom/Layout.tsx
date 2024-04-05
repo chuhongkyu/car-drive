@@ -8,13 +8,14 @@ import FullscreenBtn from '../ui/FullscreenBtn'
 import GoGame from '../ui/GoGame'
 import GameStatus from '../game/GameStatus'
 import useGameStore from '@/utils/gameStore'
+import GameOver from '../ui/GameOver'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
   const ref = useRef()
   const pathname = usePathname()
-  const { isStart }= useGameStore();
+  const { isStart, gameState }= useGameStore();
 
   return (
       <motion.div
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
         }}
       >
         {pathname == "/world" && isStart && <GameStatus/>}
+        {pathname == "/world" && gameState === "GAMEOVER" && <GameOver/>}
         {pathname == "/" && <GoGame/>}
         {children}
         {/* <FullscreenBtn/> */}

@@ -7,10 +7,12 @@ import { Stage1 } from "../Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
 import { WorldLights } from "./Lights"
+import { useThree } from "@react-three/fiber"
 
 export const World = ({ route = '/world', ...props }) => {
-  const { checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
+  const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
+  const three = useThree()
 
   useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -27,6 +29,13 @@ export const World = ({ route = '/world', ...props }) => {
     }
     return ()=> clearTimeout(time)
   },[gameState])
+
+  useEffect(()=>{
+    if(!isStart){
+      three.camera.rotation.set(-0.6, 0, 0)
+      three.camera.position.set(0, 16, 25)
+    }
+  },[isStart])
 
 
   return (

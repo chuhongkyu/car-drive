@@ -1,9 +1,13 @@
 import { useBox } from "@react-three/cannon"
-import { RoundedBox, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { ToyRCube } from "./ToyRCube";
+import useGameStore from "@/utils/gameStore";
 
 export default function RLUpPoint(props) {
+    const { setGameState } = useGameStore()
+    const onCollide = () => setGameState("GAMEOVER")
+
     const texturemap = useTexture({
         roughnessMap: "/materials/roughness.png",
         map: "/materials/base.png",
@@ -33,7 +37,8 @@ export default function RLUpPoint(props) {
             type: 'Static', 
             material: 'ground',
             args: [width,1,0.5],
-            position: [position[0], position[1] + 0.75, position[2] - depth/2]
+            position: [position[0], position[1] + 0.75, position[2] - depth/2],
+            onCollide: onCollide,
         }), useRef(null)
     );
 
@@ -42,7 +47,8 @@ export default function RLUpPoint(props) {
             type: 'Static', 
             material: 'ground',
             args: [0.5,1,depth],
-            position: [position[0] + width/2, position[1] + 0.75, position[2]]
+            position: [position[0] + width/2, position[1] + 0.75, position[2]],
+            onCollide: onCollide,
         }), useRef(null)
     );
 
