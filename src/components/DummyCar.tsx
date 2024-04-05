@@ -5,6 +5,7 @@ import { Html, Sparkles, useCursor, useGLTF, useTexture } from '@react-three/dre
 import { GLTF } from 'three-stdlib'
 import { motion } from "framer-motion-3d";
 import useIntroStore from '@/utils/introStore';
+import InfoNumber from './ui/InfoNumber';
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -81,7 +82,9 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             transition={{ duration: 1, type: "spring"}}
             position={[-0.343, 0.371, 1.082]} 
             rotation={[Math.PI / 2, 0, 0]}>
+            
             <mesh castShadow geometry={nodes['Shape4_Material_#6_0'].geometry} material={materials.Material_6} position={[-28.776, 14.806, 0]} />
+            {!introClear && <InfoNumber ord={1}/>}
           </motion.group>
 
           <motion.group
@@ -93,11 +96,12 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             animate={carState[1].isActive ? { x: 2.078, y: -3.566, z: 4.227 }: { x: -23, y: 2, z: 0.5, rotateX: 0.5}}
             transition={{ duration: 1, type: "spring" }} 
             position={[2.078, -3.566, 4.227]} rotation={[Math.PI / 2, 0, 0]}>
+            {!introClear && <InfoNumber ord={2}/>}
             <mesh castShadow geometry={nodes['Shape11_Material_#7_0'].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />
           </motion.group>
           <motion.group
             name="옆면"
-           onClick={!introClear && onClick}
+            onClick={!introClear && onClick}
             onPointerOver={() => set(true)} 
             onPointerOut={() => set(false)}
             initial={{ x: 2.078, y: 1.316, z: 4.227}}
@@ -117,17 +121,23 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             transition={{ duration: 1, type: "spring" }} 
             position={[-2.85, -0.81, 0.276]} rotation={[-Math.PI / 2, 0, 0]}>
             <mesh castShadow geometry={nodes['ChamferCyl001_Material_#5_0'].geometry} material={materials.Material_5} position={[-4.111, -1.316, -2.633]} />
+            {!introClear && <InfoNumber ord={3}/>}
           </motion.group>
 
-          <motion.mesh
+          <motion.group
             name="바퀴"
             onPointerOver={() => set(true)} 
             onPointerOut={() => set(false)}
             onClick={!introClear && onClick}
             initial={{ x: 0, y: -20 }}
             animate={carState[3].isActive ? { x: 6.084, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2]}: { x: 5, y: -22, z: -2, rotateX: 0 }}
-            transition={{ duration: 1, type: "spring" }}  
-            castShadow geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
+            transition={{ duration: 1, type: "spring" }}
+            position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]}
+          >
+              <mesh castShadow geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} />
+              {!introClear && <InfoNumber ord={4}/>}
+          </motion.group>
+        
           <motion.mesh
             name="바퀴"
             onPointerOver={() => set(true)} 

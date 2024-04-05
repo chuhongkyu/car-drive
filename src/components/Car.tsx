@@ -1,5 +1,5 @@
 import { Triplet, useBox, useRaycastVehicle } from "@react-three/cannon";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { RefObject, useEffect, useMemo, useRef } from "react";
 import { useWheels } from "@/utils/useWheels";
 import { Mesh, Quaternion, Vector3 } from "three";
@@ -89,10 +89,12 @@ export function Car() {
         <group ref={chassisBody} position={[0,0.2,0]} name="chassisBody">
           <CarModel/>
         </group>
+        
         <Wheel wheelRef={wheels[0]} radius={wheelRadius} back={0.03} />
         <Wheel wheelRef={wheels[1]} radius={wheelRadius} back={-0.03} lefSide={true}/>
         <Wheel wheelRef={wheels[2]} radius={wheelRadius} back={0} />
         <Wheel wheelRef={wheels[3]} radius={wheelRadius} back={0} lefSide={true}/>
+        
       </motion.group>
       <JoystickContainer vehicleApi={vehicleApi} chassisApi={chassisApi} />
     </>
