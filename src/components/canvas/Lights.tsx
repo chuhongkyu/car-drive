@@ -1,4 +1,6 @@
-import { Environment } from "@react-three/drei";
+import { Environment, SpotLight, useHelper } from "@react-three/drei";
+import { useRef } from "react";
+import { DirectionalLightHelper } from "three";
 
 const DefaultLights = () => {
     return(
@@ -20,4 +22,27 @@ const DefaultLights = () => {
     )
 }
 
-export { DefaultLights };
+const WorldLights = () => {
+    const dirLight = useRef(null);
+    useHelper(dirLight, DirectionalLightHelper, 2, "red");
+    return(
+        <>
+            <ambientLight intensity={1}/>
+            <directionalLight 
+                ref={dirLight}
+                castShadow
+                intensity={2.5}
+                shadow-camera-top={100}
+                shadow-camera-bottom={-100}
+                shadow-camera-left={-100}
+                shadow-camera-right={100}
+                shadow-mapSize-height={2048}
+                shadow-mapSize-width={2048}
+                position={[8, 10, 10]}
+                color="white"
+            />
+        </>
+    )
+}
+
+export { DefaultLights, WorldLights };

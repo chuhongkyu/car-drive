@@ -21,7 +21,7 @@ export default function Scene({ ...props }) {
         camera={{fov: 45, position: [3, 18, 25]}}
         onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
       >
-        <Physics broadphase="SAP" gravity={[0, -2.6, 0]} allowSleep>
+        <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
           <DebugWrapper>
             <Preload all />
             {pathname == "/" && <Default/>}

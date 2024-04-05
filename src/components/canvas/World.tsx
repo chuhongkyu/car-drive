@@ -6,6 +6,7 @@ import { Environment, Html } from "@react-three/drei"
 import { Stage1 } from "../Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
+import { WorldLights } from "./Lights"
 
 export const World = ({ route = '/world', ...props }) => {
   const { checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
@@ -30,7 +31,7 @@ export const World = ({ route = '/world', ...props }) => {
 
   return (
     <Suspense fallback={<></>}>
-      <Environment preset="forest"/>
+      <WorldLights/>
       {gameState === "READY" && 
         <Html center>
           <button className="start" onClick={()=> setGameState("START")}>Start</button>

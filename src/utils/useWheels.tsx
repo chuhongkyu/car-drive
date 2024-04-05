@@ -13,7 +13,7 @@ export const useWheels = (front: number, radius: number): [RefObject<Mesh>[], an
     radius,
     directionLocal: [0, -1, 0],
     axleLocal: [1, 0, 0],
-    suspensionStiffness: 25,
+    suspensionStiffness: 30,
     suspensionRestLength: 0.1,
     frictionSlip: 5,
     dampingRelaxation: 2,

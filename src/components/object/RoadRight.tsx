@@ -8,6 +8,10 @@ export default function RoadRight(props) {
         map: "/materials/base.png",
         normalMap: "/materials/normal.png",
     })
+    const texturemap2 = useTexture({
+        map: "/materials/red.png",
+    })
+
     const width = 5
     const height = 0.5
     const depth = 5
@@ -48,11 +52,11 @@ export default function RoadRight(props) {
             </mesh>
             <mesh castShadow receiveShadow ref={ref1}>
                 <boxGeometry args={[width,1,0.5]}/>
-                <meshStandardMaterial {...texturemap} color={"yellow"}/>
+                <meshStandardMaterial {...texturemap2} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref2}>
                 <boxGeometry args={[width,1,0.5]}/>
-                <meshStandardMaterial {...texturemap} color={"yellow"}/>
+                <meshStandardMaterial {...texturemap2} color={"yellow"}/>
             </mesh>
         </group>
     )

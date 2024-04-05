@@ -10,7 +10,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const [rotation, setRotation] = useState(0);
     const [startRotation, setStartRotation] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const [engineForce, setEngineForce] = useState(10)
+    const [engineForce, setEngineForce] = useState(5)
 
     const onHandleGearChange = (event) => {
         setSelectedGearState(event.target.value);
@@ -94,12 +94,13 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     },[selectedGearState, chassisApi, vehicleApi])
 
     const onHandleAccel = ()=> {
-        if(engineForce < 20){
+        vehicleApi.setBrake(0,2)
+        vehicleApi.setBrake(0,3)
+        if(engineForce < 15){
             setEngineForce((prev) => prev + 5)
         }else{
-            setEngineForce(10)
-        }
 
+        }
         if(selectedGearState === "D"){
             vehicleApi.applyEngineForce(engineForce, 2);
             vehicleApi.applyEngineForce(engineForce, 3);
@@ -113,16 +114,20 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     }
 
     const onHandleBrake = ()=> {
-        setEngineForce(0)
+        vehicleApi.setBrake(0.5,2)
+        vehicleApi.setBrake(0.5,3)
+        if( engineForce <= 5) {
+            setEngineForce(0);
+            chassisApi.velocity.set(0,0,0)
+        }else{
+            setEngineForce((prev) => prev - 5)
+        }
 
         if(selectedGearState === "D" || "R" ){ 
-            vehicleApi.applyEngineForce(0, 2);
-            vehicleApi.applyEngineForce(0, 3);
-            chassisApi.velocity.set(0,0,0)
-            
+            vehicleApi.applyEngineForce(engineForce, 2);
+            vehicleApi.applyEngineForce(engineForce, 3);
+            //chassisApi.velocity.set(0,0,0)
         }else{
-            vehicleApi.setBrake(0.1,2)
-            vehicleApi.setBrake(0.1,3)
             // chassisApi.velocity.set(0,0,0)
         }
     }
