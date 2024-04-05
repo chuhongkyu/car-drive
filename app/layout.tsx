@@ -1,4 +1,3 @@
-import RecoilRootWrapper from '@/components/RecoilRootWrapper'
 import { Layout } from '@/components/dom/Layout'
 import '@/styles/styles.scss'
 
@@ -12,9 +11,7 @@ export default function RootLayout({ children }) {
     <html lang='en' className='antialiased'>
       <head />
       <body>
-        <RecoilRootWrapper>
-          <Layout>{children}</Layout>
-        </RecoilRootWrapper>
+        <Layout>{children}</Layout>
       </body>
     </html>
   )

@@ -7,15 +7,14 @@ import { motion } from "framer-motion"
 import FullscreenBtn from '../ui/FullscreenBtn'
 import GoGame from '../ui/GoGame'
 import GameStatus from '../game/GameStatus'
-import { useRecoilState } from 'recoil'
-import { onStartScene } from '@/utils/atom'
+import useGameStore from '@/utils/gameStore'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
   const ref = useRef()
   const pathname = usePathname()
-  const [ isStart, setStart] = useRecoilState(onStartScene);
+  const { isStart }= useGameStore();
 
   return (
       <motion.div

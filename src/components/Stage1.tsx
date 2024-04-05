@@ -5,32 +5,35 @@ import RLUpPoint from "./object/RLUpPoint";
 import RRUpPoint from "./object/RRUpPoint";
 import RRDwonPoint from "./object/RRDownPoint";
 import RLDwonPoint from "./object/RLDownPoint";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { checkParking, selectedGearState, stageData } from "@/utils/atom";
+import useCarStore from "@/utils/carStore";
 import { useEffect } from "react";
+import useGameStore from "@/utils/gameStore";
 
 export function Stage1() {
-  const isParking = useRecoilValue(checkParking)
-  const selectedGear =  useRecoilValue(selectedGearState);
-  const [data, setStageData] =  useRecoilState(stageData);
+  const { checkParking, selectedGearState } = useCarStore();
+  const { stageData, setStageData } =  useGameStore();
+  const STAGE = "stage1";
 
-
-  useEffect(() => {
-  if (isParking && selectedGear === "P") {
-    setStageData((prevStageData) =>
-      prevStageData.map((stage) => 
-        stage.name === "stage1"
-          ? {
-              ...stage,
-              quest: stage.quest.map((q) =>
-                q.id === "001" ? { ...q, clear: true } : q
-              ),
-            }
-          : stage
-      )
+  const onHandleQuest = (currentQuestId:string)=> {
+    setStageData(stageData.map((stage) => 
+          stage.name === STAGE
+            ? {
+                ...stage,
+                quest: stage.quest.map((q) =>
+                  q.id === currentQuestId ? { ...q, clear: true } : q
+                ),
+              }
+            : stage
+        )
     );
   }
-}, [isParking, selectedGear, setStageData]);
+
+  useEffect(() => {
+    let currentQuestId = "001"
+    if (checkParking && selectedGearState === "P") {
+      onHandleQuest(currentQuestId)
+    }
+  }, [checkParking, selectedGearState, setStageData]);
 
   return (
     <>

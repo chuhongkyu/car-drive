@@ -1,19 +1,19 @@
-import { selectedGearState } from "@/utils/atom";
+import useCarStore from "@/utils/carStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
+    const { selectedGearState, setSelectedGearState } = useCarStore();
+
     const steeringWheelRef = useRef(null);
     const [rotation, setRotation] = useState(0);
     const [startRotation, setStartRotation] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const [selectedGear, setSelectedGear] = useRecoilState(selectedGearState);
     const [engineForce, setEngineForce] = useState(10)
 
     const onHandleGearChange = (event) => {
-        setSelectedGear(event.target.value);
+        setSelectedGearState(event.target.value);
     };
 
     const bind:any = useGesture({
@@ -83,7 +83,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     }, [isDragging, vehicleApi]);
 
     useEffect(()=> {
-        if(selectedGear === "P"){
+        if(selectedGearState === "P"){
             console.log(vehicleApi)
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
@@ -91,7 +91,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             setEngineForce(0)
         }
 
-    },[selectedGear, chassisApi, vehicleApi])
+    },[selectedGearState, chassisApi, vehicleApi])
 
     const onHandleAccel = ()=> {
         if(engineForce < 20){
@@ -100,10 +100,10 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             setEngineForce(10)
         }
 
-        if(selectedGear === "D"){
+        if(selectedGearState === "D"){
             vehicleApi.applyEngineForce(engineForce, 2);
             vehicleApi.applyEngineForce(engineForce, 3);
-        }else if(selectedGear === "R"){
+        }else if(selectedGearState === "R"){
             vehicleApi.applyEngineForce(-engineForce, 2);
             vehicleApi.applyEngineForce(-engineForce, 3);
         }else{
@@ -115,7 +115,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const onHandleBrake = ()=> {
         setEngineForce(0)
 
-        if(selectedGear === "D" || "R" ){ 
+        if(selectedGearState === "D" || "R" ){ 
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
             chassisApi.velocity.set(0,0,0)
@@ -137,7 +137,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                             id="drive" 
                             name="gear" 
                             value="D" 
-                            checked={selectedGear === 'D'} 
+                            checked={selectedGearState === 'D'} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="drive" className="btn">D</label>
@@ -151,7 +151,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                             id="park" 
                             name="gear" 
                             value="P"
-                            checked={selectedGear === 'P'} 
+                            checked={selectedGearState=== 'P'} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="park" className="btn">P</label>
@@ -162,7 +162,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                             id="reverse" 
                             name="gear" 
                             value="R"
-                            checked={selectedGear === 'R'} 
+                            checked={selectedGearState === 'R'} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="reverse" className="btn">R</label>

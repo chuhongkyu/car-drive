@@ -5,13 +5,22 @@
     color: black;
     padding: 15px 20px;
     font-size: 18px;
+    font-weight: 700;
     background: white;
     z-index: 9999;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%) !important;
     cursor: pointer;
+    &:hover{
+        background: rgb(179, 178, 178);
+        transition: 300ms ease-in-out;
+    }
+    &:checked{
+        background: rgb(179, 178, 178);
+        transition: 300ms ease-in-out;
+    }
 }
 
 .info{

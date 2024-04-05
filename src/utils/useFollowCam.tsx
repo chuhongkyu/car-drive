@@ -1,12 +1,11 @@
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo } from 'react'
-import { useRecoilValue } from 'recoil'
 import { Object3D } from 'three'
-import { onStartScene } from './atom'
+import useGameStore from './gameStore'
 
 export default function useFollowCam() {
   const { scene, camera } = useThree()
-  const isStart = useRecoilValue(onStartScene)
+  const { isStart } = useGameStore()
   const pivot = useMemo(() => new Object3D(), [])
   const followCam = useMemo(() => {
     const o = new Object3D()
@@ -16,8 +15,8 @@ export default function useFollowCam() {
 
   const makeCamera = ()=>{
     // console.log(camera.rotation, camera.position)
-    camera.rotation.set(-0.6, 0, 0)
-    camera.position.set(0, 1.8, 2)
+    camera.rotation.set(-0.8, 0, 0)
+    camera.position.set(0, 2.5, 2)
     followCam.add(camera)
     pivot.add(followCam)
     scene.add(pivot)
