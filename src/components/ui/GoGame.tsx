@@ -7,9 +7,8 @@ const GoGame = () => {
     return(
         <>
             {introClear && 
-            <div className="intro-panel">
-                <Link href={"/world"}>GoGame</Link>
-            </div>}
+                <Link className="intro-panel"  href={"/world"}>GoGame</Link>
+            }
         </>
         
     )

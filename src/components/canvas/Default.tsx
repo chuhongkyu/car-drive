@@ -28,15 +28,17 @@ export const Default = () => {
       </Suspense>
       
       <DefaultLights/>
-      <OrbitControls 
+      <OrbitControls
         makeDefault 
-        maxDistance={42} 
+        maxDistance={52} 
         minDistance={20} 
         minAzimuthAngle={-Math.PI/2 + 1} 
         maxAzimuthAngle={Math.PI/2 - 1} 
         minPolarAngle={-Math.PI/2 + 0.5}
         maxPolarAngle={Math.PI/2 - 0.5}
-        enablePan={false} />
+        enablePan={false}
+        enableRotate={false}
+        />
     </>
   )
 }
