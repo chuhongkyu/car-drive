@@ -1,6 +1,7 @@
 import useCarStore from "@/utils/carStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
@@ -175,8 +176,10 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                 </form>
                 <div className="joystick-container">
                     <div className="brake-container">
-                        <button className="brake" onClick={onHandleBrake}>브</button>
-                        <button className="accel" onClick={onHandleAccel}>엑{engineForce}</button>
+                        <button className="brake" onClick={onHandleBrake}>
+
+                        </button>
+                        <button className="accel" onClick={onHandleAccel}>{engineForce}</button>
                     </div>
                 </div>
                 <div className="steering-wheel-bg" {...bind()}>

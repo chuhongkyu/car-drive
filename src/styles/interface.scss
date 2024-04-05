@@ -224,9 +224,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 1px solid #333;
                 margin-right: 20px;
                 border-radius: 5px;
+                background: center / cover no-repeat url("/ui/brake.png");
+                cursor: pointer;
+                &:hover{
+                    transition: 300ms ease-in-out;
+                    border: 2px solid #333;
+                }
             }
     
             .accel {
@@ -235,8 +240,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 1px solid #333;
                 border-radius: 5px;
+                background: center / cover no-repeat url("/ui/accel.png");
+                cursor: pointer;
+                font-size: 12px;
+                &:hover {
+                    transition: 300ms ease-in-out;
+                    border: 2px solid #333;
+                }
             }
         }
     }    

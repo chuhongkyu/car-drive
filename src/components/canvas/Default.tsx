@@ -37,7 +37,6 @@ export const Default = () => {
         minPolarAngle={-Math.PI/2 + 0.5}
         maxPolarAngle={Math.PI/2 - 0.5}
         enablePan={false}
-        
         />
     </>
   )
