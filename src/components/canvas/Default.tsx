@@ -1,7 +1,7 @@
 'use client'
 
 import {  Suspense, useEffect } from 'react'
-import { Environment, OrbitControls } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { ToyPeople } from '../object/ToyPeople'
 import { DummyCar } from '../DummyCar'
@@ -13,7 +13,7 @@ export const Default = () => {
   useEffect(()=>{
     three.camera.position.x = 3
     three.camera.position.y = 18
-    three.camera.position.z  = 25
+    three.camera.position.z  = 50
   },[])
 
   return (
@@ -30,14 +30,14 @@ export const Default = () => {
       <DefaultLights/>
       <OrbitControls
         makeDefault 
-        maxDistance={52} 
+        maxDistance={62} 
         minDistance={20} 
         minAzimuthAngle={-Math.PI/2 + 1} 
         maxAzimuthAngle={Math.PI/2 - 1} 
         minPolarAngle={-Math.PI/2 + 0.5}
         maxPolarAngle={Math.PI/2 - 0.5}
         enablePan={false}
-        enableRotate={false}
+        
         />
     </>
   )
