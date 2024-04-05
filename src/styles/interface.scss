@@ -27,6 +27,7 @@
 .info{
     position: relative;
     min-width: 210px;
+    height: 75px;
     font-size: 18px;
     line-height: 130%;
     background: $transparent-bg;
@@ -38,7 +39,7 @@
         content: "";
         position: absolute;
         bottom: -20px;
-        left: 20px;
+        left: 50px;
         border-width: 10px;
         border-style: solid;
         border-color: $transparent-bg transparent transparent transparent;

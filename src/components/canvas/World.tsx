@@ -8,6 +8,8 @@ import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
 import { WorldLights } from "./Lights"
 import { useThree } from "@react-three/fiber"
+import DebugWrapper from "../DebugWrapper"
+import { Physics } from "@react-three/cannon"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
@@ -39,17 +41,20 @@ export const World = ({ route = '/world', ...props }) => {
 
 
   return (
-    <Suspense fallback={<></>}>
-      <WorldLights/>
-      {gameState === "READY" && 
-        <Html center>
-          <button className="start" onClick={()=> setGameState("START")}>Start</button>
-        </Html>
-      }
-      
-      {stageData[stageNumber].name === "stage1" && <Stage1/>}
-      {gameState === "START" && <Car/>}
-    </Suspense>
+    <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
+      <DebugWrapper>
+        <Suspense fallback={<></>}>
+          <WorldLights/>
+          {gameState === "READY" && 
+            <Html center>
+              <button className="start" onClick={()=> setGameState("START")}>Start</button>
+            </Html>
+          }
+          {stageData[stageNumber].name === "stage1" && <Stage1/>}
+          {gameState === "START" && <Car/>}
+        </Suspense>
+      </DebugWrapper>
+    </Physics>
   )
 }
 

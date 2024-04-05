@@ -6,6 +6,7 @@ import { GLTF } from 'three-stdlib'
 import { motion } from "framer-motion-3d";
 import useIntroStore from '@/utils/introStore';
 import InfoNumber from './ui/InfoNumber';
+import TypedComponent from './ui/TypedComponent';
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -120,6 +121,10 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             animate={carState[2].isActive ? { x: -2.85, y: -0.81, z: 0.276 }: { x: 23, y:0, z: -1.5}}
             transition={{ duration: 1, type: "spring" }} 
             position={[-2.85, -0.81, 0.276]} rotation={[-Math.PI / 2, 0, 0]}>
+              <mesh>
+                <boxGeometry args={[13,2,8]}/>
+                <meshBasicMaterial transparent opacity={0}/>
+              </mesh>
             <mesh castShadow geometry={nodes['ChamferCyl001_Material_#5_0'].geometry} material={materials.Material_5} position={[-4.111, -1.316, -2.633]} />
             {!introClear && <InfoNumber ord={3}/>}
           </motion.group>
@@ -175,19 +180,10 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
         >
           <planeGeometry args={[25,15]}/>
           <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
-          {info && !carState.some((state)=> state.isActive) ? <Html center><div className="info">It seems necessary to assemble the car.</div></Html> : null}
+          {info && !carState.some((state)=> state.isActive) ? <Html center><TypedComponent text={"It seems necessary to assemble the car."}/></Html> : null}
           {introClear && <Sparkles position={[0,0,2]} count={80} scale={[24,15,0.5]} size={20} speed={0.4} color={"#fef9e5"}/>}
         </mesh>
       </group>
-
-      {/* <motion.mesh
-        castShadow
-        initial={{scale: 0}}
-        animate={carState.every((state)=> state.isActive) ? {scale: 0.5}: {scale: 0}}
-        position={[-5,1,10]}>
-        <sphereGeometry args={[4,32]}/>
-        <meshToonMaterial color={"brown"}/>
-      </motion.mesh> */}
     </group>
   )
 }
