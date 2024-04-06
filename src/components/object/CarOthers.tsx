@@ -76,7 +76,7 @@ export function CarObj(props:any) {
       </group>
       <group position={position}>
         <mesh rotation={[-Math.PI/2,0,Math.PI/2]} position={[0,-0.2,0]}>
-          <planeGeometry args={[1.3,1]}/>
+          <planeGeometry args={[1.4,0.8]}/>
           <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
         </mesh>
       </group>

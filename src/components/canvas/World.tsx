@@ -1,13 +1,12 @@
 'use client'
 
 import { Car } from "../Car"
-import { Suspense, useEffect } from "react"
-import { Environment, Html } from "@react-three/drei"
+import { Suspense, useEffect, useRef } from "react"
+import { Html, OrthographicCamera } from "@react-three/drei"
 import { Stage1 } from "../Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
 import { WorldLights } from "./Lights"
-import { useThree } from "@react-three/fiber"
 import DebugWrapper from "../DebugWrapper"
 import { Physics } from "@react-three/cannon"
 import { Stage10 } from "../Stage10"
@@ -15,7 +14,7 @@ import { Stage10 } from "../Stage10"
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
-  const three = useThree()
+  const cameraRef = useRef(null)
 
   useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,8 +34,10 @@ export const World = ({ route = '/world', ...props }) => {
 
   useEffect(()=>{
     if(!isStart){
-      three.camera.rotation.set(-0.6, 0, 0)
-      three.camera.position.set(0, 16, 25)
+      cameraRef.current.position.x = 0;
+      cameraRef.current.position.y = 2.5;
+      cameraRef.current.position.z = 2;
+      // console.log(cameraRef.current.position)
     }
   },[isStart])
 
@@ -48,6 +49,7 @@ export const World = ({ route = '/world', ...props }) => {
   },[stageData])
 
   return (
+    <>
     <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
       <DebugWrapper>
         <Suspense fallback={<></>}>
@@ -63,6 +65,20 @@ export const World = ({ route = '/world', ...props }) => {
         </Suspense>
       </DebugWrapper>
     </Physics>
+    <OrthographicCamera
+      ref={cameraRef}
+       makeDefault
+       left={-(window.innerWidth / window.innerHeight)}
+       right={window.innerWidth / window.innerHeight}
+       top={1}
+       rotation={[-0.85, 0, 0]}
+       position={[0, 2.5, 2]}
+       zoom={0.5}
+       bottom={-1}
+       near={-1000}
+       far={1000}
+     />
+    </>
   )
 }
 

@@ -15,17 +15,27 @@ export default function useFollowCam() {
 
   const makeCamera = ()=>{
     // console.log(camera.rotation, camera.position)
-    camera.rotation.set(-0.8, 0, 0)
-    camera.position.set(0, 2.5, 2)
+    camera.rotation.set(-0.85, 0, 0)
+    camera.position.set(0, 2.5, 1)
     followCam.add(camera)
     pivot.add(followCam)
     scene.add(pivot)
   }
 
+  const cleanupCamera = () => {
+    followCam.remove(camera);
+    pivot.remove(followCam);
+    scene.remove(pivot);
+  }
+
+
   useEffect(() => {
     if(isStart){
       makeCamera()
     }
+    return () => {
+      cleanupCamera();
+    };
   }, [isStart])
 
   return { pivot }

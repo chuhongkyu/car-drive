@@ -12,11 +12,11 @@ const ParkingPlace = (props) => {
     return(
         <group rotation={[0,rotationY,0]}>
           <mesh position={position} rotation={[-Math.PI/2,0,0]}>
-            <planeGeometry args={[1.3,1]}/>
+            <planeGeometry args={[1.4,0.8]}/>
             <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
           </mesh>
           <motion.mesh initial={{ y: -2}} animate={checkParking ? { y: [-2,-0.18]}: { y: -2}} transition={{ duration: 0.5, type: easeInOut}}  position={[position[0],-1,position[2]]} rotation={[-Math.PI/2,0,0]}>
-            <planeGeometry args={[1.3,1]}/>
+            <planeGeometry args={[1.4,0.8]}/>
             <meshStandardMaterial color={"green"} transparent opacity={0.7}/>
           </motion.mesh>
         </group>
