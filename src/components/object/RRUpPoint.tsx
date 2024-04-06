@@ -1,26 +1,21 @@
 import useGameStore from "@/utils/gameStore";
 import { useBox } from "@react-three/cannon"
-import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 
 export default function RRUpPoint(props) {
+    const { position, floorTexture, wallTexture } = props
     const { setGameState } = useGameStore()
-    const onCollide = () => setGameState("GAMEOVER")
-
-    const texturemap = useTexture({
-        roughnessMap: "/materials/roughness.png",
-        map: "/materials/base.png",
-        normalMap: "/materials/normal.png",
-    })
-    const texturemap2 = useTexture({
-        map: "/materials/red.png",
-    })
+    const onCollide = (e) => {
+        const { body } = e;
+        if (body.name === "chassisBody") {
+            setTimeout(()=> setGameState("GAMEOVER"),500)
+        }
+    }
 
     const width = 5
     const height = 0.5
     const depth = 5
 
-    const { position } = props
     const [ref] = useBox(
         () => ({ 
             type: 'Static', 
@@ -54,15 +49,15 @@ export default function RRUpPoint(props) {
         <group>
             <mesh castShadow receiveShadow ref={ref}>
                 <boxGeometry args={[width,height,depth]}/>
-                <meshStandardMaterial {...texturemap} color={"yellow"}/>
+                <meshStandardMaterial {...floorTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref1}>
                 <boxGeometry args={[width,1,0.5]}/>
-                <meshStandardMaterial {...texturemap2} color={"yellow"}/>
+                <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref2}>
                 <boxGeometry args={[0.5,1,depth]}/>
-                <meshStandardMaterial {...texturemap2} color={"yellow"}/>
+                <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
         </group>
     )

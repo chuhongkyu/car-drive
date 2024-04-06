@@ -1,8 +1,10 @@
 
 import * as THREE from 'three'
 import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useBox } from '@react-three/cannon'
+import useGameStore from '@/utils/gameStore'
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -24,12 +26,33 @@ export type GLTFResult = GLTF & {
   }
 }
 
-export function CarModel(props: JSX.IntrinsicElements['group']) {
+export function CarObj(props:any) {
+  const { position } = props;
+  const { setGameState } = useGameStore()
   const { nodes, materials } = useGLTF('/models/toy_car.glb') as GLTFResult
+  const texture = useTexture('/img/parking.png')
+
+  const onCollide = (e) => {
+      const { body } = e;
+      if (body.name === "chassisBody") {
+        setTimeout(()=> setGameState("GAMEOVER"),500)
+      }
+  }
+
+  const [ref] = useBox(
+    () => ({ 
+      type: "Kinematic",
+      mass: 1,
+      onCollide: onCollide,
+      args: [0.5, 0.3, 1],
+      ...props
+    }), useRef(null)
+  );
+
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[Math.PI/2, 0, Math.PI/2]} scale={[0.05,0.06,0.05]}>
-        <group rotation={[-Math.PI, 0, 0]} position={[0,-1.7,1]}>
+    <group dispose={null}>
+      <group ref={ref} scale={[0.06,0.06,0.05]}>
+        <group rotation={[-Math.PI/2, 0, Math.PI/2]} position={[-1,-1.7,0.5]}>
           <group position={[6.084, 0.371, 0.276]} rotation={[Math.PI / 2, 0, 0]}>
             <mesh castShadow geometry={nodes['Shape2_Material_#3_0'].geometry} material={materials.Material_3} position={[-35.202, 15.612, 0]} />
           </group>
@@ -45,11 +68,17 @@ export function CarModel(props: JSX.IntrinsicElements['group']) {
           <group position={[-2.85, -0.81, 0.276]} rotation={[-Math.PI / 2, 0, 0]}>
             <mesh castShadow geometry={nodes['ChamferCyl001_Material_#5_0'].geometry} material={materials.Material_5} position={[-4.111, -1.316, -2.633]} />
           </group>
-          {/* <mesh geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
+          <mesh geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <mesh geometry={nodes['ChamferCyl003_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <mesh geometry={nodes['ChamferCyl004_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
-          <mesh geometry={nodes['ChamferCyl005_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} /> */}
+          <mesh geometry={nodes['ChamferCyl005_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
         </group>
+      </group>
+      <group position={position}>
+        <mesh rotation={[-Math.PI/2,0,Math.PI/2]} position={[0,-0.2,0]}>
+          <planeGeometry args={[1.3,1]}/>
+          <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
+        </mesh>
       </group>
     </group>
   )

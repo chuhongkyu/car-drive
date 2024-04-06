@@ -9,6 +9,7 @@ import GoGame from '../ui/GoGame'
 import GameStatus from '../game/GameStatus'
 import useGameStore from '@/utils/gameStore'
 import GameOver from '../ui/GameOver'
+import GameSuccess from '../ui/GameSuccess'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
@@ -31,6 +32,7 @@ const Layout = ({ children }) => {
       >
         {pathname == "/world" && isStart && <GameStatus/>}
         {pathname == "/world" && gameState === "GAMEOVER" && <GameOver/>}
+        {pathname == "/world" && gameState === "SUCCESS" && <GameSuccess/>}
         {pathname == "/" && <GoGame/>}
         {children}
         {/* <FullscreenBtn/> */}

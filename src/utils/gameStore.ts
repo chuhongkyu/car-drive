@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { ORIGIN_STAGE_DATA } from './stageData';
 
-type GameState = "READY" | "START" | "GAMEOVER"
+type GameState = "READY" | "START" | "SUCCESS" | "GAMEOVER"
 
 type GameStore = {
     isStart: boolean;
@@ -16,12 +16,14 @@ type GameStore = {
 
 interface IData {
     name: string;
+    carPosition: number[]
     clear: boolean;
     quest: IQuest[]
 }
 
 interface IQuest {
     id: string;
+    position: number[];
     desc?: string;
     clear: boolean;
 }

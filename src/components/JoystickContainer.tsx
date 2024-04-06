@@ -1,7 +1,6 @@
 import useCarStore from "@/utils/carStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
@@ -88,8 +87,19 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             console.log(vehicleApi)
             vehicleApi.applyEngineForce(0, 2);
             vehicleApi.applyEngineForce(0, 3);
+            vehicleApi.setBrake(0.5,2)
+            vehicleApi.setBrake(0.5,3)
             chassisApi.velocity.set(0,0,0)
             setEngineForce(0)
+        }else if(selectedGearState === "D"){
+            vehicleApi.applyEngineForce(engineForce, 2);
+            vehicleApi.applyEngineForce(engineForce, 3);
+        }else if(selectedGearState === "R"){
+            vehicleApi.applyEngineForce(-engineForce, 2);
+            vehicleApi.applyEngineForce(-engineForce, 3);
+        }else{
+            vehicleApi.applyEngineForce(0, 2);
+            vehicleApi.applyEngineForce(0, 3);
         }
 
     },[selectedGearState, chassisApi, vehicleApi])
@@ -117,11 +127,9 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const onHandleBrake = ()=> {
         vehicleApi.setBrake(0.5,2)
         vehicleApi.setBrake(0.5,3)
+        setEngineForce(5);
         if( engineForce <= 5) {
-            setEngineForce(0);
             chassisApi.velocity.set(0,0,0)
-        }else{
-            setEngineForce((prev) => prev - 5)
         }
 
         if(selectedGearState === "D" || "R" ){ 

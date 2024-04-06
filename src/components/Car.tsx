@@ -1,6 +1,6 @@
 import { Triplet, useBox, useRaycastVehicle } from "@react-three/cannon";
-import { useFrame, useThree } from "@react-three/fiber";
-import { RefObject, useEffect, useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { RefObject, useMemo, useRef } from "react";
 import { useWheels } from "@/utils/useWheels";
 import { Mesh, Quaternion, Vector3 } from "three";
 import useCarStore from "@/utils/carStore";
@@ -12,15 +12,16 @@ import { Wheel } from "./Wheel";
 import useGameStore from "@/utils/gameStore";
 
 
-export function Car() {
+export function Car( { carPosition }) {
   const { isStart } = useGameStore()
   const { checkParking, setCheckParking } = useCarStore();
+  const { stageData, stageNumber } = useGameStore()
 
   const { pivot } = useFollowCam();
   const worldPosition = useMemo(() => new Vector3(), [])
   const worldQuaternion = useMemo(() => new Quaternion(), []);
 
-  const position:Triplet = [7, 0.5, 0];
+  const position:Triplet = carPosition;
   let width, height, front, wheelRadius;
   width = 0.35;
   height = 0.15;
@@ -70,8 +71,12 @@ export function Car() {
   }
 
   function makeStage(){
+    let xPosition = stageData[stageNumber].quest[0].position[0]
+    let zPosition = stageData[stageNumber].quest[0].position[1]
+    
     const chassisPosition = new Vector3().setFromMatrixPosition(chassisBody.current.matrixWorld);
-    if ( Math.abs(-9 - chassisPosition.x) < 0.3 && Math.abs(-5 - chassisPosition.z) < 0.3){
+
+    if ( Math.abs(xPosition - chassisPosition.x) < 0.3 && Math.abs(zPosition - chassisPosition.z) < 0.3){
       setCheckParking(true)
     }else{
       setCheckParking(false);

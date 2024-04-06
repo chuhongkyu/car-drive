@@ -1,17 +1,15 @@
 import ParkingPlace from "./object/ParkingPlace";
-import Road from "./object/Road";
-import RoadRight from "./object/RoadRight";
-import RLUpPoint from "./object/RLUpPoint";
-import RRUpPoint from "./object/RRUpPoint";
-import RRDwonPoint from "./object/RRDownPoint";
-import RLDwonPoint from "./object/RLDownPoint";
 import useCarStore from "@/utils/carStore";
 import { useEffect } from "react";
 import useGameStore from "@/utils/gameStore";
+import RoadStart from "./object/RoadStart";
+import { useTexture } from "@react-three/drei";
+import RoadEnd from "./object/RoadEnd";
+import { CarObj } from "./object/CarOthers";
 
 export function Stage1() {
   const { checkParking, selectedGearState } = useCarStore();
-  const { stageData, setStageData } =  useGameStore();
+  const { stageData, setStageData,  } =  useGameStore();
   const STAGE = "stage1";
 
   const onHandleQuest = (currentQuestId:string)=> {
@@ -35,21 +33,23 @@ export function Stage1() {
     }
   }, [checkParking, selectedGearState, setStageData]);
 
+  const floorTexture = useTexture({
+    roughnessMap: "/materials/roughness.png",
+    map: "/materials/blue.png",
+    normalMap: "/materials/normal.png",
+  })
+
+  const wallTexture = useTexture({
+    map: "/materials/black.jpeg",
+  })
+
   return (
     <>
-      <RRDwonPoint position={[-8,-0.5,5]}/>
-      <Road position={[-8,-0.5,0]}/>
-      <RRUpPoint position={[-8,-0.5,-5]}/>
-      <RoadRight position={[-3,-0.5,-5]}/>
-      <RoadRight position={[2,-0.5,-5]}/>
-      <RLUpPoint position={[7,-0.5,-5]}/>
-      <Road position={[7,-0.5,0]}/>
-
-      <RoadRight position={[-3,-0.5,5]}/>
-      <RoadRight position={[2,-0.5,5]}/>
-      <RLDwonPoint position={[7,-0.5,5]}/>
-      
-      <ParkingPlace position={[-9,-0.2,-5]}/>
+      <ParkingPlace position={[3,-0.2,0]} rotationY={Math.PI/2}/>
+      <RoadStart position={[0,-0.5,2.5]} floorTexture={floorTexture} wallTexture={wallTexture}/>
+      <RoadEnd position={[0,-0.5,-2.5]} floorTexture={floorTexture} wallTexture={wallTexture}/>
+      <CarObj position={[1.5,0,-3]}/>
+      <CarObj position={[-1.5,0,-3]}/>
     </>
   );
 }

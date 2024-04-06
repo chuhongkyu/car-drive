@@ -10,6 +10,7 @@ import { WorldLights } from "./Lights"
 import { useThree } from "@react-three/fiber"
 import DebugWrapper from "../DebugWrapper"
 import { Physics } from "@react-three/cannon"
+import { Stage10 } from "../Stage10"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
@@ -39,6 +40,12 @@ export const World = ({ route = '/world', ...props }) => {
     }
   },[isStart])
 
+  useEffect(()=>{
+    const check = stageData[stageNumber].quest.every((el)=> el.clear)
+    if(check){
+      setGameState("SUCCESS")
+    }
+  },[stageData])
 
   return (
     <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
@@ -51,7 +58,8 @@ export const World = ({ route = '/world', ...props }) => {
             </Html>
           }
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
-          {gameState === "START" && <Car/>}
+          {stageData[stageNumber].name === "stage2" && <Stage10/>}
+          {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
         </Suspense>
       </DebugWrapper>
     </Physics>

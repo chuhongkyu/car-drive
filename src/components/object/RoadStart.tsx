@@ -2,7 +2,7 @@ import useGameStore from "@/utils/gameStore";
 import { useBox } from "@react-three/cannon"
 import { useRef } from "react";
 
-export default function RLDwonPoint(props) {
+export default function RoadStart (props) {
     const { position, floorTexture, wallTexture } = props
     const { setGameState } = useGameStore()
     const onCollide = (e) => {
@@ -29,9 +29,9 @@ export default function RLDwonPoint(props) {
         () => ({ 
             type: 'Static', 
             material: 'ground',
-            args: [width,1,0.5],
-            position: [position[0], position[1] + 0.75, position[2] + depth/2],
-            onCollide: onCollide,
+            args: [0.5,1,depth],
+            position: [position[0] + width/2, position[1] + 0.75, position[2]],
+            onCollide: onCollide
         }), useRef(null)
     );
 
@@ -40,8 +40,18 @@ export default function RLDwonPoint(props) {
             type: 'Static', 
             material: 'ground',
             args: [0.5,1,depth],
-            position: [position[0] + width/2, position[1] + 0.75, position[2]],
-            onCollide: onCollide,
+            position: [position[0] - width/2, position[1] + 0.75, position[2]],
+            onCollide: onCollide
+        }), useRef(null)
+    );
+
+    const [ref3] = useBox(
+        () => ({ 
+            type: 'Static', 
+            material: 'ground',
+            args: [width,1,0.5],
+            position: [position[0], position[1] + 0.75, position[2] + depth/2],
+            onCollide: onCollide
         }), useRef(null)
     );
 
@@ -52,11 +62,15 @@ export default function RLDwonPoint(props) {
                 <meshStandardMaterial {...floorTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref1}>
-                <boxGeometry args={[width,1,0.5]}/>
+                <boxGeometry args={[0.5,1,depth]}/>
                 <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref2}>
                 <boxGeometry args={[0.5,1,depth]}/>
+                <meshStandardMaterial {...wallTexture} color={"yellow"}/>
+            </mesh>
+            <mesh castShadow receiveShadow ref={ref3}>
+                <boxGeometry args={[width,1,0.5]}/>
                 <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
         </group>
