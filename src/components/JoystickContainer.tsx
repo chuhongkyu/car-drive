@@ -2,6 +2,7 @@ import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
@@ -204,8 +205,8 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                     </div>
                 </form>
                 <div className="joystick-container">
-                    <div className="camera-container">
-                        <button onClick={onHandleCameraType}>카메라</button>
+                    <div className="camera-container" onClick={onHandleCameraType}>
+                       
                     </div>
                     <div className="brake-container">
                         <button className="brake" onClick={onHandleBrake}>

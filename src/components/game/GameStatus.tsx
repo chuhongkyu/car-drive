@@ -27,7 +27,7 @@ const GameStatus = () => {
                     {stageData[stageNumber].quest.map((el)=>{
                         return(
                             <span className="quest" data-clear={el.clear} key={el.id + "KEY" + stageData[stageNumber].name}>
-                                <div className="dot"/>
+                                <span className="dot"/>
                                 <p>{el.desc}</p>
                             </span>
                         )

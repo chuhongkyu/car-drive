@@ -14,7 +14,7 @@ import { Stage2 } from "../stage/Stage2"
 import { Stage3 } from "../stage/Stage3"
 
 export const World = ({ route = '/world', ...props }) => {
-  const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
+  const { isStart, checkStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef(null)
 
@@ -47,7 +47,15 @@ export const World = ({ route = '/world', ...props }) => {
   useEffect(()=>{
     if(isStart){
       const check = stageData[stageNumber].quest.every((el)=> el.clear)
-      if(check){ setGameState("SUCCESS")}
+      if(check){ 
+        const updatedStageData = [...stageData];
+        updatedStageData[stageNumber] = {
+          ...updatedStageData[stageNumber],
+          clear: true
+        };
+        setStageData(updatedStageData);
+        setGameState("SUCCESS")
+      }
     }
   },[isStart, stageData, stageNumber])
 

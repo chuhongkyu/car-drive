@@ -70,22 +70,48 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    .stage-number{
-        font-size: 22px;
-        font-weight: 700;
-        color: #ffffff;
-    }
-    .start-btn{
-        margin-top: 10px;
-        display: block;
-        color: black;
-        padding: 4px 15px;
-        line-height: 150%;
-        font-size: 16px;
-        background: white;
+    .start-container{
+        width: 300px;
+        padding: 20px;
         border-radius: 25px;
-        cursor: pointer;
-    } 
+        height: auto;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: $transparent-bg;
+        .stage-number {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .stage-desc{
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background: #fff;
+            h5{
+                font-size: 18px;
+                padding-bottom: 0.3rem;
+            }
+            .desc{
+                line-height: 130%;
+                font-size: 12px;
+            }
+        }
+        .start-btn {
+            margin-top: 25px;
+            display: block;
+            color: black;
+            padding: 4px 15px;
+            line-height: 150%;
+            font-size: 16px;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    }
 }
 
 .fullscreen-btn{
@@ -220,7 +246,8 @@
                     line-height: 135%;
                     font-weight: 700;
                     color: rgb(66, 66, 66);
-                    transition: 300ms ease-in-out
+                    transition: 300ms ease-in-out;
+                    cursor: pointer;
                 }
         
                 input[type="radio"]:checked+label {
@@ -245,11 +272,12 @@
             z-index: 2;
             display: block;
             .camera-container {
-                width: 50px;
-                height: 50px;
-                button{
-                    background: white;
-                }
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 32px;
+                height: 32px;
+                background: center / cover no-repeat url("/ui/camera.png");
             }
             .brake-container {
                 display: flex;
@@ -333,6 +361,7 @@
     .game-icon{
         width: 25px;
         height: 25px;
+        cursor: pointer;
     }
     &:hover{
         opacity: 1;
@@ -340,11 +369,11 @@
     }
     .quests{
         border-radius: 25px;
-        &.active{
-            display: none;
-        }
         padding: 15px 20px;
         background: $transparent-bg;
+        &.active {
+            display: none;
+        }
         h5{
             font-size: 18px;
             margin-bottom: 10px;
@@ -354,6 +383,7 @@
             align-items: center;
             line-height: 135%;
             font-size: 14px;
+            word-break: keep-all;
             &:not(:last-of-type){
                 margin-bottom: 5px;
             }
@@ -376,6 +406,14 @@
             }
         }
     }
+}
+
+.parking-arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
 }
 
 @media screen and (max-width: 1024px){
