@@ -5,7 +5,7 @@ import useGameStore from './gameStore'
 
 export default function useFollowCam() {
   const { scene, camera } = useThree()
-  const { isStart } = useGameStore()
+  const { isStart, cameraType } = useGameStore()
   const pivot = useMemo(() => new Object3D(), [])
   const followCam = useMemo(() => {
     const o = new Object3D()
@@ -13,10 +13,29 @@ export default function useFollowCam() {
     return o
   }, [])
 
-  const makeCamera = ()=>{
+  const makeFocusCamera = ()=>{
     // console.log(camera.rotation, camera.position)
-    camera.rotation.set(-0.85, 0, 0)
-    camera.position.set(0, 2.5, 1)
+    camera.rotation.set(-0.5, 0, 0)
+    camera.position.set(0, 1, 1)
+    
+    followCam.add(camera)
+    pivot.add(followCam)
+    scene.add(pivot)
+  }
+
+  const makeAllCamera = ()=>{
+    camera.rotation.set(-0.7, 0, 0)
+    camera.position.set(0, 3, 2.5)
+
+    followCam.add(camera)
+    pivot.add(followCam)
+    scene.add(pivot)
+  }
+
+  const makeViewCamera = ()=>{
+    camera.rotation.set(-0.2, 0, 0)
+    camera.position.set(0, 1, 1)
+
     followCam.add(camera)
     pivot.add(followCam)
     scene.add(pivot)
@@ -28,15 +47,21 @@ export default function useFollowCam() {
     scene.remove(pivot);
   }
 
+  useEffect(()=>{
+    if(!isStart) return
 
-  useEffect(() => {
-    if(isStart){
-      makeCamera()
-    }
-    return () => {
+    if(cameraType === "ALL"){
       cleanupCamera();
-    };
-  }, [isStart])
+      makeAllCamera()
+    }else if(cameraType === "FOCUS"){
+      cleanupCamera();
+      makeFocusCamera()
+    }else if(cameraType === "VIEW"){
+      cleanupCamera();
+      makeViewCamera();
+    }
+    return () =>  cleanupCamera();
+  },[cameraType, isStart])
 
   return { pivot }
 }

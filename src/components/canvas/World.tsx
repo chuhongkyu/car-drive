@@ -2,7 +2,7 @@
 
 import { Car } from "../Car"
 import { Suspense, useEffect, useRef } from "react"
-import { Html, OrthographicCamera } from "@react-three/drei"
+import { Html, OrthographicCamera, PerspectiveCamera } from "@react-three/drei"
 import { Stage1 } from "../Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
@@ -36,8 +36,9 @@ export const World = ({ route = '/world', ...props }) => {
     if(!isStart){
       cameraRef.current.position.x = 0;
       cameraRef.current.position.y = 2.5;
-      cameraRef.current.position.z = 2;
-      // console.log(cameraRef.current.position)
+      cameraRef.current.position.z = 3;
+      // cameraRef.current.zoom = 0.1
+      console.log(cameraRef.current.position)
     }
   },[isStart])
 
@@ -65,19 +66,7 @@ export const World = ({ route = '/world', ...props }) => {
         </Suspense>
       </DebugWrapper>
     </Physics>
-    <OrthographicCamera
-      ref={cameraRef}
-       makeDefault
-       left={-(window.innerWidth / window.innerHeight)}
-       right={window.innerWidth / window.innerHeight}
-       top={1}
-       rotation={[-0.85, 0, 0]}
-       position={[0, 2.5, 2]}
-       zoom={0.5}
-       bottom={-1}
-       near={-1000}
-       far={1000}
-     />
+    <PerspectiveCamera ref={cameraRef} fov={45} position={[0,2.5,3]}/>
     </>
   )
 }

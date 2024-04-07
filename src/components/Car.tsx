@@ -1,6 +1,6 @@
 import { Triplet, useBox, useRaycastVehicle } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
-import { RefObject, useMemo, useRef } from "react";
+import { RefObject, useMemo, useRef, useState } from "react";
 import { useWheels } from "@/utils/useWheels";
 import { Mesh, Quaternion, Vector3 } from "three";
 import useCarStore from "@/utils/carStore";
@@ -55,7 +55,9 @@ export function Car( { carPosition }) {
   );
 
   useFrame(() => {
-    if (isStart) makeFollowCam();
+    if (isStart) {
+      makeFollowCam();
+    }
     makeStage()
   });
 
@@ -64,9 +66,7 @@ export function Car( { carPosition }) {
 
     chassisBody.current.getWorldPosition(worldPosition);
     chassisBody.current.getWorldQuaternion(worldQuaternion);
-    
     pivot.position.lerp(worldPosition, 0.9);
-    
     pivot.setRotationFromQuaternion(worldQuaternion);
   }
 

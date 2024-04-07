@@ -1,10 +1,12 @@
 import useCarStore from "@/utils/carStore";
+import useGameStore from "@/utils/gameStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const { selectedGearState, setSelectedGearState } = useCarStore();
+    const { cameraType, setCameraType } = useGameStore()
 
     const steeringWheelRef = useRef(null);
     const [rotation, setRotation] = useState(0);
@@ -141,9 +143,20 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         }
     }
 
+    const onHandleCameraType = () => {
+        if(cameraType === "ALL"){
+            setCameraType("FOCUS")
+        }else if(cameraType === "FOCUS"){
+            setCameraType("VIEW")
+        }else if(cameraType === "VIEW"){
+            setCameraType("ALL")
+        }
+    }
+
     return (
         <Html wrapperClass="ui-root" className="ui-container">
             <div className="bottom">
+                {cameraType === "VIEW" && <div className="car-front"></div>}
                 <form className="gear-container">
                     <div className="btn-gear">
                         <input 
@@ -183,6 +196,9 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                     </div>
                 </form>
                 <div className="joystick-container">
+                    <div className="camera-container">
+                        <button onClick={onHandleCameraType}>카메라</button>
+                    </div>
                     <div className="brake-container">
                         <button className="brake" onClick={onHandleBrake}>
 

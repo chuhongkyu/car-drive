@@ -110,8 +110,19 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    .car-front{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        background: #645454;
+        border-top-right-radius: 50px;
+        border-top-left-radius: 50px;
+    }
     .bottom{
         position: absolute;
+        z-index: 1;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -134,10 +145,10 @@
 
         .steering-panel {
             position: absolute;
-            width: 250px;
+            width: 240px;
             height: 50px;
-            background-color: $transparent-bg;
             border-radius: 25px;
+            background-color: $transparent-bg;
             z-index: 4;
             touch-action: none;
             pointer-events: none;
@@ -148,7 +159,7 @@
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            background-image: url('/ui/handle.png');
+            background-image: url('/ui/handle_orange.png');
             background-position: center;
             background-size: cover;
             transition: transform 0.2s;
@@ -159,6 +170,7 @@
         .gear-container{
             display: block;
             position: fixed;
+            z-index: 2;
             top: 20px;
             right: 20px;
             border: 10px solid #333;
@@ -210,9 +222,16 @@
         }
     
         .joystick-container {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
+            position: relative;
+            z-index: 2;
+            display: block;
+            .camera-container {
+                width: 50px;
+                height: 50px;
+                button{
+                    background: white;
+                }
+            }
             .brake-container {
                 display: flex;
                 justify-content: center;
@@ -370,7 +389,7 @@
                 height: 100px;
             }
             .steering-panel {
-                width: 250px;
+                width: 220px;
                 height: 50px;
             }
             .steering-wheel {
