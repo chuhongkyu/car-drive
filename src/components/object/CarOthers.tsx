@@ -27,7 +27,7 @@ export type GLTFResult = GLTF & {
 }
 
 export function CarObj(props:any) {
-  const { position } = props;
+  const { position, color = 0xffffff } = props;
   const { setGameState } = useGameStore()
   const { nodes, materials } = useGLTF('/models/toy_car.glb') as GLTFResult
   const texture = useTexture('/img/parking.png')
@@ -57,7 +57,9 @@ export function CarObj(props:any) {
             <mesh castShadow geometry={nodes['Shape2_Material_#3_0'].geometry} material={materials.Material_3} position={[-35.202, 15.612, 0]} />
           </group>
           <group position={[-0.343, 0.371, 1.082]} rotation={[Math.PI / 2, 0, 0]}>
-            <mesh castShadow geometry={nodes['Shape4_Material_#6_0'].geometry} material={materials.Material_6} position={[-28.776, 14.806, 0]} />
+            <mesh castShadow geometry={nodes['Shape4_Material_#6_0'].geometry} position={[-28.776, 14.806, 0]}>
+              <meshPhongMaterial color={color}/>
+            </mesh>
           </group>
           <group position={[2.078, -3.566, 4.227]} rotation={[Math.PI / 2, 0, 0]}>
             <mesh castShadow geometry={nodes['Shape11_Material_#7_0'].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />

@@ -75,7 +75,7 @@ export function Car( { carPosition }) {
     let zPosition = stageData[stageNumber].quest[0].position[1]
     
     const chassisPosition = new Vector3().setFromMatrixPosition(chassisBody.current.matrixWorld);
-
+    console.log(chassisPosition.x, chassisPosition.z)
     if ( Math.abs(xPosition - chassisPosition.x) < 0.3 && Math.abs(zPosition - chassisPosition.z) < 0.3){
       setCheckParking(true)
     }else{

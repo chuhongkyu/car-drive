@@ -20,7 +20,7 @@ export const ORIGIN_STAGE_DATA = [
                 {
                     id: '021',
                     desc: "Park the car in the parking area and change the gear shift to 'P'.",
-                    position: [1,-3],
+                    position: [0.5, -2],
                     clear: false,
                 },
             ]

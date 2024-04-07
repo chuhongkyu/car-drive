@@ -58,6 +58,7 @@ export const World = ({ route = '/world', ...props }) => {
           <WorldLights/>
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
           {stageData[stageNumber].name === "stage2" && <Stage2/>}
+          {stageData[stageNumber].name === "stage3" && <Stage10/>}
           {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
         </Suspense>
       </DebugWrapper>
