@@ -35,10 +35,10 @@ export const World = ({ route = '/world', ...props }) => {
   useEffect(()=>{
     if(!isStart){
       cameraRef.current.position.x = 0;
-      cameraRef.current.position.y = 2.5;
-      cameraRef.current.position.z = 3;
-      // cameraRef.current.zoom = 0.1
-      console.log(cameraRef.current.position)
+      cameraRef.current.position.y = 1;
+      cameraRef.current.position.z = 2;
+      cameraRef.current.rotation.set(0,0,0)
+      // console.log(cameraRef.current.position)
     }
   },[isStart])
 
@@ -55,18 +55,13 @@ export const World = ({ route = '/world', ...props }) => {
       <DebugWrapper>
         <Suspense fallback={<></>}>
           <WorldLights/>
-          {gameState === "READY" && 
-            <Html center>
-              <button className="start" onClick={()=> setGameState("START")}>Start</button>
-            </Html>
-          }
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
           {stageData[stageNumber].name === "stage2" && <Stage10/>}
           {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
         </Suspense>
       </DebugWrapper>
     </Physics>
-    <PerspectiveCamera ref={cameraRef} fov={45} position={[0,2.5,3]}/>
+    <PerspectiveCamera ref={cameraRef} fov={45} position={[0,1,2]}/>
     </>
   )
 }
