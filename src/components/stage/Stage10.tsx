@@ -1,10 +1,10 @@
-import ParkingPlace from "./object/ParkingPlace";
-import Road from "./object/Road";
-import RoadRight from "./object/RoadRight";
-import RLUpPoint from "./object/RLUpPoint";
-import RRUpPoint from "./object/RRUpPoint";
-import RRDwonPoint from "./object/RRDownPoint";
-import RLDwonPoint from "./object/RLDownPoint";
+import ParkingPlace from "../object/ParkingPlace";
+import Road from "../object/Road";
+import RoadRight from "../object/RoadRight";
+import RLUpPoint from "../object/RLUpPoint";
+import RRUpPoint from "../object/RRUpPoint";
+import RRDwonPoint from "../object/RRDownPoint";
+import RLDwonPoint from "../object/RLDownPoint";
 import useCarStore from "@/utils/carStore";
 import { useEffect } from "react";
 import useGameStore from "@/utils/gameStore";

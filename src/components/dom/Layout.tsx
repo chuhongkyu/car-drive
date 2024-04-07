@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
           touchAction: 'auto',
         }}
       >
-        {pathname == "/world" && isStart && <GameStatus/>}
+        {pathname == "/world" && gameState === "START" && isStart && <GameStatus/>}
         {pathname == "/world" && gameState === "GAMEOVER" && <GameOver/>}
         {pathname == "/world" && gameState === "SUCCESS" && <GameSuccess/>}
         {pathname == "/world" && gameState === "READY" &&  <SelectPanel/>}

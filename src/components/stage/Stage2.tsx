@@ -1,16 +1,17 @@
-import ParkingPlace from "./object/ParkingPlace";
+
 import useCarStore from "@/utils/carStore";
 import { useEffect } from "react";
 import useGameStore from "@/utils/gameStore";
-import RoadStart from "./object/RoadStart";
+import RoadStart from "../object/RoadStart";
 import { useTexture } from "@react-three/drei";
-import RoadEnd from "./object/RoadEnd";
-import { CarObj } from "./object/CarOthers";
+import RoadEnd from "../object/RoadEnd";
+import { CarObj } from "../object/CarOthers";
+import ParkingPlace from "../object/ParkingPlace";
 
-export function Stage1() {
+export function Stage2() {
   const { checkParking, selectedGearState } = useCarStore();
-  const { stageData, setStageData,  } =  useGameStore();
-  const STAGE = "stage1";
+  const { stageData, setStageData  } =  useGameStore();
+  const STAGE = "stage2";
 
   const onHandleQuest = (currentQuestId:string)=> {
     setStageData(stageData.map((stage) => 
@@ -27,11 +28,11 @@ export function Stage1() {
   }
 
   useEffect(() => {
-    let currentQuestId = "001"
+    let currentQuestId = "021"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }
-  }, [checkParking, selectedGearState, setStageData]);
+  }, [checkParking, selectedGearState]);
 
   const floorTexture = useTexture({
     roughnessMap: "/materials/roughness.png",
@@ -45,11 +46,11 @@ export function Stage1() {
 
   return (
     <>
-      <ParkingPlace position={[3,-0.2,0]} rotationY={Math.PI/2}/>
+      {/* <ParkingPlace position={[3,-0.2,0]} rotationY={Math.PI/2}/> */}
       <RoadStart position={[0,-0.5,2.5]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <RoadEnd position={[0,-0.5,-2.5]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <CarObj position={[1.5,0,-3]}/>
-      <CarObj position={[-1.5,0,-3]}/>
+      {/* <CarObj position={[-1.5,0,-3]}/> */}
     </>
   );
 }

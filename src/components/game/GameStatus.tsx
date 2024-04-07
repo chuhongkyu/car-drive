@@ -9,7 +9,6 @@ const GameStatus = () => {
     const [nav, setNav] = useState(true)
 
     useEffect(()=>{
-        // console.log(data)
         const time = setTimeout(()=> setNav(false), 1000)
 
         return ()=> clearTimeout(time)

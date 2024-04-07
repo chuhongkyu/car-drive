@@ -5,7 +5,7 @@ import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
-    const { selectedGearState, setSelectedGearState } = useCarStore();
+    const { selectedGearState, setSelectedGearState  } = useCarStore();
     const { cameraType, setCameraType } = useGameStore()
 
     const steeringWheelRef = useRef(null);
@@ -127,11 +127,18 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
     }
 
     const onHandleBrake = ()=> {
-        vehicleApi.setBrake(0.5,2)
-        vehicleApi.setBrake(0.5,3)
+        
         setEngineForce(5);
-        if( engineForce <= 5) {
+        if( engineForce <= 10) {
+            vehicleApi.setBrake(0.8,2)
+            vehicleApi.setBrake(0.8,3)
+        }else if( engineForce <= 5){
+            vehicleApi.setBrake(0.5,2)
+            vehicleApi.setBrake(0.5,3)
             chassisApi.velocity.set(0,0,0)
+        }else{
+            vehicleApi.setBrake(0.5,2)
+            vehicleApi.setBrake(0.5,3)
         }
 
         if(selectedGearState === "D" || "R" ){ 
