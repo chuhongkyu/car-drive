@@ -27,7 +27,7 @@ export type GLTFResult = GLTF & {
 }
 
 export function CarObj(props:any) {
-  const { position, color = 0xffffff } = props;
+  const { position, rotation, parkingY = Math.PI/2, color = 0xffffff } = props;
   const { setGameState } = useGameStore()
   const { nodes, materials } = useGLTF('/models/toy_car.glb') as GLTFResult
   const texture = useTexture('/img/parking.png')
@@ -77,7 +77,7 @@ export function CarObj(props:any) {
         </group>
       </group>
       <group position={position}>
-        <mesh rotation={[-Math.PI/2,0,Math.PI/2]} position={[0,-0.2,0]}>
+        <mesh rotation={[-Math.PI/2,0,parkingY]} position={[0,-0.2,0]}>
           <planeGeometry args={[1.4,0.8]}/>
           <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
         </mesh>

@@ -11,6 +11,7 @@ import DebugWrapper from "../DebugWrapper"
 import { Physics } from "@react-three/cannon"
 import { Stage10 } from "../stage/Stage10"
 import { Stage2 } from "../stage/Stage2"
+import { Stage3 } from "../stage/Stage3"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
@@ -36,9 +37,9 @@ export const World = ({ route = '/world', ...props }) => {
   useEffect(()=>{
     if(!isStart){
       cameraRef.current.position.x = 0;
-      cameraRef.current.position.y = 1;
-      cameraRef.current.position.z = 2;
-      cameraRef.current.rotation.set(0,0,0)
+      cameraRef.current.position.y = 10;
+      cameraRef.current.position.z = 7;
+      cameraRef.current.rotation.set(-1,0,0)
       // console.log(cameraRef.current.position)
     }
   },[isStart])
@@ -58,7 +59,7 @@ export const World = ({ route = '/world', ...props }) => {
           <WorldLights/>
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
           {stageData[stageNumber].name === "stage2" && <Stage2/>}
-          {stageData[stageNumber].name === "stage3" && <Stage10/>}
+          {stageData[stageNumber].name === "stage3" && <Stage3/>}
           {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
         </Suspense>
       </DebugWrapper>

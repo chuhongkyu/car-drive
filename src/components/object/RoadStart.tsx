@@ -3,7 +3,7 @@ import { useBox } from "@react-three/cannon"
 import { useRef } from "react";
 
 export default function RoadStart (props) {
-    const { position, floorTexture, wallTexture } = props
+    const { position, mySize = [5,0.5,5], floorTexture, wallTexture } = props
     const { setGameState } = useGameStore()
     const onCollide = (e) => {
         const { body } = e;
@@ -12,9 +12,9 @@ export default function RoadStart (props) {
         }
     }
 
-    const width = 5
-    const height = 0.5
-    const depth = 5
+    const width = mySize[0]
+    const height = mySize[1]
+    const depth = mySize[2]
 
     const [ref] = useBox(
         () => ({ 

@@ -139,6 +139,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
         }else{
             vehicleApi.setBrake(0.5,2)
             vehicleApi.setBrake(0.5,3)
+            chassisApi.velocity.set(0,0,0)
         }
 
         if(selectedGearState === "D" || "R" ){ 
