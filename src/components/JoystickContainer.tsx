@@ -206,7 +206,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                 </form>
                 <div className="joystick-container">
                     <div className="camera-container" onClick={onHandleCameraType}>
-                       
+                        <div className="camera-icon"/>
                     </div>
                     <div className="brake-container">
                         <button className="brake" onClick={onHandleBrake}>
