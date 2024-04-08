@@ -15,7 +15,7 @@ import useGameStore from "@/utils/gameStore";
 export function Car( { carPosition }) {
   const { isStart } = useGameStore()
   const { checkParking, setCheckParking } = useCarStore();
-  const { stageData, stageNumber } = useGameStore()
+  const { checkStart, stageData, stageNumber } = useGameStore()
 
   const { pivot } = useFollowCam();
   const worldPosition = useMemo(() => new Vector3(), [])
@@ -88,6 +88,7 @@ export function Car( { carPosition }) {
       <motion.group
         initial={{scale: 0 }}
         animate={isStart ? {scale: 1}: {scale: 0}}
+        onAnimationComplete={(()=> checkStart(true))}
         ref={vehicle}
         name="vehicle"
         >

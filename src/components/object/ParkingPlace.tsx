@@ -1,5 +1,3 @@
-import { useBox, usePlane } from "@react-three/cannon";
-import { useRef } from "react";
 import { motion } from "framer-motion-3d";
 import { Html, useTexture } from "@react-three/drei";
 import useCarStore, {  } from "@/utils/carStore";

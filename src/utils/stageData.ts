@@ -38,6 +38,19 @@ export const ORIGIN_STAGE_DATA = [
                 },
             ]
         },
+        {
+            name: "stage4",
+            unlock: false,
+            carPosition: [1.2, 0.5, 1],
+            quest: [
+                {
+                    id: '041',
+                    desc: "Park the car in the parking area and change the gear shift to 'P'.",
+                    position: [-1.2, 1],
+                    clear: false,
+                },
+            ]
+        },
         // {
         //     name: "stage10",
         //     clear: false,

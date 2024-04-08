@@ -13,7 +13,7 @@ import { useTexture } from "@react-three/drei";
 export function Stage10() {
   const { checkParking, selectedGearState } = useCarStore();
   const { stageData, setStageData,  } =  useGameStore();
-  const STAGE = "stage2";
+  const STAGE = "stage10";
 
   const onHandleQuest = (currentQuestId:string)=> {
     setStageData(stageData.map((stage) => 

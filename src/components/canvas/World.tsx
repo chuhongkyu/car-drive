@@ -2,20 +2,21 @@
 
 import { Car } from "../Car"
 import { Suspense, useEffect, useRef } from "react"
-import { PerspectiveCamera } from "@react-three/drei"
+import { Html, PerspectiveCamera } from "@react-three/drei"
 import { Stage1 } from "../stage/Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
 import { WorldLights } from "./Lights"
 import DebugWrapper from "../DebugWrapper"
 import { Physics } from "@react-three/cannon"
-import { Stage10 } from "../stage/Stage10"
 import { Stage2 } from "../stage/Stage2"
 import { Stage3 } from "../stage/Stage3"
 import CustomLoader from "../CustomLoader"
+import SelectPanel from "../ui/SelectPanel"
+import { Stage4 } from "../stage/Stage4"
 
 export const World = ({ route = '/world', ...props }) => {
-  const { isStart, checkStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
+  const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef(null)
 
@@ -26,14 +27,6 @@ export const World = ({ route = '/world', ...props }) => {
       setDebug(true)
     }
   },[])
-
-  useEffect(()=>{
-    let time;
-    if(gameState === "START"){
-      time = setTimeout(()=> checkStart(true) , 1000)
-    }
-    return ()=> clearTimeout(time)
-  },[gameState])
 
   useEffect(()=>{
     if(!isStart){
@@ -72,7 +65,9 @@ export const World = ({ route = '/world', ...props }) => {
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
           {stageData[stageNumber].name === "stage2" && <Stage2/>}
           {stageData[stageNumber].name === "stage3" && <Stage3/>}
+          {stageData[stageNumber].name === "stage4" && <Stage4/>}
           {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
+          {gameState === "READY" && <Html center><SelectPanel/></Html>}
         </Suspense>
       </DebugWrapper>
     </Physics>
