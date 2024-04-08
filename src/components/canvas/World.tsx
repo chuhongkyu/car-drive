@@ -2,7 +2,7 @@
 
 import { Car } from "../Car"
 import { Suspense, useEffect, useRef } from "react"
-import { Html, OrthographicCamera, PerspectiveCamera } from "@react-three/drei"
+import { PerspectiveCamera } from "@react-three/drei"
 import { Stage1 } from "../stage/Stage1"
 import useDebugStore from "@/utils/debugStore"
 import useGameStore from "@/utils/gameStore"
@@ -12,6 +12,7 @@ import { Physics } from "@react-three/cannon"
 import { Stage10 } from "../stage/Stage10"
 import { Stage2 } from "../stage/Stage2"
 import { Stage3 } from "../stage/Stage3"
+import CustomLoader from "../CustomLoader"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
@@ -66,7 +67,7 @@ export const World = ({ route = '/world', ...props }) => {
     <>
     <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
       <DebugWrapper>
-        <Suspense fallback={<></>}>
+        <Suspense fallback={<CustomLoader/>}>
           <WorldLights/>
           {stageData[stageNumber].name === "stage1" && <Stage1/>}
           {stageData[stageNumber].name === "stage2" && <Stage2/>}

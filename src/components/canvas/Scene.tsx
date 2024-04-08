@@ -1,13 +1,11 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import { Loader, Preload } from '@react-three/drei'
+import { Preload } from '@react-three/drei'
 import * as THREE from 'three'
 import { World } from './World'
 import { usePathname } from 'next/navigation'
 import { Default } from './Default'
-import Floor from '../object/Floor'
-
 
 export default function Scene({ ...props }) {
   const pathname = usePathname()
@@ -25,7 +23,6 @@ export default function Scene({ ...props }) {
           {pathname == "/world" && <World/>}
           {/* <Floor/> */}
       </Canvas>
-      <Loader/>
     </>
   )
 }

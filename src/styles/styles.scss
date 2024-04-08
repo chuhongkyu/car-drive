@@ -10,3 +10,13 @@ body, html, #root {
   background: rgb(199,191,168);
   background-blend-mode: screen;
 }
+
+.loader-container{
+  z-index: 16757945;
+  position: relative;
+  .loader-text{
+    font-size: 25px;
+    font-weight: 700;
+    color: white;
+  }
+}

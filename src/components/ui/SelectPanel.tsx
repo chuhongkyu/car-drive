@@ -1,5 +1,6 @@
 import useGameStore from "@/utils/gameStore"
 import { useEffect, useState } from "react"
+import { easeInOut, motion } from "framer-motion"
 
 export default function SelectPanel() {
     const { stageData, setGameState, stageNumber, onHandleStageNumber } = useGameStore()
@@ -31,12 +32,15 @@ export default function SelectPanel() {
 
     return(
         <div className="select-panel-position">
-            <div className="select-panel">
+            <motion.div 
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1, transition: { duration: 1, delay: 1.5, type: easeInOut}}}
+                className="select-panel">
                 {!stageData[stageNumber].unlock && <div className="stage-lock"><div className="lock-icon"/></div> }
                 <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
                 <button className="stage-number" disabled={!stageData[stageNumber].unlock} onClick={()=> setGameState("START")}>STAGE {stageNumber + 1}</button>
                 <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
-            </div>
+            </motion.div>
         </div>
     )
 }

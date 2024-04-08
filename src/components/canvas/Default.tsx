@@ -6,6 +6,7 @@ import { useThree } from '@react-three/fiber'
 import { ToyPeople } from '../object/ToyPeople'
 import { DummyCar } from '../DummyCar'
 import { DefaultLights } from './Lights'
+import CustomLoader from '../CustomLoader'
 
 export const Default = () => {
   const three = useThree()
@@ -18,7 +19,7 @@ export const Default = () => {
 
   return (
     <>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<CustomLoader/>}>
         <ToyPeople rotation={[0,Math.PI + 0.3,0]} position={[-4,0,-25]}/>
         <DummyCar position={[0,1,0]}/>
         <mesh rotation={[-Math.PI/2,0,0]} castShadow receiveShadow>
