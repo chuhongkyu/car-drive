@@ -1,32 +1,32 @@
 @import "./variables";
 @import "./mixins";
 
-.go-game-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: black;
-    width: 150px;
-    height: 60px;
-    font-size: 18px;
-    line-height: 130%;
-    font-weight: 700;
-    background: white;
+.gogame-btn-position {
     z-index: 9999;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
-    background: center / contain no-repeat url("/ui/normal-panel.png");
-    cursor: pointer;
-
-    &:hover {
-        transition: 300ms ease-in-out;
-    }
-
-    &:checked {
-        transition: 300ms ease-in-out;
+    .gogame-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: black;
+        width: 150px;
+        height: 60px;
+        font-size: 18px;
+        line-height: 130%;
+        font-weight: 700;
+        background: center / contain no-repeat url("/ui/normal-panel.png");
+        cursor: pointer;
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 

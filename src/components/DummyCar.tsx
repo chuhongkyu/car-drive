@@ -68,6 +68,19 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
     }
   },[carState])
 
+  useEffect(()=>{
+    let time;
+    if(info){
+      time = setTimeout(()=> setInfo(false), 4000)
+    }
+    return ()=> clearTimeout(time)
+  },[info])
+
+  useEffect(()=>{
+    const time = setTimeout(()=> setInfo(true), 1000) 
+    return ()=> clearTimeout(time)
+  },[])
+
   return (
     <group {...props} dispose={null}>
       <group rotation={[Math.PI/2, 0, -0.9]} scale={[0.5,0.55,0.5]}>
@@ -175,8 +188,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
         <mesh 
           position={[0,1,1.5]} 
           rotation={[-Math.PI, 0, 0]}
-          onPointerOver={() => setInfo(true)} 
-          onPointerOut={() => setInfo(false)}
+          onClick={() => setInfo(true)} 
         >
           <planeGeometry args={[25,15]}/>
           <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>
