@@ -1,69 +1,6 @@
 @import "./variables";
 @import "./mixins";
 
-.intro-panel{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: black;
-    width: 150px;
-    height: 60px;
-    font-size: 18px;
-    line-height: 130%;
-    font-weight: 700;
-    background: white;
-    z-index: 9999;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) !important;
-    background: center / contain no-repeat url("/ui/normal-panel.png");
-    cursor: pointer;
-    &:hover{
-        transition: 300ms ease-in-out;
-    }
-    &:checked{
-        transition: 300ms ease-in-out;
-    }
-}
-
-.info{
-    position: relative;
-    min-width: 210px;
-    height: 75px;
-    font-size: 18px;
-    line-height: 130%;
-    background: $transparent-bg;
-    border-radius: 12px;
-    padding: 12px 20px;
-    color: white;
-    &::after {
-        display: block;
-        content: "";
-        position: absolute;
-        bottom: -20px;
-        left: 50px;
-        border-width: 10px;
-        border-style: solid;
-        border-color: $transparent-bg transparent transparent transparent;
-    }
-}
-
-.info-number{
-    font-size: 11px;
-    line-height: 100%;
-    background: $transparent-bg;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    border: 1px solid white;
-}
-
 .select-panel-position{
     z-index: 2;
     top: 50%;
@@ -98,6 +35,51 @@
         .prev-btn{
             background: center / contain no-repeat url("/ui/arrow-left.png");
         }
+    }
+}
+
+.game-end-panel {
+    z-index: 16757946;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .panel {
+        padding: 20px;
+        width: 320px;
+        height: 350px;
+        background: center / contain no-repeat url("/ui/big-panel.png");
+        color: white;
+        .panel-group{
+            width: 100%;
+            padding: 25px;
+            h5 {
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 135%;
+            }
+        
+            .desc {
+                margin-top: 0.5rem;
+                font-size: 16px;
+                line-height: 135%;
+            }
+        
+            .btn-container {
+                margin-top: 0.5rem;
+                .btn{
+                    width: 200px;
+                    padding: 20px;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #ffffff;
+                }
+            }
+        }
+       
     }
 }
 
@@ -307,91 +289,79 @@
     }    
 }
 
-.game-over-panel{
-    z-index: 16757946;
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translate(-50%,-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .panel{
-        padding: 20px;
-        width: 300px;
-        background: $transparent-bg;
-        color: white;
-        border-radius: 25px;
-        h5{
-            font-size: 22px;
-            font-weight: 500;
-            line-height: 135%;
-        }
-        .desc{
-            margin-top: 0.5rem;
-            font-size: 16px;
-            line-height: 135%;
-        }
-        .btn-container{
-            margin-top: 0.5rem;
-            color: black;
-        }
-    }
-}
-
-.game-status{
+.quest-status{
     z-index: 16757946;
     left: 20px;
     top: 20px;
     position: fixed;
     color: white;
-    .game-icon{
-        width: 25px;
-        height: 25px;
+    .quest-icon{
+        width: 30px;
+        height: 30px;
         cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            position: absolute;
+            z-index: 2;
+            font-size: 18px;
+            font-weight: 700;
+        }
     }
     &:hover{
         opacity: 1;
         transition: 300ms ease-in-out;
     }
-    .quests{
-        border-radius: 25px;
-        padding: 15px 20px;
-        background: $transparent-bg;
-        &.active {
-            display: none;
-        }
-        h5{
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .quest{
-            display: flex;
-            align-items: center;
-            line-height: 135%;
-            font-size: 14px;
-            word-break: keep-all;
-            &:not(:last-of-type){
-                margin-bottom: 5px;
+    .quests-bg{
+        width: 320px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        background: center / contain no-repeat url("/ui/quest-panel.png");
+        &.active {display: none;}
+        .quests{
+            width: 100%;
+            padding: 50px 35px 0;
+            display: block;
+            h5 {
+                font-size: 18px;
+                margin-bottom: 10px;
             }
-            &[data-clear="true"] {
+            .quest{
+                padding: 0;
+                display: flex;
+                align-items: center;
+                line-height: 135%;
+                font-size: 12px;
+                word-break: keep-all;
+                &:not(:last-of-type) {
+                    margin-bottom: 5px;
+                }
+            
+                &[data-clear="true"] {
+                    .dot {
+                        background: #fff;
+                        transition: 300ms ease-in-out;
+                    }
+            
+                    p {
+                        text-decoration: line-through;
+                    }
+                }
+            
                 .dot {
-                    background: #fff;
-                    transition: 300ms ease-in-out;
+                    border: 1px solid #fff;
+                    border-radius: 50%;
+                    display: block;
+                    width: 5px;
+                    height: 5px;
+                    margin-right: 0.5rem;
                 }
-                p{
-                    text-decoration: line-through;
-                }
-            }
-            .dot{
-                border: 1px solid #fff;
-                border-radius: 50%;
-                display: block;
-                width: 5px;
-                height: 5px;
-                margin-right: 0.5rem;
             }
         }
+        
     }
 }
 

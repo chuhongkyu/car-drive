@@ -17,7 +17,7 @@ export default function TypedComponent(props) {
   }, []);
 
   return (
-    <div className="info">
+    <div className="info-tooltip">
       <span ref={el} />
     </div>
   );

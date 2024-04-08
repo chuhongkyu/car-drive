@@ -17,15 +17,17 @@ export default function GameSuccess(){
     },[])
 
     return(
-        <div className="game-over-panel">
+        <div className="game-end-panel">
             <div className="panel">
-                <h5>Game Success</h5>
-                <div className="desc">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut facilis praesentium eveniet officiis rem atque, incidunt et excepturi dolores dicta sit optio recusandae qui ipsum minima ullam, debitis quisquam molestias!</p>
-                </div>
-                <div className="btn-container">
-                    <button onClick={onHandleNextGame}>NEXT</button>
-                </div>
+                <div className="panel-group">
+                    <h5>Game Success</h5>
+                    <div className="desc">
+                        
+                    </div>
+                    <div className="btn-container">
+                        <button className="btn" onClick={onHandleNextGame}>NEXT</button>
+                    </div>
+                </div>  
             </div>
         </div>
     )

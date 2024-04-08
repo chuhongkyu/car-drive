@@ -17,22 +17,26 @@ const GameStatus = () => {
     const onClick = () => setNav((prev) => !prev)
 
     return(
-        <div className="game-status">
-            <div className="game-icon" onClick={onClick}>
-                <Image width={25} height={25} src={"/icons/info.png"} alt="icon"/>
+        <div className="quest-status">
+            <div className="quest-icon" onClick={onClick}>
+                <p>Q</p>
+                <Image width={30} height={30} src={"/ui/circle-icon.png"} alt="icon"/>
             </div>
-            <div className={`quests ${nav ? "": "active"}`}>
-                <h5>{stageData[stageNumber].name}</h5>
-                <div className="status">
-                    {stageData[stageNumber].quest.map((el)=>{
-                        return(
-                            <span className="quest" data-clear={el.clear} key={el.id + "KEY" + stageData[stageNumber].name}>
-                                <span className="dot"/>
-                                <p>{el.desc}</p>
-                            </span>
-                        )
-                    })}
+            <div className={`quests-bg ${nav ? "": "active"}`}>
+                <div className="quests">
+                    <h5>{stageData[stageNumber].name}</h5>
+                    <div className="status">
+                        {stageData[stageNumber].quest.map((el)=>{
+                            return(
+                                <span className="quest" data-clear={el.clear} key={el.id + "KEY" + stageData[stageNumber].name}>
+                                    <span className="dot"/>
+                                    <p>{el.desc}</p>
+                                </span>
+                            )
+                        })}
+                    </div>
                 </div>
+                
             </div>
         </div>
     )

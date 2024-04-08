@@ -24,7 +24,7 @@ const DefaultLights = () => {
 
 const WorldLights = () => {
     const dirLight = useRef(null);
-    // useHelper(dirLight, DirectionalLightHelper, 2, "red");
+    useHelper(dirLight, DirectionalLightHelper, 2, "red");
     return(
         <>
             <ambientLight intensity={1}/>
@@ -38,7 +38,7 @@ const WorldLights = () => {
                 shadow-camera-right={100}
                 shadow-mapSize-height={2048}
                 shadow-mapSize-width={2048}
-                position={[8, 10, 10]}
+                position={[4, 10, 5]}
                 color="white"
             />
         </>

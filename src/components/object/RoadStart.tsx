@@ -29,8 +29,8 @@ export default function RoadStart (props) {
         () => ({ 
             type: 'Static', 
             material: 'ground',
-            args: [0.5,1,depth],
-            position: [position[0] + width/2, position[1] + 0.75, position[2]],
+            args: [0.5,0.5,depth],
+            position: [position[0] + width/2, position[1] + 0.25, position[2]],
             onCollide: onCollide
         }), useRef(null)
     );
@@ -39,8 +39,8 @@ export default function RoadStart (props) {
         () => ({ 
             type: 'Static', 
             material: 'ground',
-            args: [0.5,1,depth],
-            position: [position[0] - width/2, position[1] + 0.75, position[2]],
+            args: [0.5,0.5,depth],
+            position: [position[0] - width/2, position[1] + 0.25, position[2]],
             onCollide: onCollide
         }), useRef(null)
     );
@@ -49,8 +49,8 @@ export default function RoadStart (props) {
         () => ({ 
             type: 'Static', 
             material: 'ground',
-            args: [width,1,0.5],
-            position: [position[0], position[1] + 0.75, position[2] + depth/2],
+            args: [width,0.5,0.5],
+            position: [position[0], position[1] + 0.25, position[2] + depth/2],
             onCollide: onCollide
         }), useRef(null)
     );
@@ -62,15 +62,15 @@ export default function RoadStart (props) {
                 <meshStandardMaterial {...floorTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref1}>
-                <boxGeometry args={[0.5,1,depth]}/>
+                <boxGeometry args={[0.5,0.5,depth]}/>
                 <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref2}>
-                <boxGeometry args={[0.5,1,depth]}/>
+                <boxGeometry args={[0.5,0.5,depth]}/>
                 <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
             <mesh castShadow receiveShadow ref={ref3}>
-                <boxGeometry args={[width,1,0.5]}/>
+                <boxGeometry args={[width,0.5,0.5]}/>
                 <meshStandardMaterial {...wallTexture} color={"yellow"}/>
             </mesh>
         </group>

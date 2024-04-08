@@ -6,8 +6,7 @@ import * as THREE from 'three'
 import { World } from './World'
 import { usePathname } from 'next/navigation'
 import { Default } from './Default'
-import { Physics } from '@react-three/cannon'
-import DebugWrapper from '../DebugWrapper'
+import Floor from '../object/Floor'
 
 
 export default function Scene({ ...props }) {
@@ -24,6 +23,7 @@ export default function Scene({ ...props }) {
           <Preload all />
           {pathname == "/" && <Default/>}
           {pathname == "/world" && <World/>}
+          {/* <Floor/> */}
       </Canvas>
       <Loader/>
     </>

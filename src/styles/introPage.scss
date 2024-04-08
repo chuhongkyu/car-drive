@@ -1,0 +1,68 @@
+@import "./variables";
+@import "./mixins";
+
+.go-game-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    width: 150px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 130%;
+    font-weight: 700;
+    background: white;
+    z-index: 9999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    background: center / contain no-repeat url("/ui/normal-panel.png");
+    cursor: pointer;
+
+    &:hover {
+        transition: 300ms ease-in-out;
+    }
+
+    &:checked {
+        transition: 300ms ease-in-out;
+    }
+}
+
+.info-tooltip {
+    position: relative;
+    min-width: 210px;
+    height: 75px;
+    font-size: 18px;
+    line-height: 130%;
+    background: $transparent-bg;
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: white;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: $transparent-bg transparent transparent transparent;
+    }
+}
+
+.info-number {
+    font-size: 11px;
+    line-height: 100%;
+    background: $transparent-bg;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    border: 1px solid white;
+}

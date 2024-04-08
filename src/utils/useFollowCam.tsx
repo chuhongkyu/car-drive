@@ -24,8 +24,8 @@ export default function useFollowCam() {
   }
 
   const makeAllCamera = ()=>{
-    camera.rotation.set(-0.7, 0, 0)
-    camera.position.set(0, 3, 2.5)
+    camera.rotation.set(-0.8, 0, 0)
+    camera.position.set(0, 3, 2)
 
     followCam.add(camera)
     pivot.add(followCam)

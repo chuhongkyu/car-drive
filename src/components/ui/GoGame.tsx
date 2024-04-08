@@ -7,7 +7,7 @@ const GoGame = () => {
     return(
         <>
             {introClear && 
-                <Link className="intro-panel"  href={"/world"}>GoGame</Link>
+                <Link className="go-game-btn"  href={"/world"}>GoGame</Link>
             }
         </>
         
