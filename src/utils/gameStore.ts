@@ -20,7 +20,7 @@ type GameStore = {
 interface IData {
     name: string;
     carPosition: number[]
-    clear: boolean;
+    unlock: boolean;
     quest: IQuest[]
 }
 

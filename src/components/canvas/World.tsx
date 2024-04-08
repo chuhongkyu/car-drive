@@ -47,13 +47,16 @@ export const World = ({ route = '/world', ...props }) => {
   useEffect(()=>{
     if(isStart){
       const check = stageData[stageNumber].quest.every((el)=> el.clear)
-      if(check && stageData[stageNumber].clear === false){ 
+      const nextData = stageNumber + 1
+      if(check &&  stageData[nextData] && stageData[nextData].unlock === false){ 
         const updatedStageData = [...stageData];
-        updatedStageData[stageNumber] = {
-          ...updatedStageData[stageNumber],
-          clear: true
+        updatedStageData[nextData] = {
+          ...updatedStageData[nextData],
+          unlock: true
         };
         setStageData(updatedStageData);
+        setGameState("SUCCESS")
+      }else if( check && !stageData[nextData]){
         setGameState("SUCCESS")
       }
     }

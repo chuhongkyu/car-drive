@@ -24,7 +24,7 @@ const DefaultLights = () => {
 
 const WorldLights = () => {
     const dirLight = useRef(null);
-    useHelper(dirLight, DirectionalLightHelper, 2, "red");
+    // useHelper(dirLight, DirectionalLightHelper, 2, "red");
     return(
         <>
             <ambientLight intensity={1}/>

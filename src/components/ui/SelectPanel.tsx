@@ -32,8 +32,9 @@ export default function SelectPanel() {
     return(
         <div className="select-panel-position">
             <div className="select-panel">
+                {!stageData[stageNumber].unlock && <div className="stage-lock"><div className="lock-icon"/></div> }
                 <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
-                <button className="stage-number" onClick={()=> setGameState("START")}>STAGE {stageNumber + 1}</button>
+                <button className="stage-number" disabled={!stageData[stageNumber].unlock} onClick={()=> setGameState("START")}>STAGE {stageNumber + 1}</button>
                 <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
             </div>
         </div>

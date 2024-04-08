@@ -1,7 +1,7 @@
 export const ORIGIN_STAGE_DATA = [
         {
             name: "stage1",
-            clear: false,
+            unlock: true,
             carPosition: [0, 0.5, 2.5],
             quest: [
                 {
@@ -14,7 +14,7 @@ export const ORIGIN_STAGE_DATA = [
         },
         {
             name: "stage2",
-            clear: false,
+            unlock: false,
             carPosition: [0, 0.5, 2.5],
             quest: [
                 {
@@ -27,7 +27,7 @@ export const ORIGIN_STAGE_DATA = [
         },
         {
             name: "stage3",
-            clear: false,
+            unlock: false,
             carPosition: [0, 0.5, 2.5],
             quest: [
                 {
