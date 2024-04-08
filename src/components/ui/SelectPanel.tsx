@@ -1,21 +1,40 @@
 import useGameStore from "@/utils/gameStore"
+import { useEffect, useState } from "react"
 
 export default function SelectPanel() {
-    const { stageData, setGameState, stageNumber } = useGameStore()
+    const { stageData, setGameState, stageNumber, onHandleStageNumber } = useGameStore()
+    const [prevBtn, setPrevBtn] = useState(false)
+    const [nextBtn, setNextBtn] = useState(false)
+
+    const onIncrease = () => {
+        onHandleStageNumber(stageNumber + 1)
+    }
+
+    const onDecrease = () => {
+        if(stageNumber === 0) return
+        onHandleStageNumber(stageNumber - 1)
+    }
+
+    useEffect(()=>{
+        if(stageNumber == 0){
+            setPrevBtn(true)
+        }else{
+            setPrevBtn(false)
+        }
+
+        if(stageData.length -1 <= stageNumber){
+            setNextBtn(true)
+        }else{
+            setNextBtn(false)
+        }
+    },[stageNumber, stageData])
 
     return(
-        <div className="start-panel">
-            <div className="start-container">
-                <div className="stage-number">STAGE {stageNumber + 1}</div>
-                <div className="stage-desc">
-                    <h5>Quset</h5>
-                    {stageData[stageNumber].quest.map((el, i)=> {
-                        return(
-                            <span className="desc" key={el.id + "QUEST-KEY"}>{el.desc}</span>
-                        )
-                    })}
-                </div>
-                <button className="start-btn" onClick={()=> setGameState("START")}>START</button>
+        <div className="select-panel-position">
+            <div className="select-panel">
+                <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
+                <button className="stage-number" onClick={()=> setGameState("START")}>STAGE {stageNumber + 1}</button>
+                <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
             </div>
         </div>
     )

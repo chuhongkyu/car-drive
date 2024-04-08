@@ -47,7 +47,7 @@ export const World = ({ route = '/world', ...props }) => {
   useEffect(()=>{
     if(isStart){
       const check = stageData[stageNumber].quest.every((el)=> el.clear)
-      if(check){ 
+      if(check && stageData[stageNumber].clear === false){ 
         const updatedStageData = [...stageData];
         updatedStageData[stageNumber] = {
           ...updatedStageData[stageNumber],

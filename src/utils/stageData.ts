@@ -38,23 +38,23 @@ export const ORIGIN_STAGE_DATA = [
                 },
             ]
         },
-        {
-            name: "stage10",
-            clear: false,
-            carPosition: [8, 0.5, 5],
-            quest: [
-                {
-                    id: '001',
-                    desc: "Park the car in the parking area and change the gear shift to 'P'.",
-                    position: [-9,-5],
-                    clear: false,
-                },
-                {
-                    id: '002',
-                    desc: "Park the car in the parking area and change the gear shift to 'P'.",
-                    position: [3,-0.2],
-                    clear: false,
-                },
-            ]
-        }
+        // {
+        //     name: "stage10",
+        //     clear: false,
+        //     carPosition: [8, 0.5, 5],
+        //     quest: [
+        //         {
+        //             id: '001',
+        //             desc: "Park the car in the parking area and change the gear shift to 'P'.",
+        //             position: [-9,-5],
+        //             clear: false,
+        //         },
+        //         {
+        //             id: '002',
+        //             desc: "Park the car in the parking area and change the gear shift to 'P'.",
+        //             position: [3,-0.2],
+        //             clear: false,
+        //         },
+        //     ]
+        // }
     ]

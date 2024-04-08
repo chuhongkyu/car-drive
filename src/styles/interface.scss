@@ -2,8 +2,13 @@
 @import "./mixins";
 
 .intro-panel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: black;
-    padding: 15px 20px;
+    width: 150px;
+    height: 60px;
     font-size: 18px;
     line-height: 130%;
     font-weight: 700;
@@ -13,13 +18,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
+    background: center / contain no-repeat url("/ui/normal-panel.png");
     cursor: pointer;
     &:hover{
-        background: rgb(179, 178, 178);
         transition: 300ms ease-in-out;
     }
     &:checked{
-        background: rgb(179, 178, 178);
         transition: 300ms ease-in-out;
     }
 }
@@ -60,7 +64,7 @@
     border: 1px solid white;
 }
 
-.start-panel{
+.select-panel-position{
     z-index: 2;
     top: 50%;
     left: 50%;
@@ -70,46 +74,29 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    .start-container{
-        width: 300px;
-        padding: 20px;
-        border-radius: 25px;
-        height: auto;
-        border: 1px solid black;
+    .select-panel{
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        background: $transparent-bg;
+        button:disabled{
+            filter: brightness(0.4);
+            pointer-events: none;
+        }
         .stage-number {
+            width: 200px;
+            padding: 20px;
             font-size: 22px;
             font-weight: 700;
             color: #ffffff;
+            background: center / contain no-repeat url("/ui/stage-panel.png");
         }
-        .stage-desc{
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 15px;
-            background: #fff;
-            h5{
-                font-size: 18px;
-                padding-bottom: 0.3rem;
-            }
-            .desc{
-                line-height: 130%;
-                font-size: 12px;
-            }
+        .prev-btn,.next-btn{
+            width: 40px;
+            height: 40px;
+            background: center / contain no-repeat url("/ui/arrow-right.png");
         }
-        .start-btn {
-            margin-top: 25px;
-            display: block;
-            color: black;
-            padding: 4px 15px;
-            line-height: 150%;
-            font-size: 16px;
-            background: white;
-            border-radius: 25px;
-            cursor: pointer;
+        .prev-btn{
+            background: center / contain no-repeat url("/ui/arrow-left.png");
         }
     }
 }
