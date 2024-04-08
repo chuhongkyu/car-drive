@@ -34,11 +34,13 @@ export default function SelectPanel() {
         <div className="select-panel-position">
             <motion.div 
                 initial={{ opacity: 0}}
-                animate={{ opacity: 1, transition: { duration: 1, delay: 1, type: easeInOut}}}
+                animate={{ opacity: 1, transition: { duration: 1, delay: 0.5, type: easeInOut}}}
                 className="select-panel">
-                {!stageData[stageNumber].unlock && <div className="stage-lock"><div className="lock-icon"/></div> }
+
                 <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
-                <button className="stage-number" disabled={!stageData[stageNumber].unlock} onClick={()=> setGameState("START")}>STAGE {stageNumber + 1}</button>
+                <button className="stage-number" disabled={!stageData[stageNumber].unlock} onClick={()=> setGameState("START")}>
+                    {!stageData[stageNumber].unlock ? <span className="stage-lock"></span> : "STAGE" }
+                    {stageNumber + 1}</button>
                 <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
             </motion.div>
         </div>

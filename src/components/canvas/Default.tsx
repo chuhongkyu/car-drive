@@ -13,7 +13,7 @@ export const Default = () => {
   useEffect(()=>{
     camera.position.x = 3
     camera.position.y = 18
-    camera.position.z  = 15
+    camera.position.z  = 18
   },[camera])
 
   return (

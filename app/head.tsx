@@ -1,7 +1,8 @@
 const title = 'car drive'
 const url = 'https://car-drive-practice.vercel.app/'
-const description = 'car drive'
+const description = 'Experience the thrill of driving in this immersive Three.js NEXT game. Enhance your driving skills while emphasizing the value of safe and meaningful journeys. Join us in promoting the importance of driving for connectivity and safety'
 const author = 'mr.chu'
+const keywords = 'driving simulation game, improve driving skills, safe driving awareness, meaningful journeys, Three.js NEXT project, driving practice game, enhance road safety, connect through driving, value of driving, driving game deployment link'
 
 export default function Head() {
   return (
@@ -19,7 +20,7 @@ export default function Head() {
       <meta name='description' content={description} />
       <meta
         name='keywords'
-        content='Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist'
+        content={keywords}
       />
       <meta name='robots' content='index,follow' />
       <meta name='distribution' content='web' />

@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { motion } from "framer-motion"
-import FullscreenBtn from '../ui/FullscreenBtn'
 import GoGame from '../ui/GoGame'
 import GameStatus from '../game/GameStatus'
 import useGameStore from '@/utils/gameStore'

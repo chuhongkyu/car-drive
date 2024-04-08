@@ -15,8 +15,8 @@ export default function useFollowCam() {
 
   const makeFocusCamera = ()=>{
     // console.log(camera.rotation, camera.position)
-    camera.rotation.set(-0.5, 0, 0)
-    camera.position.set(0, 1, 1)
+    camera.rotation.set(-0.6, 0, 0)
+    camera.position.set(0, 2, 2)
     
     followCam.add(camera)
     pivot.add(followCam)
@@ -24,8 +24,8 @@ export default function useFollowCam() {
   }
 
   const makeAllCamera = ()=>{
-    camera.rotation.set(-0.8, 0, 0)
-    camera.position.set(0, 3, 2)
+    camera.rotation.set(-1, 0, 0)
+    camera.position.set(0, 5, 2)
 
     followCam.add(camera)
     pivot.add(followCam)

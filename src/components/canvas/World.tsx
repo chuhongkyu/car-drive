@@ -14,6 +14,8 @@ import { Stage3 } from "../stage/Stage3"
 import CustomLoader from "../CustomLoader"
 import SelectPanel from "../ui/SelectPanel"
 import { Stage4 } from "../stage/Stage4"
+import Floor from "../object/Floor"
+import Background from "../object/Background"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
@@ -71,6 +73,7 @@ export const World = ({ route = '/world', ...props }) => {
         </Suspense>
       </DebugWrapper>
     </Physics>
+    <Background/>
     <PerspectiveCamera makeDefault ref={cameraRef} fov={45} position={[0,1,2]}/>
     </>
   )

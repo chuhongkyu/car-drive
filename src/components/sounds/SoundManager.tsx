@@ -1,3 +1,4 @@
+import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
 import { useEffect, useRef } from "react";
 
@@ -6,17 +7,18 @@ const destory = "/music/destory.wav"
 const success = "/music/success.wav"
 
 const SoundManager = () => {
-    const { gameState, isStart } = useGameStore();
+    const { isStart } = useGameStore();
+    const { isCarCollide } = useCarStore()
     const startAudioRef = useRef(null);
     const destroyAudioRef = useRef(null);
 
     useEffect(() => {
-        if (gameState === "GAMEOVER") {
+        if(isCarCollide){
             if (destroyAudioRef.current) {
                 destroyAudioRef.current.play();
             }
         }
-    }, [gameState]);
+    }, [isCarCollide]);
 
     useEffect(()=>{
         if(isStart){

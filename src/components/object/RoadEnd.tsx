@@ -1,3 +1,4 @@
+import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
 import { useBox } from "@react-three/cannon"
 import { useRef } from "react";
@@ -5,9 +6,11 @@ import { useRef } from "react";
 export default function RoadEnd (props) {
     const { position, mySize = [5,0.5,5], floorTexture, wallTexture } = props
     const { setGameState } = useGameStore()
+    const { checkCarCollide } = useCarStore()
     const onCollide = (e) => {
         const { body } = e;
         if (body.name === "chassisBody") {
+            checkCarCollide(true)
             setTimeout(()=> setGameState("GAMEOVER"),500)
         }
     }

@@ -15,7 +15,7 @@ export const ORIGIN_STAGE_DATA = [
         {
             name: "stage2",
             unlock: false,
-            carPosition: [0, 0.5, 2.5],
+            carPosition: [0, 0.5, 2],
             quest: [
                 {
                     id: '021',
