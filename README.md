@@ -4,7 +4,7 @@
 
 # In-game
 
-<img src="./resource-readme/01.png" alt="intro" width="300" height="220"><img src="./resource-readme/00.png" alt="intro" width="300" height="220"><img src="./resource-readme/02.png" alt="intro" width="300" height="220">
+<img src="./resource-readme/01.png" alt="intro" width="300" height="200"><img src="./resource-readme/00.png" alt="intro" width="300" height="200"><img src="./resource-readme/02.png" alt="intro" width="300" height="200">
 
 # Planning Intentions (Value and Importance of Driving)
 
@@ -26,7 +26,9 @@ Emphasizing that driving is not merely for personal convenience, but a means to 
 
 <img src="./resource-readme/03.png" alt="intro" width="300" height="180"><img src="./resource-readme/04.png" alt="intro" width="300" height="180"><img src="./resource-readme/05.png" alt="intro" width="300" height="180">
 
-# Sources of Assistance
+# Acknowledgements
+
+This project has been developed with reference to the following open-source projects to utilize react-three-fiber in NEXT.js:
 
 - [react-three-next](https://github.com/pmndrs/react-three-next)
 

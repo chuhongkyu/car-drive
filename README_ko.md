@@ -26,10 +26,8 @@
 
 <img src="./resource-readme/03.png" alt="intro" width="300" height="180"><img src="./resource-readme/04.png" alt="intro" width="300" height="180"><img src="./resource-readme/05.png" alt="intro" width="300" height="180">
 
-# 도움을 준 소스
+# 감사의 말
+
+이 프로젝트에 NEXT.js와 react-three-fiber를 같이 사용하기 위해 아래 오픈소스를 참고하였습니다.
 
 - [react-three-next](https://github.com/pmndrs/react-three-next)
-
-# 뉴스 출저
-
-- https://news.sbs.co.kr/news/endPage.do?news_id=N1007574068
