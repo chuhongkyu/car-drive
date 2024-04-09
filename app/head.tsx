@@ -15,6 +15,9 @@ export default function Head() {
       <meta name='designer' content={author} />
       <meta name='publisher' content={author} />
 
+      {/* google */}
+      <meta name="google-site-verification" content="mtYE_cYSNMHVF7KJPjly8GIJXgXfrbCG67BzEi3OY3c" />
+
       {/* Search Engine Optimization Meta Tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
@@ -58,6 +61,7 @@ export default function Head() {
         documentation: https://dev.twitter.com/cards/getting-started
         Be sure validate your Twitter card markup on the documentation site. */}
       <meta name='twitter:card' content='summary' />
+      <link rel="icon" href="/icons/favicon.ico" />
     </>
   )
 }

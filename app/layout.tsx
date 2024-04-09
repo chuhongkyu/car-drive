@@ -1,11 +1,12 @@
 import { Layout } from '@/components/dom/Layout'
 import '@/styles/styles.scss'
 import { Roboto } from 'next/font/google'
+import Head from './head';
  
-export const metadata = {
-  title: 'a driving practice game',
-  description: 'a driving practice game'
-}
+// export const metadata = {
+//   title: 'a driving practice game',
+//   description: 'a driving practice game'
+// }
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -16,7 +17,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }) {
   return (
     <html lang='en' className={roboto.className}>
-      <head />
+      <Head/>
       <body>
         <Layout>{children}</Layout>
       </body>
