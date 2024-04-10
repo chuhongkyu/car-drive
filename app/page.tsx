@@ -1,6 +1,6 @@
 'use client'
 
-import Login from "@/components/home/Login"
+import NavBar from "@/components/home/NavBar"
 import { UserAuth } from "@/context/AuthContext"
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
     <>
-      <Login/>
+      <NavBar/>
       {/* <View className='flex h-screen w-full'>
         <Suspense fallback={null}>
           <World/>

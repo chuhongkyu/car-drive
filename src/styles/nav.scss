@@ -1,0 +1,59 @@
+@import "./variables";
+@import "./mixins";
+
+.nav-container{
+    position: absolute;
+    z-index: 99;
+    right: 20px;
+    bottom: 20px;
+    .login-container{
+        display: flex;
+    }
+    .user-container{
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%;
+        background: white;
+        border-radius: 25px;
+        .user-name{
+            b{
+                font-weight: 700;
+            }
+        }
+    }
+    .signout-btn{
+        text-decoration: underline;
+        color: black;
+        text-align: center;
+        padding: 0 10px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 130%;
+        cursor: pointer;
+    }
+    .google-signin-button {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%;
+        background: white;
+        color: black;
+        border-radius: 25px;
+        min-width: unset;
+        margin: 1em 0;
+        cursor: pointer;
+        opacity: 0.5;
+        &:hover, &:active{
+            opacity: 1;
+        }
+    }
+
+    .google-signin-button img {
+        margin-right: 10px;
+    }
+}

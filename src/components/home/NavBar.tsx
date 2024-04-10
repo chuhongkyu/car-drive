@@ -1,9 +1,7 @@
 import { UserAuth } from "@/context/AuthContext"
-import { auth } from "@/utils/firebase/firebase"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useEffect, useState } from "react";
 
-export default function Login() {
+export default function NavBar() {
     const { user, googleSignIn, logOut } = UserAuth();
     const [loading, setLoading] = useState(true);
 
@@ -32,20 +30,17 @@ export default function Login() {
     }, [user]);
 
   return (
-    <div className="user-container">
+    <div className="nav-container">
      {loading ? null : !user ? (
-        <ul className="">
-          <li onClick={handleSignIn} className="btn">
-            Login
-          </li>
-          <li onClick={handleSignIn} className="btn">
-            Sign up
+        <ul className="login-container">
+          <li onClick={handleSignIn} className="google-signin-button">
+            <img src="/icons/google_g.svg" alt="img" />Sign in with Google
           </li>
         </ul>
       ) : (
-        <div>
-          <p>Welcome, {user.displayName}</p>
-          <span className="btn" onClick={handleSignOut}>
+        <div className="user-container">
+          <span className="user-name">Welcome, <b>{user.displayName}</b></span>
+          <span className="signout-btn" onClick={handleSignOut}>
             Sign out
           </span>
         </div>
