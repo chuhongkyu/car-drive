@@ -2,6 +2,7 @@ import { Layout } from '@/components/dom/Layout'
 import '@/styles/styles.scss'
 import { Roboto } from 'next/font/google'
 import Head from './head';
+import { AuthContextProvider } from "@/context/AuthContext";
  
 // export const metadata = {
 //   title: 'a driving practice game',
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
     <html lang='en' className={roboto.className}>
       <Head/>
       <body>
+        <AuthContextProvider>
         <Layout>{children}</Layout>
+        </AuthContextProvider>
       </body>
     </html>
   )
