@@ -1,17 +1,30 @@
 import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
+import useLocalSotre from "@/utils/localStore";
 import { useEffect, useState } from "react";
 
 export default function GameSuccess(){
     const { checkStart, stageData, setGameState, stageNumber,  onHandleStageNumber } = useGameStore();
     const { setSelectedGearState, setCheckParking}  = useCarStore()
     const [ clear, setClear ] = useState(false)
-
+    const { saveData, setSaveData } = useLocalSotre()
 
     const onHandleNextGame = () => {
         checkStart(false);
         onHandleStageNumber(stageNumber + 1)
         setGameState("READY");
+
+        const newRecord = {
+            name: stageData[stageNumber + 1].name,
+            unlock: true,
+        }
+
+        const updateData = {
+            currentStage: saveData.currentStage + 1,
+            recordData : [...saveData.recordData, newRecord]
+        }
+
+        setSaveData(updateData)
     }
 
     const onHandleSelectPanel = () => {

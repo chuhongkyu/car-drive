@@ -7,24 +7,24 @@ export default function NavBar() {
 
     const handleSignIn = async () => {
         try {
-        await googleSignIn();
+          await googleSignIn();
         } catch (error) {
-        console.log(error);
+          console.log(error);
         }
     };
 
     const handleSignOut = async () => {
         try {
-        await logOut();
+          await logOut();
         } catch (error) {
-        console.log(error);
+          console.log(error);
         }
     };
 
     useEffect(() => {
         const checkAuthentication = async () => {
-        await new Promise((resolve) => setTimeout(resolve, 50));
-        setLoading(false);
+          await new Promise((resolve) => setTimeout(resolve, 50));
+          setLoading(false);
         };
         checkAuthentication();
     }, [user]);

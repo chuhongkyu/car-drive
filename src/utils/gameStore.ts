@@ -20,7 +20,6 @@ type GameStore = {
 interface IData {
     name: string;
     carPosition: number[]
-    unlock: boolean;
     quest: IQuest[]
 }
 
@@ -30,7 +29,6 @@ interface IQuest {
     desc?: string;
     clear: boolean;
 }
-
 
 const useGameStore = create<GameStore>((set) => ({
     isStart: false,
@@ -42,7 +40,9 @@ const useGameStore = create<GameStore>((set) => ({
     checkStart: (value: boolean) => set({ isStart: value }),
     setGameState: (value: GameState) => set({ gameState: value}),
     onHandleStageNumber: (value: number) => set({ stageNumber: value }),
-    setStageData: (updatedStageData: IData[]) => set({ stageData: updatedStageData })
+    setStageData: (updatedStageData: IData[]) => {
+        set({ stageData: updatedStageData });
+    }
 }));
 
 

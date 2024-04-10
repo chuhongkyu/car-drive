@@ -18,14 +18,13 @@ export const Default = () => {
 
   return (
     <>
-      <Suspense fallback={<CustomLoader/>}>
+      <Suspense fallback={<></>}>
         <DummyCar position={[0,1,0]}/>
         <mesh rotation={[-Math.PI/2,0,0]} castShadow receiveShadow>
           <planeGeometry args={[30, 30]} />  
           <shadowMaterial attach='material' color="#aa7d39" />
         </mesh>
       </Suspense>
-      
       <DefaultLights/>
       <OrbitControls
         makeDefault 
