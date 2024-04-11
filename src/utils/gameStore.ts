@@ -21,8 +21,9 @@ type GameStore = {
 
 interface IData {
     name: string;
-    carPosition: number[]
-    quest: IQuest[]
+    carDirection: string;
+    carPosition: number[];
+    quest: IQuest[];
 }
 
 interface IQuest {
@@ -47,7 +48,7 @@ const useGameStore = create<GameStore>((set) => ({
     
     stageNumber: 0,
     onHandleStageNumber: (value: number) => set({ stageNumber: value }),
-    
+
     stageData: ORIGIN_STAGE_DATA,
     setStageData: (updatedStageData: IData[]) => {
         set({ stageData: updatedStageData });

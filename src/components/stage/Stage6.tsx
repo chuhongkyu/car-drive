@@ -42,7 +42,7 @@ export function Stage6() {
   }
 
   useEffect(() => {
-    let currentQuestId = "061"
+    let currentQuestId = "051"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }
@@ -63,15 +63,14 @@ export function Stage6() {
     <>
       <RoadStart mySize={[8,0.5,4]} position={[0,-0.5,2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <RoadEnd mySize={[8,0.5,4]} position={[0,-0.5,-2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
-      <CarObj rotation={[0,Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[-2,0,-2.5]} color={0x00b545}/>
-      <CarObj rotation={[0,Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[-2,0,-1.5]}/>
-      <CarObj rotation={[0,Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[-2,0,-0.5]} color={0xfffc38} />
-      <CarObj rotation={[0,Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[-2,0,0.5]}/>
 
-      <CarObj rotation={[0,-Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[2,0,-2.5]} color={0x00b545}/>
-      <ParkingPlace position={[1.2,-0.2,-2.3]} rotationY={-0.5}/>
-      <CarObj rotation={[0,-Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[2,0,-0.5]}/>
-      <CarObj rotation={[0,-Math.PI/2-0.5,0]} parkingY={Math.PI-0.5} position={[2,0,0.5]}/>
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,0,-1.5]} color={0x00b545}/>
+      <ParkingPlace position={[0,-0.2,-2]} rotationY={Math.PI/2} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,-1.5]}/>
+
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,0]} color={0x000000} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,0,1.5]} color={0x000000} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,1.5]} color={0x000000} />
     </>
   );
 }

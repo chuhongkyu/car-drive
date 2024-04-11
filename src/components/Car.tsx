@@ -10,12 +10,14 @@ import JoystickContainer from "@/components/JoystickContainer";
 import { CarModel } from "./CarModel";
 import { Wheel } from "./Wheel";
 import useGameStore from "@/utils/gameStore";
+import useDebugStore from "@/utils/debugStore";
 
 
 export function Car( { carPosition }) {
   const { isStart } = useGameStore()
   const { checkParking, setCheckParking } = useCarStore();
   const { checkStart, stageData, stageNumber } = useGameStore()
+  const { debug } = useDebugStore()
 
   const { pivot } = useFollowCam();
   const worldPosition = useMemo(() => new Vector3(), [])
@@ -71,11 +73,11 @@ export function Car( { carPosition }) {
   }
 
   function makeStage(){
-    let xPosition = stageData[stageNumber].quest[0].position[0]
-    let zPosition = stageData[stageNumber].quest[0].position[1]
-    
+    const xPosition = stageData[stageNumber].quest[0].position[0]
+    const zPosition = stageData[stageNumber].quest[0].position[1]
+
     const chassisPosition = new Vector3().setFromMatrixPosition(chassisBody.current.matrixWorld);
-    // console.log(chassisPosition.x, chassisPosition.z)
+    debug && console.log(chassisPosition.x, chassisPosition.z)
     if ( Math.abs(xPosition - chassisPosition.x) < 0.3 && Math.abs(zPosition - chassisPosition.z) < 0.3){
       setCheckParking(true)
     }else{

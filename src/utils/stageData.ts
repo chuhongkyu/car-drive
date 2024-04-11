@@ -1,6 +1,7 @@
 export const ORIGIN_STAGE_DATA = [
     {
         name: "stage1",
+        carDirection: "vertical",
         carPosition: [0, 0.5, 2.5],
         quest: [
             {
@@ -13,6 +14,7 @@ export const ORIGIN_STAGE_DATA = [
     },
     {
         name: "stage2",
+        carDirection: "vertical",
         carPosition: [0, 0.5, 2],
         quest: [
             {
@@ -25,6 +27,7 @@ export const ORIGIN_STAGE_DATA = [
     },
     {
         name: "stage3",
+        carDirection: "vertical",
         carPosition: [0, 0.5, 2.5],
         quest: [
             {
@@ -37,6 +40,7 @@ export const ORIGIN_STAGE_DATA = [
     },
     {
         name: "stage4",
+        carDirection: "vertical",
         carPosition: [1.2, 0.5, 1],
         quest: [
             {
@@ -49,6 +53,7 @@ export const ORIGIN_STAGE_DATA = [
     },
     {
         name: "stage5",
+        carDirection: "vertical",
         carPosition: [0, 0.5, 2.5],
         quest: [
             {
@@ -61,12 +66,13 @@ export const ORIGIN_STAGE_DATA = [
     },
     {
         name: "stage6",
-        carPosition: [0, 0.5, 2.5],
+        carDirection: "horizontal",
+        carPosition: [0, 0.5, 0],
         quest: [
             {
                 id: '061',
                 desc: "Park the car in the parking area and change the gear shift to 'P'.",
-                position: [2, -1.4],
+                position: [-2, 0],
                 clear: false,
             },
         ]

@@ -15,10 +15,7 @@ import SelectPanel from "../ui/SelectPanel"
 import { Stage4 } from "../stage/Stage4"
 import Background from "../object/Background"
 import { Stage5 } from "../stage/Stage5"
-import { UserAuth } from "@/context/AuthContext"
-import { doc, setDoc } from "firebase/firestore/lite"
-import { db } from "@/utils/firebase/firebase"
-import useIntroStore from "@/utils/introStore"
+import { Stage6 } from "../stage/Stage6"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
@@ -61,6 +58,7 @@ export const World = ({ route = '/world', ...props }) => {
           {stageData[stageNumber]?.name === "stage3" && <Stage3/>}
           {stageData[stageNumber]?.name === "stage4" && <Stage4/>}
           {stageData[stageNumber]?.name === "stage5" && <Stage5/>}
+          {stageData[stageNumber]?.name === "stage6" && <Stage6/>}
           {gameState === "START" && <Car carPosition={stageData[stageNumber].carPosition}/>}
           {gameState === "READY" && <Html center><SelectPanel/></Html>}
         </Suspense>
