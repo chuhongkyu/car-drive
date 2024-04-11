@@ -27,6 +27,7 @@ export default function NavBar() {
           setLoading(false);
         };
         checkAuthentication();
+        // console.log(user)
     }, [user]);
 
   return (
@@ -34,12 +35,12 @@ export default function NavBar() {
      {loading ? null : !user ? (
         <ul className="login-container">
           <li onClick={handleSignIn} className="google-signin-button">
-            <img src="/icons/google_g.svg" alt="img" />Sign in with Google
+            <img src="/icons/google_g.svg" alt="img" /><p>Sign in with Google</p>
           </li>
         </ul>
       ) : (
         <div className="user-container">
-          <span className="user-name">Welcome, <b>{user.displayName}</b></span>
+          <span className="user-name"><p>Welcome, </p><b>{user.displayName}</b></span>
           <span className="signout-btn" onClick={handleSignOut}>
             Sign out
           </span>
