@@ -66,6 +66,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
     if(carState.every((el)=> el.isActive)){
       setIntroClear(true);
     }
+    return () => setIntroClear(false)
   },[carState])
 
   useEffect(()=>{

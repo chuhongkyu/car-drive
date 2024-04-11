@@ -18,12 +18,12 @@ import { Stage5 } from "../stage/Stage5"
 import { UserAuth } from "@/context/AuthContext"
 import { doc, setDoc } from "firebase/firestore/lite"
 import { db } from "@/utils/firebase/firebase"
+import useIntroStore from "@/utils/introStore"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef(null)
-  const { user}  = UserAuth()
 
   useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);

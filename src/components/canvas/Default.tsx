@@ -5,7 +5,6 @@ import { OrbitControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { DummyCar } from '../DummyCar'
 import { DefaultLights } from './Lights'
-import CustomLoader from '../CustomLoader'
 
 export const Default = () => {
   const { camera } = useThree()
