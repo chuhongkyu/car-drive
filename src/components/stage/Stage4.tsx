@@ -28,11 +28,26 @@ export function Stage4() {
     );
   }
 
+  const onHandleResetQuest = (currentQuestId:string)=> {
+    setStageData(stageData.map((stage) => 
+          stage.name === STAGE
+            ? {
+                ...stage,
+                quest: stage.quest.map((q) =>
+                  q.id === currentQuestId ? { ...q, clear: false } : q
+                ),
+              }
+            : stage
+        )
+    );
+  }
+
   useEffect(() => {
     let currentQuestId = "041"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }
+    return () => onHandleResetQuest(currentQuestId)
   }, [checkParking, selectedGearState]);
 
   const floorTexture = useTexture({

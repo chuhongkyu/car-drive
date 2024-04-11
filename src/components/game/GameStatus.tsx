@@ -5,8 +5,7 @@ import CountdownTimer from "../ui/CountdownTimer";
 
 
 const GameStatus = () => {
-    const { stageData, stageNumber } = useGameStore()
-    const [ isStart, setStart] = useState(true)
+    const { stageData, stageNumber, setGameState } = useGameStore()
     const [nav, setNav] = useState(true)
 
     useEffect(()=>{
@@ -17,7 +16,9 @@ const GameStatus = () => {
 
     const onClick = () => setNav((prev) => !prev)
 
-    const onClose = () => {}
+    const onClose = () => {
+        setGameState("GAMEOVER")
+    }
 
     return(
         <div className="quest-status">
@@ -25,15 +26,13 @@ const GameStatus = () => {
                 <p>Q</p>
                 <Image width={30} height={30} src={"/ui/circle-icon.png"} alt="icon"/>
             </div>
-            <CountdownTimer isStart={isStart} onClose={onClose}/>
+            <CountdownTimer onClose={onClose}/>
             <div className={`quests-bg ${nav ? "": "active"}`}>
                 <div className="quests">
-                    <h5>{stageData[stageNumber].name}</h5>
                     <div className="status">
                         {stageData[stageNumber].quest.map((el)=>{
                             return(
                                 <span className="quest" data-clear={el.clear} key={el.id + "KEY" + stageData[stageNumber].name}>
-                                    <span className="dot"/>
                                     <p>{el.desc}</p>
                                 </span>
                             )

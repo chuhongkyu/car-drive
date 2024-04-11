@@ -21,7 +21,7 @@ interface IData {
 interface ISave{
     name: string;
     unlock: boolean;
-    clearTime?: string;
+    clearTime?: number;
 }
 
 type LocalStore = {

@@ -10,6 +10,8 @@ type GameStore = {
     stageNumber: number;
     stageData: IData[]
     cameraType: CameraType;
+    clearTimer: number;
+    setClearTimer: (value: number) => void,
     setCameraType: (value: CameraType) => void,
     checkStart: (value: boolean) => void,
     setGameState: (value: GameState) => void,
@@ -32,14 +34,21 @@ interface IQuest {
 
 const useGameStore = create<GameStore>((set) => ({
     isStart: false,
+    checkStart: (value: boolean) => set({ isStart: value }),
+
     gameState: "READY",
-    stageNumber: 0,
-    stageData: ORIGIN_STAGE_DATA,
+    setGameState: (value: GameState) => set({ gameState: value}),
+
     cameraType: "ALL",
     setCameraType : (value: CameraType) => set({ cameraType: value }),
-    checkStart: (value: boolean) => set({ isStart: value }),
-    setGameState: (value: GameState) => set({ gameState: value}),
+
+    clearTimer: 0,
+    setClearTimer: (value: number) => set({ clearTimer: value }),
+    
+    stageNumber: 0,
     onHandleStageNumber: (value: number) => set({ stageNumber: value }),
+    
+    stageData: ORIGIN_STAGE_DATA,
     setStageData: (updatedStageData: IData[]) => {
         set({ stageData: updatedStageData });
     }
