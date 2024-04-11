@@ -33,7 +33,7 @@ export default function NavBar() {
 
   return (
     <div className="nav-container">
-      {loading ? null : !user && <ListData/>}
+      {loading ? null : !user ? null : <ListData userID={user?.uid}/>}
       {loading ? null : !user ? (
           <ul className="login-container">
             <li onClick={handleSignIn} className="google-signin-button">

@@ -15,11 +15,15 @@ import SelectPanel from "../ui/SelectPanel"
 import { Stage4 } from "../stage/Stage4"
 import Background from "../object/Background"
 import { Stage5 } from "../stage/Stage5"
+import { UserAuth } from "@/context/AuthContext"
+import { doc, setDoc } from "firebase/firestore/lite"
+import { db } from "@/utils/firebase/firebase"
 
 export const World = ({ route = '/world', ...props }) => {
   const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef(null)
+  const { user}  = UserAuth()
 
   useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);

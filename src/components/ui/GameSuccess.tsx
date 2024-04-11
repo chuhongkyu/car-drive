@@ -3,6 +3,9 @@ import useGameStore from "@/utils/gameStore";
 import useLocalSotre from "@/utils/localStore";
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
+import { doc, setDoc } from "firebase/firestore/lite";
+import { db } from "@/utils/firebase/firebase";
+import { UserAuth } from "@/context/AuthContext";
 
 
 export default function GameSuccess(){
@@ -10,17 +13,25 @@ export default function GameSuccess(){
     const { setSelectedGearState, setCheckParking}  = useCarStore()
     const [ clear, setClear ] = useState(false)
     const { saveData, setSaveData } = useLocalSotre()
+    const { user } = UserAuth()
+
+    const saveGameData = async (userId, gameData) => {
+        const userDocRef = doc(db, 'users', userId);
+        await setDoc(userDocRef, gameData);
+    }
 
     const onHandleNextGame = () => {
         checkStart(false);
         onHandleStageNumber(stageNumber + 1)
         setGameState("READY");
+    }
+    
 
+    const onHandleSaveData = () => {
         const currentStageName = stageData[stageNumber].name;
         const nextStageName = stageData[stageNumber + 1].name;
 
         const clearStageIndex = saveData.recordData.findIndex(record => record.name === currentStageName);
-        // console.log('클리어한 스테이지의 레코드 인덱스 찾기', clearStageIndex)
 
         if (clearStageIndex !== -1) {
             const currentClearTime = saveData.recordData[clearStageIndex].clearTime || 0;
@@ -54,6 +65,7 @@ export default function GameSuccess(){
     useEffect(()=>{
         setSelectedGearState("D")
         setCheckParking(false)
+        onHandleSaveData()
     },[])
 
     useEffect(()=>{
@@ -61,6 +73,16 @@ export default function GameSuccess(){
             setClear(true)
         }
     },[stageNumber])
+
+    useEffect(()=> {
+        const userId = user?.uid;
+        const localData = JSON.parse(localStorage.getItem("CAR_GAME_DATA"));
+
+        if (userId && localData) {
+            saveGameData(userId, localData);
+        }
+        return ()=> {};
+    }, [onHandleSaveData]);
 
     return(
         <div className="game-end-panel">
