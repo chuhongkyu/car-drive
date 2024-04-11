@@ -1,12 +1,14 @@
 'use client'
 
-import dynamic from "next/dynamic"
-import { Suspense } from "react"
+import NavBar from "@/components/home/NavBar"
+import { UserAuth } from "@/context/AuthContext"
 
 export default function Page() {
+  const { user } = UserAuth()
+  
   return (
     <>
-      
+      <NavBar/>
       {/* <View className='flex h-screen w-full'>
         <Suspense fallback={null}>
           <World/>

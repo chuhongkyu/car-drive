@@ -4,7 +4,7 @@
     "paths": {
       "@/*": [
         "app/*",
-        "src/*"
+        "src/*",
       ]
     },
     "target": "es5",
@@ -36,7 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/context/AuthContext.js"  ],
   "exclude": [
     "node_modules"
   ]

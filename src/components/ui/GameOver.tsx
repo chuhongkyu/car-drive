@@ -3,7 +3,7 @@ import useGameStore from "@/utils/gameStore";
 import { useEffect } from "react";
 
 export default function GameOver(){
-    const { checkStart, setGameState }= useGameStore();
+    const { checkStart, setGameState, clearTimer }= useGameStore();
     const { setSelectedGearState, setCheckParking}  = useCarStore()
 
     const onHandleRetry = () => {

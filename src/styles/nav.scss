@@ -1,0 +1,77 @@
+@import "./variables";
+@import "./mixins";
+
+.nav-container{
+    position: absolute;
+    z-index: 99;
+    right: 20px;
+    bottom: 20px;
+    .login-container{
+        display: flex;
+    }
+    .user-container{
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%;
+        background: white;
+        border-radius: 25px;
+        .user-name{
+            display: flex;
+            p{ padding-right: 0.5rem;}
+            b{
+                font-weight: 700;
+            }
+        }
+    }
+    .signout-btn{
+        text-decoration: underline;
+        color: black;
+        text-align: center;
+        padding: 0 10px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 130%;
+        cursor: pointer;
+    }
+    .google-signin-button {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 130%;
+        background: white;
+        color: black;
+        border-radius: 25px;
+        min-width: unset;
+        cursor: pointer;
+        opacity: 0.5;
+        &:hover, &:active{
+            opacity: 1;
+        }
+        img {
+            margin-right: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-container{
+        .google-signin-button{
+            img{
+                margin-right: 0;
+            }
+            p{display: none;}
+        }
+        .user-container{
+            .user-name {
+                p {
+                    display: none;
+                }
+            }
+        }
+    }
+}

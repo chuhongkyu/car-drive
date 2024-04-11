@@ -1,9 +1,11 @@
 import useGameStore from "@/utils/gameStore"
 import { useEffect, useState } from "react"
 import { easeInOut, motion } from "framer-motion"
+import useLocalSotre from "@/utils/localStore"
 
 export default function SelectPanel() {
     const { stageData, setGameState, stageNumber, onHandleStageNumber } = useGameStore()
+    const { saveData } = useLocalSotre()
     const [prevBtn, setPrevBtn] = useState(false)
     const [nextBtn, setNextBtn] = useState(false)
 
@@ -38,8 +40,8 @@ export default function SelectPanel() {
                 className="select-panel">
 
                 <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
-                <button className="stage-number" disabled={!stageData[stageNumber].unlock} onClick={()=> setGameState("START")}>
-                    {!stageData[stageNumber].unlock ? <span className="stage-lock"></span> : "STAGE" }
+                <button className="stage-number" disabled={!saveData.recordData[stageNumber]?.unlock} onClick={()=> setGameState("START")}>
+                    {!saveData.recordData[stageNumber]?.unlock ? <span className="stage-lock"></span> : "STAGE" }
                     {stageNumber + 1}</button>
                 <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
             </motion.div>

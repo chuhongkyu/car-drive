@@ -13,7 +13,7 @@ export function Stage2() {
   const { stageData, setStageData  } =  useGameStore();
   const STAGE = "stage2";
 
-  const onHandleQuest = (currentQuestId:string)=> {
+   const onHandleQuest = (currentQuestId:string)=> {
     setStageData(stageData.map((stage) => 
           stage.name === STAGE
             ? {
@@ -27,11 +27,26 @@ export function Stage2() {
     );
   }
 
+  const onHandleResetQuest = (currentQuestId:string)=> {
+    setStageData(stageData.map((stage) => 
+          stage.name === STAGE
+            ? {
+                ...stage,
+                quest: stage.quest.map((q) =>
+                  q.id === currentQuestId ? { ...q, clear: false } : q
+                ),
+              }
+            : stage
+        )
+    );
+  }
+
   useEffect(() => {
     let currentQuestId = "021"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }
+    return () => onHandleResetQuest(currentQuestId)
   }, [checkParking, selectedGearState]);
 
   const floorTexture = useTexture({

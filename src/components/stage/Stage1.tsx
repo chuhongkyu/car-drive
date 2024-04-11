@@ -10,7 +10,7 @@ import ParkingPlace from "../object/ParkingPlace";
 
 export function Stage1() {
   const { checkParking, selectedGearState } = useCarStore();
-  const { stageData, setStageData,  } =  useGameStore();
+  const { stageData, setStageData } =  useGameStore();
   const STAGE = "stage1";
 
   const onHandleQuest = (currentQuestId:string)=> {
@@ -27,11 +27,26 @@ export function Stage1() {
     );
   }
 
+  const onHandleResetQuest = (currentQuestId:string)=> {
+    setStageData(stageData.map((stage) => 
+          stage.name === STAGE
+            ? {
+                ...stage,
+                quest: stage.quest.map((q) =>
+                  q.id === currentQuestId ? { ...q, clear: false } : q
+                ),
+              }
+            : stage
+        )
+    );
+  }
+
   useEffect(() => {
     let currentQuestId = "001"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }
+    return () => onHandleResetQuest(currentQuestId)
   }, [checkParking, selectedGearState, setStageData]);
 
   const floorTexture = useTexture({

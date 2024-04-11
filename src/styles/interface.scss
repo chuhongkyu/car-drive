@@ -67,17 +67,52 @@
         color: white;
         .panel-group{
             width: 100%;
-            padding: 25px;
+            padding: 30px;
             h5 {
                 font-size: 22px;
                 font-weight: 500;
                 line-height: 135%;
             }
         
-            .desc {
-                margin-top: 0.5rem;
+            .score-container {
+                background: $transparent-bg;
+                width: 100%;
+                border-radius: 15px;
+                padding: 20px;
+                margin-top: 1rem;
                 font-size: 16px;
                 line-height: 135%;
+                .stars{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    .star {
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: center / contain no-repeat url("/ui/circle-icon.png");
+                        svg{
+                            display: none;
+                            width: 25px;
+                            height: 25px;
+                        }
+                        filter: brightness(0.7);
+                        &.active{
+                            filter: initial;
+                            svg {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                
+                .description{
+                    margin-top: 10px;
+                    text-align: center;
+                }
             }
         
             .btn-container {
@@ -88,11 +123,11 @@
                 .btn{
                     text-align: center;
                     background: $transparent-bg;
-                    width: 200px;
+                    width: 100%;
                     padding: 14px 20px;
-                    font-size: 22px;
+                    font-size: 20px;
                     font-weight: 700;
-                    border-radius: 25px;
+                    border-radius: 15px;
                     color: #ffffff;
                     &:not(:last-of-type){
                         margin-bottom: 10px;
@@ -324,6 +359,21 @@
     top: 20px;
     position: fixed;
     color: white;
+    display: flex;
+    align-items: center;
+    .timer-box {
+        margin-left: 10px;
+        .text {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 130%;
+            letter-spacing: 0.05em;
+            color: black;
+            background: #fff;
+            padding: 0px 10px;
+            border-radius: 5px;
+        }
+    }
     .quest-icon{
         width: 30px;
         height: 30px;
@@ -344,49 +394,36 @@
         transition: 300ms ease-in-out;
     }
     .quests-bg{
-        width: 320px;
-        height: 180px;
+        position: absolute;
+        z-index: 2;
+        top: 100%;
+        left: 0;
+        width: 220px;
+        height: 140px;
         display: flex;
         justify-content: center;
         background: center / contain no-repeat url("/ui/quest-panel.png");
         &.active {display: none;}
         .quests{
             width: 100%;
-            padding: 50px 35px 0;
-            display: block;
-            h5 {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
+            padding: 40px 30px 0;
             .quest{
                 padding: 0;
                 display: flex;
                 align-items: center;
-                line-height: 135%;
-                font-size: 12px;
+                line-height: 115%;
+                font-weight: 500;
+                font-size: 13px;
+                color: black;
                 word-break: keep-all;
                 &:not(:last-of-type) {
                     margin-bottom: 5px;
                 }
             
                 &[data-clear="true"] {
-                    .dot {
-                        background: #fff;
-                        transition: 300ms ease-in-out;
-                    }
-            
                     p {
                         text-decoration: line-through;
                     }
-                }
-            
-                .dot {
-                    border: 1px solid #fff;
-                    border-radius: 50%;
-                    display: block;
-                    width: 5px;
-                    height: 5px;
-                    margin-right: 0.5rem;
                 }
             }
         }
@@ -401,6 +438,8 @@
     width: 40px;
     height: 40px;
 }
+
+
 
 @media screen and (max-width: 1024px){
     .game-status{
