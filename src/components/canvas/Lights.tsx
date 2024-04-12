@@ -3,19 +3,22 @@ import { useRef } from "react";
 import { DirectionalLightHelper } from "three";
 
 const DefaultLights = () => {
+    const dirLight = useRef(null);
+    // useHelper(dirLight, DirectionalLightHelper, 2, "cyan")
     return(
         <>
             <Environment files="/skybox/bg.hdr" resolution={256} background blur={1}/>
-            <directionalLight 
+            <directionalLight
+                ref={dirLight}
                 castShadow
                 intensity={2}
-                shadow-camera-top={80}
-                shadow-camera-bottom={-80}
-                shadow-camera-left={-80}
-                shadow-camera-right={80}
+                shadow-camera-top={10}
+                shadow-camera-bottom={-10}
+                shadow-camera-left={-10}
+                shadow-camera-right={10}
                 shadow-mapSize-height={1024}
                 shadow-mapSize-width={1024}
-                position={[8, 10, 5]}
+                position={[10, 10, 5]}
                 color="white"
             />
         </>

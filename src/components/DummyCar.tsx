@@ -187,6 +187,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
         </group>
 
         <mesh 
+          castShadow
           position={[0,1,1.5]} 
           rotation={[-Math.PI, 0, 0]}
           onClick={() => setInfo(true)} 

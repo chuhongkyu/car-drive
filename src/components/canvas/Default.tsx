@@ -18,8 +18,8 @@ export const Default = () => {
   return (
     <>
       <Suspense fallback={<></>}>
-        <DummyCar position={[0,1,0]}/>
-        <mesh rotation={[-Math.PI/2,0,0]} castShadow receiveShadow>
+        <DummyCar position={[0,1,0]} scale={0.5}/>
+        <mesh rotation={[-Math.PI/2,0,0]} position={[0,0.55,0]} castShadow receiveShadow>
           <planeGeometry args={[30, 30]} />  
           <shadowMaterial attach='material' color="#aa7d39" />
         </mesh>
@@ -27,8 +27,8 @@ export const Default = () => {
       <DefaultLights/>
       <OrbitControls
         makeDefault 
-        maxDistance={62} 
-        minDistance={20} 
+        maxDistance={32} 
+        minDistance={10} 
         minAzimuthAngle={-Math.PI/2 + 1} 
         maxAzimuthAngle={Math.PI/2 - 1} 
         minPolarAngle={-Math.PI/2 + 0.5}
