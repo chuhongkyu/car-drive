@@ -1,4 +1,4 @@
-import { Environment, SpotLight, useHelper } from "@react-three/drei";
+import { Environment, useHelper } from "@react-three/drei";
 import { useRef } from "react";
 import { DirectionalLightHelper } from "three";
 
@@ -31,13 +31,13 @@ const WorldLights = () => {
                 ref={dirLight}
                 castShadow
                 intensity={2.5}
-                shadow-camera-top={100}
-                shadow-camera-bottom={-100}
-                shadow-camera-left={-100}
-                shadow-camera-right={100}
+                shadow-camera-top={10}
+                shadow-camera-bottom={-10}
+                shadow-camera-left={-10}
+                shadow-camera-right={10}
                 shadow-mapSize-height={2048}
                 shadow-mapSize-width={2048}
-                position={[3, 10, 5]}
+                position={[5, 10, 3]}
                 color="white"
             />
         </>
