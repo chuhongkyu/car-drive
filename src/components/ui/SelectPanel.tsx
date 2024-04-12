@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { easeInOut, motion } from "framer-motion"
 import useLocalSotre from "@/utils/localStore"
 import useDebugStore from "@/utils/debugStore"
+import StarRating from "./StarRating"
 
 export default function SelectPanel() {
     const { stageData, setGameState, stageNumber, onHandleStageNumber } = useGameStore()
@@ -10,6 +11,7 @@ export default function SelectPanel() {
     const [prevBtn, setPrevBtn] = useState(false)
     const [nextBtn, setNextBtn] = useState(false)
     const { debug } = useDebugStore()
+    const [ star, setStar] = useState(0) 
 
     const onIncrease = () => {
         onHandleStageNumber(stageNumber + 1)
@@ -32,6 +34,11 @@ export default function SelectPanel() {
         }else{
             setNextBtn(false)
         }
+
+        if(saveData.recordData[stageNumber]?.unlock){
+            setStar(saveData.recordData[stageNumber]?.clearTime)
+        }
+        
     },[stageNumber, stageData])
 
     return(
@@ -42,11 +49,13 @@ export default function SelectPanel() {
                 className="select-panel">
 
                 <button className="prev-btn" disabled={prevBtn} onClick={onDecrease}/>
+                {/* 디버그용 버튼 */}
                 {debug && <div onClick={()=> setGameState("START")}>debug</div>}
                 <button className="stage-number" disabled={!saveData.recordData[stageNumber]?.unlock} onClick={()=> setGameState("START")}>
-                    {!saveData.recordData[stageNumber]?.unlock ? <span className="stage-lock"></span> : "STAGE" }
+                    {!saveData.recordData[stageNumber]?.unlock ? <span className="stage-lock"></span> : "STAGE " }
                     {stageNumber + 1}</button>
                 <button className="next-btn" disabled={nextBtn} onClick={onIncrease}/>
+                {saveData.recordData[stageNumber]?.clearTime && <StarRating clearTimer={star}/>}
             </motion.div>
         </div>
     )

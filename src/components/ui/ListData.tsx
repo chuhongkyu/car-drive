@@ -13,7 +13,7 @@ export default function ListData({userID}){
         if(docSnap.exists()){
             const data = JSON.parse(JSON.stringify(docSnap.data()));
             setLoad(data)
-            console.log(data)
+            // console.log(data)
         }else{
             console.log("처음 로그인")
         }

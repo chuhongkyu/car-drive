@@ -8,6 +8,7 @@ import RoadEnd from "../object/RoadEnd";
 import { CarObj } from "../object/CarOthers";
 import ParkingPlace from "../object/ParkingPlace";
 import CylinderPlace from "../object/CylinderPlace";
+import StartPlace from "../object/StartPlace";
 
 export function Stage4() {
   const { checkParking, selectedGearState } = useCarStore();
@@ -72,6 +73,7 @@ export function Stage4() {
       <RoadEnd mySize={[4.5,0.5,2]} position={[0,-0.5,-1]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <CylinderPlace floorTexture={floorTexture} wallTexture={wallTexture2} />
       <ParkingPlace position={[-1,-0.2,-1.2]} rotationY={Math.PI/2}/>
+      <StartPlace position={[stageData[3].carPosition[0],-0.2, stageData[3].carPosition[2]]} rotationY={Math.PI/2}/>
     </>
   );
 }

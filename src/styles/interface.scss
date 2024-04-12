@@ -47,6 +47,56 @@
         .prev-btn{
             background: center / contain no-repeat url("/ui/arrow-left.png");
         }
+
+        .score-container{
+            top: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $transparent-bg;
+            border-radius: 15px;
+            padding: 10px 20px;
+            margin-top: 1rem;
+            .stars {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                .star {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: center / contain no-repeat url("/ui/circle-icon.png");
+        
+                    svg {
+                        display: none;
+                        width: 20px;
+                        height: 20px;
+                    }
+        
+                    filter: brightness(0.7);
+        
+                    &.active {
+                        filter: initial;
+        
+                        svg {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        
+            .description {
+                display: none;
+                text-align: center;
+                color: #fff;
+                font-size: 16px;
+                line-height: 135%;
+            }
+        }
     }
 }
 

@@ -7,6 +7,7 @@ import { useTexture } from "@react-three/drei";
 import RoadEnd from "../object/RoadEnd";
 import { CarObj } from "../object/CarOthers";
 import ParkingPlace from "../object/ParkingPlace";
+import StartPlace from "../object/StartPlace";
 
 export function Stage1() {
   const { checkParking, selectedGearState } = useCarStore();
@@ -66,6 +67,7 @@ export function Stage1() {
       <RoadEnd mySize={[8,0.5,4]} position={[0,-0.5,-2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <CarObj position={[1.5,0,-2.5]}/>
       <CarObj position={[-1.5,0,-2.5]}/>
+      <StartPlace position={[stageData[0].carPosition[0],-0.2, stageData[0].carPosition[2]]} rotationY={Math.PI/2}/>
     </>
   );
 }

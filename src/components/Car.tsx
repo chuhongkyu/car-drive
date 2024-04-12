@@ -102,7 +102,6 @@ export function Car( { carPosition }) {
         <Wheel wheelRef={wheels[1]} radius={wheelRadius} back={-0.03} lefSide={true}/>
         <Wheel wheelRef={wheels[2]} radius={wheelRadius} back={0} />
         <Wheel wheelRef={wheels[3]} radius={wheelRadius} back={0} lefSide={true}/>
-        
       </motion.group>
       <JoystickContainer vehicleApi={vehicleApi} chassisApi={chassisApi} />
     </>

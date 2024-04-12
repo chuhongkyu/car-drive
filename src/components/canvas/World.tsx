@@ -18,7 +18,7 @@ import { Stage5 } from "../stage/Stage5"
 import { Stage6 } from "../stage/Stage6"
 
 export const World = ({ route = '/world', ...props }) => {
-  const { isStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
+  const { isStart, checkStart, gameState, setGameState, stageData, setStageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef(null)
 
@@ -28,6 +28,12 @@ export const World = ({ route = '/world', ...props }) => {
     if (modeParam === 'debug') {
       setDebug(true)
     }
+    
+    return ()=>{
+      setGameState("READY")
+      checkStart(false)
+    }
+
   },[])
 
   useEffect(()=>{
