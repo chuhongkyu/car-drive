@@ -7,10 +7,11 @@ const destory = "/music/destory.wav"
 const success = "/music/success.wav"
 
 const SoundManager = () => {
-    const { isStart } = useGameStore();
+    const { isStart, gameState } = useGameStore();
     const { isCarCollide } = useCarStore()
     const startAudioRef = useRef(null);
     const destroyAudioRef = useRef(null);
+    const successRef = useRef(null);
 
     useEffect(() => {
         if(isCarCollide){
@@ -28,10 +29,19 @@ const SoundManager = () => {
         }
     },[isStart])
 
+    useEffect(()=>{
+        if(gameState === "SUCCESS"){
+            if(successRef.current){
+                successRef.current.play()
+            }
+        }
+    },[gameState])
+
     return(
         <div>
-            <audio ref={destroyAudioRef} src={destory} />
-            <audio ref={startAudioRef} src={start} />
+            <audio autoPlay={false} ref={destroyAudioRef} src={destory} />
+            <audio autoPlay={false} ref={startAudioRef} src={start} />
+            <audio autoPlay={false} ref={successRef} src={success} />
         </div>
     )
 }
