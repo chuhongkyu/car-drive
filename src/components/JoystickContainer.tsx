@@ -2,7 +2,6 @@ import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
 import { Html } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
@@ -209,14 +208,14 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
                         <div className="camera-icon"/>
                     </div>
                     <div className="brake-container">
-                        <button className="brake" onClick={onHandleBrake}>
-
-                        </button>
+                        <button className="brake" onClick={onHandleBrake}/>
                         <button className="accel" onClick={onHandleAccel}>{engineForce}</button>
                     </div>
                 </div>
                 <div className="steering-wheel-bg" {...bind()}>
-                    <div className="steering-panel"></div>
+                    <div className="steering-panel">
+                        <span className="ord" style={{ transform: `translateX(${rotation * 300}px)`}}></span>
+                    </div>
                     <div className="steering-wheel" ref={steeringWheelRef} style={{ transform: `rotate(${rotation * 1530}deg)` }}></div>
                 </div>
             </div>

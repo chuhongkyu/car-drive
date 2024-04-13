@@ -271,6 +271,17 @@
             z-index: 4;
             touch-action: none;
             pointer-events: none;
+            display: flex;
+            justify-content: center;
+            padding: 4px 0;
+            .ord{
+                display: block;
+                width: 10px;
+                height: 100%;
+                background: #fff;
+                border-radius: 5px;
+                cursor: grab;
+            }
         }
     
         .steering-wheel {
