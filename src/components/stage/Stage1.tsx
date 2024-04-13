@@ -65,8 +65,8 @@ export function Stage1() {
       <ParkingPlace position={[2.5,-0.2,0]} rotationY={Math.PI/2}/>
       <RoadStart mySize={[8,0.5,4]} position={[0,-0.5,2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <RoadEnd mySize={[8,0.5,4]} position={[0,-0.5,-2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
-      <CarObj position={[1.5,0,-2.5]}/>
-      <CarObj position={[-1.5,0,-2.5]}/>
+      <CarObj position={[1.5,-0.05,-2.5]}/>
+      <CarObj position={[-1.5,-0.05,-2.5]}/>
       <StartPlace position={[stageData[0].carPosition[0],-0.2, stageData[0].carPosition[2]]} rotationY={Math.PI/2}/>
     </>
   );

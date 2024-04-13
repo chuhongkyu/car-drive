@@ -65,13 +65,13 @@ export function Stage6() {
       <RoadStart mySize={[8,0.5,4]} position={[0,-0.5,2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
       <RoadEnd mySize={[8,0.5,4]} position={[0,-0.5,-2]} floorTexture={floorTexture} wallTexture={wallTexture}/>
 
-      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,0,-1.5]} color={0x00b545}/>
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,-0.05,-1.5]} color={0x00b545}/>
       <ParkingPlace position={[0,-0.2,-2]} rotationY={Math.PI/2} />
-      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,-1.5]}/>
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,-0.05,-1.5]}/>
 
-      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,0]} color={0x000000} />
-      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,0,1.5]} color={0x000000} />
-      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,0,1.5]} color={0x000000} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,-0.05,0]} color={0x000000} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[-2,-0.05,1.5]} color={0x000000} />
+      <CarObj rotation={[0,Math.PI,0]} parkingY={Math.PI/2} position={[2,-0.05,1.5]} color={0x000000} />
       <StartPlace position={[stageData[5].carPosition[0],-0.2, stageData[5].carPosition[2]]} rotationY={Math.PI/2}/>
     </>
   );
