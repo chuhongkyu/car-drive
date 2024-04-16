@@ -1,18 +1,19 @@
 'use client'
 
-import {  Suspense, useEffect } from 'react'
+import {  Suspense, useEffect, useRef } from 'react'
 import { OrbitControls } from '@react-three/drei'
-import { useThree } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { DummyCar } from '../DummyCar'
 import { DefaultLights } from './Lights'
 
 export const Default = () => {
   const { camera } = useThree()
+  const cameraRef = useRef(null)
 
   useEffect(()=>{
     camera.position.x = 3
-    camera.position.y = 18
-    camera.position.z  = 18
+    camera.position.y = 15
+    camera.position.z  = 10
   },[camera])
 
   return (
@@ -26,6 +27,7 @@ export const Default = () => {
       </Suspense>
       <DefaultLights/>
       <OrbitControls
+        ref={cameraRef}
         makeDefault 
         maxDistance={32} 
         minDistance={10} 

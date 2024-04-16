@@ -7,6 +7,7 @@ import { motion } from "framer-motion-3d";
 import useIntroStore from '@/utils/introStore';
 import InfoNumber from './ui/InfoNumber';
 import TypedComponent from './ui/TypedComponent';
+import { useFrame, useThree } from '@react-three/fiber';
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -29,6 +30,7 @@ export type GLTFResult = GLTF & {
 }
 
 export function DummyCar(props: JSX.IntrinsicElements['group']) {
+  const { camera } = useThree()
   const { nodes, materials } = useGLTF('/models/toy_car.glb') as GLTFResult
   const texture = useTexture('/img/parking.png')
   const [ info, setInfo ] = useState(false)
@@ -81,6 +83,12 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
     const time = setTimeout(()=> setInfo(true), 1000) 
     return ()=> clearTimeout(time)
   },[])
+
+  useEffect(()=>{
+    if(introClear){
+      camera.position.set(2,5,5)
+    }
+  },[introClear])
 
   return (
     <group {...props} dispose={null}>
@@ -157,6 +165,17 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
               {!introClear && <InfoNumber ord={4}/>}
           </motion.group>
         
+          <motion.mesh
+            initial={{y:0}}
+            animate={carState[3].isActive ? {x: 0, y: 0, scale: 0}: {x: 0, y: -18, scale: 1}}
+            onPointerOver={() => set(true)} 
+            onPointerOut={() => set(false)}
+            onClick={!introClear && onClick}
+            name="바퀴"
+            rotation={[Math.PI/2,0,0]} position={[0, -18, 0]}>
+              <boxGeometry args={[13,2,8]}/>
+              <meshBasicMaterial transparent opacity={0}/>
+          </motion.mesh>
           <motion.mesh
             name="바퀴"
             onPointerOver={() => set(true)} 
