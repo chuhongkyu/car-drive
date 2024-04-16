@@ -43,7 +43,7 @@ export function Stage6() {
   }
 
   useEffect(() => {
-    let currentQuestId = "051"
+    let currentQuestId = "061"
     if (checkParking && selectedGearState === "P") {
       onHandleQuest(currentQuestId)
     }

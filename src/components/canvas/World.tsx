@@ -55,6 +55,7 @@ export const World = ({ route = '/world', ...props }) => {
 
   return (
     <>
+    <color attach="background" args={["rgb(199, 191, 168)"]} />
     <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
       <DebugWrapper>
         <Suspense fallback={<></>}>
