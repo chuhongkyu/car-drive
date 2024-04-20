@@ -1,4 +1,4 @@
-const title = 'Immersive Car Driving Simulator | Safe Driving Practice Game'
+const title = '🚗 Experience Driving Practice on the Web!'
 const url = 'https://car-drive-practice.vercel.app/'
 const description = 'Experience the thrill of driving in this immersive Three.js NEXT game. Enhance your driving skills while emphasizing the value of safe and meaningful journeys. Join us in promoting the importance of driving for connectivity and safety'
 const author = 'mr.chu'
