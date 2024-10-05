@@ -14,9 +14,18 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      if (error.code === 'auth/popup-closed-by-user') {
+        console.log('User closed the authentication popup.');
+        alert('Authentication was canceled. Please try again.');
+      } else {
+        console.error('Authentication error:', error);
+      }
+    }
   };
 
   const logOut = () => {
