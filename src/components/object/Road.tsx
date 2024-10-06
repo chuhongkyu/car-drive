@@ -8,7 +8,7 @@ export default function Road (props) {
     const onCollide = (e) => {
         const { body } = e;
         if (body.name === "chassisBody") {
-            setTimeout(()=> setGameState("GAMEOVER"),500)
+            setTimeout(()=> setGameState("GAMEOVERAD"),500)
         }
     }
 

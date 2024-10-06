@@ -69,7 +69,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
       setIntroClear(true);
     }
     return () => setIntroClear(false)
-  },[carState])
+  },[carState, setIntroClear])
 
   useEffect(()=>{
     let time;

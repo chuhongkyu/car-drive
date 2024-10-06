@@ -7,7 +7,12 @@ const DefaultLights = () => {
     // useHelper(dirLight, DirectionalLightHelper, 2, "cyan")
     return(
         <>
-            <Environment files="/skybox/bg.hdr" resolution={256} background blur={1}/>
+            <Environment 
+                files="/skybox/bg.hdr" 
+                resolution={64}
+                background
+                backgroundBlurriness={10}
+                />
             <directionalLight
                 ref={dirLight}
                 castShadow

@@ -51,15 +51,13 @@ export default function Head() {
       <meta name='viewport' content='width=device-width, minimum-scale=1, initial-scale=1.0' />
       <meta name='theme-color' content='#000' />
       <link rel='shortcut icon' href='/icons/apple-touch-icon.png' />
-
-
-      <meta name="apple-mobile-web-app-capable" content="yes"/>
       <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
       <meta name="apple-mobile-web-app-title" content="Notentool"/>  
-      {/* 
-      Twitter Summary card
-        documentation: https://dev.twitter.com/cards/getting-started
-        Be sure validate your Twitter card markup on the documentation site. */}
+
+      <meta name="mobile-web-app-capable" content="yes"/>
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+      <meta name="google-adsense-account" content="ca-pub-1979490362657562"></meta>
       <meta name='twitter:card' content='summary' />
       <link rel="icon" href="/icons/favicon.ico" />
     </>

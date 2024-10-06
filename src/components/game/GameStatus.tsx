@@ -17,7 +17,7 @@ const GameStatus = () => {
     const onClick = () => setNav((prev) => !prev)
 
     const onClose = () => {
-        setGameState("GAMEOVER")
+        setGameState("GAMEOVERAD")
     }
 
     return(

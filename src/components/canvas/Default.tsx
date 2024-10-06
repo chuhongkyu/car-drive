@@ -19,10 +19,11 @@ export const Default = () => {
   return (
     <>
       <Suspense fallback={<></>}>
+        
         <DummyCar position={[0,1,0]} scale={0.5}/>
         <mesh rotation={[-Math.PI/2,0,0]} position={[0,0.55,0]} castShadow receiveShadow>
           <planeGeometry args={[30, 30]} />  
-          <shadowMaterial attach='material' color="#aa7d39" />
+          <shadowMaterial attach="material" color="#aa7d39" />
         </mesh>
       </Suspense>
       <DefaultLights/>

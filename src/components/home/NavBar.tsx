@@ -1,6 +1,7 @@
 import { UserAuth } from "@/context/AuthContext"
 import { useEffect, useState } from "react";
 import ListData from "../ui/ListData";
+import Image from "next/image";
 
 export default function NavBar() {
     const { user, googleSignIn, logOut } = UserAuth();
@@ -10,7 +11,7 @@ export default function NavBar() {
         try {
           await googleSignIn();
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
     };
 
@@ -18,7 +19,7 @@ export default function NavBar() {
         try {
           await logOut();
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
     };
 
@@ -37,7 +38,7 @@ export default function NavBar() {
       {loading ? null : !user ? (
           <ul className="login-container">
             <li onClick={handleSignIn} className="google-signin-button">
-              <img src="/icons/google_g.svg" alt="img" /><p>Sign in with Google</p>
+              <Image src="/icons/google_g.svg" alt="google" width={20} height={20} /><p>Sign in with Google</p>
             </li>
           </ul>
         ) : (

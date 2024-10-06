@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { ORIGIN_STAGE_DATA } from './stageData';
 
-type GameState = "READY" | "START" | "SUCCESS" | "GAMEOVER"
+type GameState = "READY" | "START" | "SUCCESS" | "GAMEOVERAD" | "GAMEOVER"
 type CameraType = "FOCUS" | "ALL" | "VIEW"
 
 type GameStore = {

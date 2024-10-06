@@ -11,7 +11,7 @@ export default function CylinderPlace(props){
         const { body } = e;
         if (body.name === "chassisBody") {
             checkCarCollide(true)
-            setTimeout(()=> setGameState("GAMEOVER"),500)
+            setTimeout(()=> setGameState("GAMEOVERAD"),500)
         }
     }
 

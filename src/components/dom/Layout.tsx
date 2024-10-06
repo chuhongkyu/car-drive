@@ -9,6 +9,7 @@ import GameStatus from '../game/GameStatus'
 import useGameStore from '@/utils/gameStore'
 import GameOver from '../ui/GameOver'
 import GameSuccess from '../ui/GameSuccess'
+import GameOverAd from '../ui/GameOverAd'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
@@ -25,11 +26,12 @@ const Layout = ({ children }) => {
           position: 'relative',
           width: ' 100%',
           height: '100%',
-          overflow: 'auto',
+          overflow: 'hidden',
           touchAction: 'auto',
         }}
       >
         {pathname == "/world" && gameState === "START" && isStart && <GameStatus/>}
+        {pathname == "/world" && gameState === "GAMEOVERAD" && <GameOverAd gameState={gameState} />}
         {pathname == "/world" && gameState === "GAMEOVER" && <GameOver/>}
         {pathname == "/world" && gameState === "SUCCESS" && <GameSuccess/>}
         {pathname == "/" && <GoGame/>}
