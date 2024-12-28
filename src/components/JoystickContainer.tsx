@@ -1,12 +1,17 @@
 import useCarStore from "@/utils/carStore";
 import useGameStore from "@/utils/gameStore";
-import { Html } from "@react-three/drei";
+import { Controls } from "@/utils/keyBoard";
+import { Html, useKeyboardControls } from "@react-three/drei";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
 
 export default function JoystickContainer({ vehicleApi, chassisApi }) {
     const { selectedGearState, setSelectedGearState  } = useCarStore();
-    const { cameraType, setCameraType } = useGameStore()
+    const { cameraType, setCameraType } = useGameStore();
+    const forwardPressed = useKeyboardControls<Controls>(state => state.forward)
+    const backdPressed = useKeyboardControls<Controls>(state => state.back)
+    const leftPressed = useKeyboardControls<Controls>(state => state.left)
+    const rightPressed = useKeyboardControls<Controls>(state => state.right)
 
     const steeringWheelRef = useRef(null);
     const [rotation, setRotation] = useState(0);
@@ -160,6 +165,51 @@ export default function JoystickContainer({ vehicleApi, chassisApi }) {
             setCameraType("ALL")
         }
     }
+
+    useEffect(()=>{
+        if(forwardPressed) {
+            setSelectedGearState("D")
+            onHandleAccel()
+            vehicleApi.applyEngineForce(engineForce, 2);
+            vehicleApi.applyEngineForce(engineForce, 3);
+        }
+    },[forwardPressed, vehicleApi])
+
+    useEffect(()=>{
+        if(backdPressed) {
+            setSelectedGearState("R")
+            vehicleApi.applyEngineForce(-engineForce, 2);
+            vehicleApi.applyEngineForce(-engineForce, 3);
+        }
+    },[backdPressed, vehicleApi])
+
+    useEffect(()=> {
+        if(leftPressed){
+            vehicleApi.setSteeringValue(0.35, 2);
+            vehicleApi.setSteeringValue(0.35, 3);
+            vehicleApi.setSteeringValue(-0.1, 0);
+            vehicleApi.setSteeringValue(-0.1, 1);
+        }else{
+            vehicleApi.setSteeringValue(0, 0);
+            vehicleApi.setSteeringValue(0, 1);
+            vehicleApi.setSteeringValue(0, 2);
+            vehicleApi.setSteeringValue(0, 3);
+        }
+    },[leftPressed, vehicleApi])
+
+    useEffect(()=> {
+        if(rightPressed){
+            vehicleApi.setSteeringValue(-0.35, 2);
+            vehicleApi.setSteeringValue(-0.35, 3);
+            vehicleApi.setSteeringValue(0.1, 0);
+            vehicleApi.setSteeringValue(0.1, 1);
+        }else{
+            vehicleApi.setSteeringValue(0, 0);
+            vehicleApi.setSteeringValue(0, 1);
+            vehicleApi.setSteeringValue(0, 2);
+            vehicleApi.setSteeringValue(0, 3);
+        }
+    },[rightPressed, vehicleApi])
 
     return (
         <Html wrapperClass="ui-root" className="ui-container">
