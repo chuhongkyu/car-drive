@@ -5,7 +5,7 @@
     "mr.chu"
   ],
   "engines": {
-    "node": ">=18"
+    "node": "18.x"
   },
   "scripts": {
     "lint": "next lint --fix --dir app",
