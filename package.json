@@ -19,7 +19,7 @@
     "@ducanh2912/next-pwa": "^10.0.0",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.114.0",
-    "@react-three/fiber": "^8.17.9",
+    "@react-three/fiber": "^8.17.10",
     "@types/three": "^0.160.0",
     "@use-gesture/react": "^10.3.0",
     "firebase": "^10.10.0",
