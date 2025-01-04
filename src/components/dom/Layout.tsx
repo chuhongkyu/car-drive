@@ -14,7 +14,7 @@ import GameOverAd from '../ui/GameOverAd'
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname()
   const { isStart, gameState }= useGameStore();
 

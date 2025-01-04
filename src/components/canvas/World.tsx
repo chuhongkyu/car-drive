@@ -23,7 +23,7 @@ export const World = ({ route = '/world', ...props }) => {
   const cameraRef = useRef(null)
 
   useEffect(()=>{
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window?.location.search);
     const modeParam = urlParams.get('mode');
     if (modeParam === 'debug') {
       setDebug(true)

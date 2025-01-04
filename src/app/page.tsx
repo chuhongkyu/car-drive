@@ -9,12 +9,6 @@ export default function Page() {
   return (
     <>
       <NavBar/>
-      {/* <View className='flex h-screen w-full'>
-        <Suspense fallback={null}>
-          <World/>
-          <Common />
-        </Suspense>
-      </View> */}
     </>
   )
 }

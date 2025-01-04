@@ -3,6 +3,7 @@ import '@/styles/styles.scss'
 import { Roboto } from 'next/font/google'
 import Head from './head';
 import { AuthContextProvider } from "@/context/AuthContext";
+import { ReactNode } from 'react';
  
 // export const metadata = {
 //   title: 'a driving practice game',
@@ -10,12 +11,12 @@ import { AuthContextProvider } from "@/context/AuthContext";
 // }
 
 const roboto = Roboto({
-    subsets: ["latin"],
-    weight: ["100", "400", "700"],
-    variable: "--roboto",
+  subsets: ["latin"],
+  weight: ["100", "400", "700"],
+  variable: "--roboto",
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' className={roboto.className}>
       <Head/>
