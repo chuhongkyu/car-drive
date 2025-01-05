@@ -1,6 +1,7 @@
 import { motion } from "framer-motion-3d";
+import { motion as Dmotion} from "framer-motion";
 import { Html, useTexture } from "@react-three/drei";
-import useCarStore, {  } from "@/app/utils/carStore";
+import useCarStore from "@/app/utils/carStore";
 import Image from "next/image";
 import useGameStore from "@/app/utils/gameStore";
 
@@ -11,16 +12,18 @@ const ParkingPlace = ({position, rotationY = 0}:{ position: number[], rotationY?
     return(
         <group rotation={[0,rotationY,0]}>
           {!isStart &&
-          <motion.group
-            initial={{ y: 0}}
-            animate={{ y: [0,0.2,0,0.2,0], scaleY: [1, 1.5, 1], transition: { duration: 1, repeat: Infinity, repeatDelay: 1}}}
-            position={[position[0], position[1], position[2]]}>
-            <Html position={[0,0.1,0]} center>
-              <div className="parking-arrow">
+            <Html position={[position[0], position[1] + 0.5, position[2]]} center>
+              <Dmotion.div 
+                initial={{y: position[1]+ 0.5}}
+                animate={{
+                  y: [position[1]+0.5, 5, position[1]+0.5,5, position[1]+0.5],
+                }}
+                transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5}}
+                className="parking-arrow">
                 <Image width={40} height={40} src={"/ui/down-arrow.png"} alt="down"/>
-              </div>
+              </Dmotion.div>
             </Html>
-          </motion.group>}
+          }
           <mesh position={[position[0], position[1], position[2]]} rotation={[-Math.PI/2,0,0]}>
             <planeGeometry args={[1.4,0.8]}/>
             <meshBasicMaterial map={texture} transparent side={2} alphaTest={0.5}/>

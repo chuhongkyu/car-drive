@@ -585,8 +585,12 @@
         width: 25px;
         height: 25px;
         img {
+            display: block;
+            object-fit: cover;
             width: 25px;
             height: 25px;
+            user-select: none;
+            pointer-events: none;
         }
     }
 }
