@@ -1,8 +1,8 @@
-import { Layout } from '@/components/dom/Layout'
-import '@/styles/styles.scss'
+import { Layout } from '@/app/components/dom/Layout'
+import '@/app/styles/styles.scss'
 import { Roboto } from 'next/font/google'
 import Head from './head';
-import { AuthContextProvider } from "@/context/AuthContext";
+import { AuthContextProvider } from "@/app/context/AuthContext";
 import { ReactNode } from 'react';
  
 // export const metadata = {

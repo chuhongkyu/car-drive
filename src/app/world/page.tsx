@@ -1,6 +1,6 @@
 'use client'
 
-import SoundManager from "@/components/sounds/SoundManager"
+import SoundManager from "@/app/components/sounds/SoundManager"
 
 export default function Page() {
   return (
