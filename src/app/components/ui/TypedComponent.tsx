@@ -1,5 +1,5 @@
-import React from 'react';
-import Typed from 'typed.js';
+import React from "react";
+import Typed from "typed.js";
 
 export default function TypedComponent({text}:{text:string}) {
   const el = React.useRef(null);

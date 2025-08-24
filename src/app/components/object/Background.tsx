@@ -1,3 +1,4 @@
+import Shader from "@/app/templates/Shader/Shader";
 import { useTexture } from "@react-three/drei";
 
 export default function Background() {
@@ -9,6 +10,10 @@ export default function Background() {
 
     return(
         <group>
+            <mesh position={[0, -5, 0]} rotation={[-Math.PI/2, 0, 0]} receiveShadow>
+                <planeGeometry args={[60, 60]} />
+                <Shader attach="material"/>
+            </mesh>
             <mesh position={[10,1.5,-5]} rotation={[0, -Math.PI/2, 0]}>
                 <planeGeometry args={[20,5]}/>
                 <meshStandardMaterial {...texture} color={"white"}/>
@@ -21,6 +26,7 @@ export default function Background() {
                 <planeGeometry args={[20,5]}/>
                 <meshStandardMaterial {...texture} color={"white"}/>
             </mesh>
+            
         </group>
         
     )

@@ -22,7 +22,7 @@ export default function CylinderPlace({position, mySize = [0.6, 0.6, 0.5, 32], f
 
     const [ref] = useCylinder(
         () => ({ 
-            type: 'Static',
+            type: "Static",
             args: [width, width2, height, depth],
             position: position,
             onCollide: onCollide

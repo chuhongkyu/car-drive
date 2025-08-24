@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const localStorageKey = 'CAR_GAME_DATA';
+export const localStorageKey = "CAR_GAME_DATA";
 
 const SAVE_DATA = {
     currentStage: 0,

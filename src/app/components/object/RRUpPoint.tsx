@@ -18,8 +18,8 @@ export default function RRUpPoint({position, floorTexture, wallTexture}:IPointPr
 
     const [ref] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [width, height, depth],
             position: position,
         }), useRef<any>(null)
@@ -27,8 +27,8 @@ export default function RRUpPoint({position, floorTexture, wallTexture}:IPointPr
 
     const [ref1] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [width,1,0.5],
             position: [position[0], position[1] + 0.75, position[2] - depth/2],
             onCollide: onCollide,
@@ -37,8 +37,8 @@ export default function RRUpPoint({position, floorTexture, wallTexture}:IPointPr
 
     const [ref2] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [0.5,1,depth],
             position: [position[0] - width/2, position[1] + 0.75, position[2]],
             onCollide: onCollide,

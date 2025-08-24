@@ -1,25 +1,25 @@
 
-import * as THREE from 'three'
-import React, { useEffect, useState } from 'react'
-import { Html, Sparkles, useCursor, useGLTF, useTexture } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from "three"
+import React, { useEffect, useState } from "react"
+import { Html, Sparkles, useCursor, useGLTF, useTexture } from "@react-three/drei"
+import { GLTF } from "three-stdlib"
 import { motion } from "framer-motion-3d";
-import useIntroStore from '@/app/utils/introStore';
-import InfoNumber from './ui/InfoNumber';
-import TypedComponent from './ui/TypedComponent';
-import { useThree } from '@react-three/fiber';
+import useIntroStore from "@/app/utils/introStore";
+import InfoNumber from "./ui/InfoNumber";
+import TypedComponent from "./ui/TypedComponent";
+import { useThree } from "@react-three/fiber";
 
 export type GLTFResult = GLTF & {
   nodes: {
-    ['ChamferCyl002_Material_#5_0']: THREE.Mesh
-    ['Shape2_Material_#3_0']: THREE.Mesh
-    ['Shape4_Material_#6_0']: THREE.Mesh
-    ['Shape11_Material_#7_0']: THREE.Mesh
-    ['Shape014_Material_#7_0']: THREE.Mesh
-    ['ChamferCyl001_Material_#5_0']: THREE.Mesh
-    ['ChamferCyl003_Material_#5_0']: THREE.Mesh
-    ['ChamferCyl004_Material_#5_0']: THREE.Mesh
-    ['ChamferCyl005_Material_#5_0']: THREE.Mesh
+    ["ChamferCyl002_Material_#5_0"]: THREE.Mesh
+    ["Shape2_Material_#3_0"]: THREE.Mesh
+    ["Shape4_Material_#6_0"]: THREE.Mesh
+    ["Shape11_Material_#7_0"]: THREE.Mesh
+    ["Shape014_Material_#7_0"]: THREE.Mesh
+    ["ChamferCyl001_Material_#5_0"]: THREE.Mesh
+    ["ChamferCyl003_Material_#5_0"]: THREE.Mesh
+    ["ChamferCyl004_Material_#5_0"]: THREE.Mesh
+    ["ChamferCyl005_Material_#5_0"]: THREE.Mesh
   }
   materials: {
     Material_5: THREE.MeshStandardMaterial
@@ -29,10 +29,10 @@ export type GLTFResult = GLTF & {
   }
 }
 
-export function DummyCar(props: JSX.IntrinsicElements['group']) {
+export function DummyCar(props: JSX.IntrinsicElements["group"]) {
   const { camera } = useThree()
-  const { nodes, materials } = useGLTF('/models/toy_car.glb') as GLTFResult
-  const texture = useTexture('/img/parking.png')
+  const { nodes, materials } = useGLTF("/models/toy_car.glb") as GLTFResult
+  const texture = useTexture("/img/parking.png")
   const [ info, setInfo ] = useState(false)
   const [ carState, carSetState] = useState(
     [
@@ -109,7 +109,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             position={[-0.343, 0.371, 1.082]} 
             rotation={[Math.PI / 2, 0, 0]}>
             
-            <mesh castShadow geometry={nodes['Shape4_Material_#6_0'].geometry} material={materials.Material_6} position={[-28.776, 14.806, 0]} />
+            <mesh castShadow geometry={nodes["Shape4_Material_#6_0"].geometry} material={materials.Material_6} position={[-28.776, 14.806, 0]} />
             {!introClear && <InfoNumber ord={1}/>}
           </motion.group>
 
@@ -123,7 +123,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             transition={{ duration: 1, type: "spring" }} 
             position={[2.078, -3.566, 4.227]} rotation={[Math.PI / 2, 0, 0]}>
             {!introClear && <InfoNumber ord={2}/>}
-            <mesh castShadow geometry={nodes['Shape11_Material_#7_0'].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />
+            <mesh castShadow geometry={nodes["Shape11_Material_#7_0"].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />
           </motion.group>
           <motion.group
             name="옆면"
@@ -134,7 +134,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             animate={carState[1].isActive ? { z: 4.227 } : { x: -23, y: 5, z: -2, rotateX: 0}}
             transition={{ duration: 1, type: "spring" }} 
             position={[2.078, 1.316, 4.227]} rotation={[Math.PI / 2, 0, 0]}>
-            <mesh castShadow geometry={nodes['Shape014_Material_#7_0'].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />
+            <mesh castShadow geometry={nodes["Shape014_Material_#7_0"].geometry} material={materials.Material_7} position={[-31.196, 11.661, 0]} />
           </motion.group>
 
           <motion.group 
@@ -150,7 +150,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
                 <boxGeometry args={[13,2,8]}/>
                 <meshBasicMaterial transparent opacity={0}/>
               </mesh>
-            <mesh castShadow geometry={nodes['ChamferCyl001_Material_#5_0'].geometry} material={materials.Material_5} position={[-4.111, -1.316, -2.633]} />
+            <mesh castShadow geometry={nodes["ChamferCyl001_Material_#5_0"].geometry} material={materials.Material_5} position={[-4.111, -1.316, -2.633]} />
             {!introClear && <InfoNumber ord={3}/>}
           </motion.group>
 
@@ -164,7 +164,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             transition={{ duration: 1, type: "spring" }}
             position={[6.084, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]}
           >
-              <mesh castShadow geometry={nodes['ChamferCyl002_Material_#5_0'].geometry} material={materials.Material_5} />
+              <mesh castShadow geometry={nodes["ChamferCyl002_Material_#5_0"].geometry} material={materials.Material_5} />
               {!introClear && <InfoNumber ord={4}/>}
           </motion.group>
         
@@ -187,7 +187,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             initial={{ x: -10, y: -20 }} 
             animate={carState[3].isActive ? { x: -6.952, y: -3.566, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -8, y: -22, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
-            castShadow geometry={nodes['ChamferCyl003_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
+            castShadow geometry={nodes["ChamferCyl003_Material_#5_0"].geometry} material={materials.Material_5} position={[-6.952, -3.566, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <motion.mesh 
             name="바퀴"
             onPointerOver={() => set(true)} 
@@ -196,7 +196,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             initial={{ x: 0, y: -10}} 
             animate={carState[3].isActive ?{ x: 6.084, y: 1.552, rotateX:[Math.PI/2, Math.PI/2, Math.PI/2] }: { x: 5, y: -15, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
-            castShadow geometry={nodes['ChamferCyl004_Material_#5_0'].geometry} material={materials.Material_5} position={[6.084, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
+            castShadow geometry={nodes["ChamferCyl004_Material_#5_0"].geometry} material={materials.Material_5} position={[6.084, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
           <motion.mesh
             name="바퀴"
             onPointerOver={() => set(true)} 
@@ -205,7 +205,7 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
             initial={{ x: -10, y: -10}} 
             animate={carState[3].isActive ?{ x: -6.952, y: 1.552, rotateX: [Math.PI/2, Math.PI/2, Math.PI/2] }: { x: -8, y: -15, z: -2, rotateX: 0}} 
             transition={{ duration: 1, type: "spring" }} 
-            castShadow geometry={nodes['ChamferCyl005_Material_#5_0'].geometry} material={materials.Material_5} position={[-6.952, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
+            castShadow geometry={nodes["ChamferCyl005_Material_#5_0"].geometry} material={materials.Material_5} position={[-6.952, 1.552, 0.276]} rotation={[Math.PI / 2, 0, 0]} />
         </group>
 
         <mesh 
@@ -224,4 +224,4 @@ export function DummyCar(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/models/toy_car.glb')
+useGLTF.preload("/models/toy_car.glb")

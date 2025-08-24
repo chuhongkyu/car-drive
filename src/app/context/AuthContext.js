@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useContext, createContext, useState, useEffect } from "react";
 import {
@@ -19,11 +19,11 @@ export const AuthContextProvider = ({ children }) => {
     try {
       await signInWithPopup(auth, provider);
     } catch (error) {
-      if (error.code === 'auth/popup-closed-by-user') {
-        console.log('User closed the authentication popup.');
-        alert('Authentication was canceled. Please try again.');
+      if (error.code === "auth/popup-closed-by-user") {
+        console.log("User closed the authentication popup.");
+        alert("Authentication was canceled. Please try again.");
       } else {
-        console.error('Authentication error:', error);
+        console.error("Authentication error:", error);
       }
     }
   };

@@ -1,15 +1,14 @@
 // @ts-nocheck
-import * as THREE from 'three'
-import { extend, useFrame } from '@react-three/fiber'
-import { shaderMaterial } from '@react-three/drei'
-import vertex from './glsl/shader.vert'
-import fragment from './glsl/shader.frag'
-import { forwardRef, useImperativeHandle, useRef } from 'react'
+import * as THREE from "three"
+import { extend, useFrame } from "@react-three/fiber"
+import { shaderMaterial } from "@react-three/drei"
+import vertex from "./glsl/shader.vert"
+import fragment from "./glsl/shader.frag"
+import { forwardRef, useImperativeHandle, useRef, useEffect } from "react"
 
 const ShaderImpl = shaderMaterial(
   {
-    time: 0,
-    color: new THREE.Color(0.05, 0.0, 0.025),
+    color: new THREE.Color(0.78, 0.75, 0.66),
   },
   vertex,
   fragment,
@@ -17,14 +16,21 @@ const ShaderImpl = shaderMaterial(
 
 extend({ ShaderImpl })
 
-// eslint-disable-next-line react/display-name
-const Shader = forwardRef(({ children, ...props }, ref) => {
-  const localRef = useRef()
+interface ShaderProps {
+  children?: React.ReactNode;
+  color?: string | number | THREE.Color;
+  [key: string]: any;
+}
 
-  useImperativeHandle(ref, () => localRef.current)
+const Shader = forwardRef<THREE.ShaderMaterial, ShaderProps>(({ children, ...props }, ref) => {
+  const localRef = useRef<THREE.ShaderMaterial>(null)
 
-  useFrame((_, delta) => (localRef.current.time += delta))
-  return <shaderImpl ref={localRef} glsl={THREE.GLSL3} {...props} attach='material' />
+  useImperativeHandle(ref, () => localRef.current!)
+  
+  return <shaderImpl ref={localRef} glsl={THREE.GLSL3} {...props} attach="material" />
 })
+
+
+Shader.displayName = "Shader"
 
 export default Shader

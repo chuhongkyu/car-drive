@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import {  Suspense, useEffect, useRef } from 'react'
-import { OrbitControls } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
-import { DummyCar } from '../DummyCar'
-import { DefaultLights } from './Lights'
+import {  Suspense, useEffect, useRef } from "react"
+import { OrbitControls } from "@react-three/drei"
+import { useFrame, useThree } from "@react-three/fiber"
+import { DummyCar } from "../DummyCar"
+import { DefaultLights } from "./Lights"
 
 export const Default = () => {
   const { camera } = useThree()

@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { Car } from "../Car"
 import { Suspense, useEffect, useRef } from "react"
@@ -18,15 +18,15 @@ import { Stage5 } from "../stage/Stage5"
 import { Stage6 } from "../stage/Stage6"
 import * as THREE from "three"
 
-export const World = ({ route = '/world', ...props }) => {
+export const World = ({ route = "/world", ...props }) => {
   const { isStart, checkStart, gameState, setGameState, stageData, stageNumber } = useGameStore()
   const { setDebug } = useDebugStore()
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);
 
   useEffect(()=>{
     const urlParams = new URLSearchParams(window?.location.search);
-    const modeParam = urlParams.get('mode');
-    if (modeParam === 'debug') {
+    const modeParam = urlParams.get("mode");
+    if (modeParam === "debug") {
       setDebug(true)
     }
     
@@ -56,7 +56,7 @@ export const World = ({ route = '/world', ...props }) => {
 
   return (
     <>
-    <color attach="background" args={["rgb(199, 191, 168)"]} />
+    {/* <color attach="background" args={["rgb(199, 191, 168)"]} /> */}
     <Physics broadphase="SAP" gravity={[0, -9.6, 0]} allowSleep>
       <DebugWrapper>
         <Suspense fallback={<></>}>

@@ -1,7 +1,7 @@
 import { useTexture } from "@react-three/drei";
 
 const StartPlace = ({position, rotationY = 0}:{position: number[], rotationY: number}) => {
-    const texture = useTexture('/img/parking_yellow.png')
+    const texture = useTexture("/img/parking_yellow.png")
 
     return(
         <group>

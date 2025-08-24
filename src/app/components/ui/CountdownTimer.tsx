@@ -32,7 +32,7 @@ const CountdownTimer = ({ onClose }:ICountProps) => {
     return(
         <div className="timer-box">
             <p className="text">
-                <span>{countdown.toString().padStart(3, '0')}s</span>
+                <span>{countdown.toString().padStart(3, "0")}s</span>
             </p>
         </div>
     )

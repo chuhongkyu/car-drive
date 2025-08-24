@@ -22,8 +22,8 @@ export default function RoadEnd ({position, mySize = [5,0.5,5], floorTexture, wa
 
     const [ref] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [width, height, depth],
             position: position,
         }), useRef<any>(null)
@@ -31,8 +31,8 @@ export default function RoadEnd ({position, mySize = [5,0.5,5], floorTexture, wa
 
     const [ref1] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [0.5,0.5,depth],
             position: [position[0] + width/2, position[1] + 0.25, position[2]],
             onCollide: onCollide
@@ -41,8 +41,8 @@ export default function RoadEnd ({position, mySize = [5,0.5,5], floorTexture, wa
 
     const [ref2] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [0.5,0.5,depth],
             position: [position[0] - width/2, position[1] + 0.25, position[2]],
             onCollide: onCollide
@@ -51,8 +51,8 @@ export default function RoadEnd ({position, mySize = [5,0.5,5], floorTexture, wa
 
     const [ref3] = useBox(
         () => ({ 
-            type: 'Static', 
-            material: 'ground',
+            type: "Static", 
+            material: "ground",
             args: [width,0.5,0.5],
             position: [position[0], position[1] + 0.25, position[2] - depth/2],
             onCollide: onCollide

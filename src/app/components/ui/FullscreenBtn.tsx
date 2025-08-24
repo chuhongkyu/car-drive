@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import Image from "next/image";
 
 const FullscreenBtn = () => {
     const openFullScreen = () => {
-        if (document.querySelector('.body')) {
-            document.querySelector('.body')?.requestFullscreen();
+        if (document.querySelector(".body")) {
+            document.querySelector(".body")?.requestFullscreen();
         }
     };
 

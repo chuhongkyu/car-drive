@@ -1,7 +1,7 @@
-import { useThree } from '@react-three/fiber'
-import { useEffect, useMemo } from 'react'
-import { Object3D } from 'three'
-import useGameStore from './gameStore'
+import { useThree } from "@react-three/fiber"
+import { useEffect, useMemo } from "react"
+import { Object3D } from "three"
+import useGameStore from "./gameStore"
 
 export default function useFollowCam() {
   const { scene, camera } = useThree()

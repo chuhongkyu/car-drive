@@ -1,14 +1,14 @@
-'use client'
+"use client"
 
-import { Canvas } from '@react-three/fiber'
-import { KeyboardControls, KeyboardControlsEntry, Loader, Preload } from '@react-three/drei'
-import * as THREE from 'three'
-import { World } from './World'
-import { usePathname } from 'next/navigation'
-import { Default } from './Default'
-import { useEffect, useMemo } from 'react'
-import useLocalSotre, { localStorageKey } from '@/app/utils/localStore'
-import { Controls } from '@/app/utils/keyBoard'
+import { Canvas } from "@react-three/fiber"
+import { KeyboardControls, KeyboardControlsEntry, Loader, Preload } from "@react-three/drei"
+import * as THREE from "three"
+import { World } from "./World"
+import { usePathname } from "next/navigation"
+import { Default } from "./Default"
+import { useEffect, useMemo } from "react"
+import useLocalSotre, { localStorageKey } from "@/app/utils/localStore"
+import { Controls } from "@/app/utils/keyBoard"
 
 export default function Scene({ ...props }) {
   const pathname = usePathname()
@@ -22,10 +22,10 @@ export default function Scene({ ...props }) {
   }, []);
 
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(()=>[
-    { name: Controls.forward, keys: ["ArrowUp", 'KeyW'] },
-    { name: Controls.back, keys: ["ArrowDown", 'KeyS'] },
-    { name: Controls.left, keys: ["ArrowLeft", 'KeyA'] },
-    { name: Controls.right, keys: ["ArrowRight", 'KeyD'] },
+    { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
+    { name: Controls.back, keys: ["ArrowDown", "KeyS"] },
+    { name: Controls.left, keys: ["ArrowLeft", "KeyA"] },
+    { name: Controls.right, keys: ["ArrowRight", "KeyD"] },
     { name: Controls.stop, keys: ["Space"] },
   ], [])
 

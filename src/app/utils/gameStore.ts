@@ -1,6 +1,6 @@
-import { create } from 'zustand'
-import { ORIGIN_STAGE_DATA } from './stageData';
-import { Vector3 } from 'three';
+import { create } from "zustand"
+import { ORIGIN_STAGE_DATA } from "./stageData";
+import { Vector3 } from "three";
 
 type GameState = "READY" | "START" | "SUCCESS" | "GAMEOVERAD" | "GAMEOVER"
 type CameraType = "FOCUS" | "ALL" | "VIEW"

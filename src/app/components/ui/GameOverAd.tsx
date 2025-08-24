@@ -1,6 +1,6 @@
-import useGameStore from '@/app/utils/gameStore';
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import useGameStore from "@/app/utils/gameStore";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 declare global {
   interface Window {

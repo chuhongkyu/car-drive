@@ -223,7 +223,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }:any) {
                             id="drive" 
                             name="gear" 
                             value="D" 
-                            checked={selectedGearState === 'D'} 
+                            checked={selectedGearState === "D"} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="drive" className="btn">D</label>
@@ -237,7 +237,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }:any) {
                             id="park" 
                             name="gear" 
                             value="P"
-                            checked={selectedGearState=== 'P'} 
+                            checked={selectedGearState=== "P"} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="park" className="btn">P</label>
@@ -248,7 +248,7 @@ export default function JoystickContainer({ vehicleApi, chassisApi }:any) {
                             id="reverse" 
                             name="gear" 
                             value="R"
-                            checked={selectedGearState === 'R'} 
+                            checked={selectedGearState === "R"} 
                             onChange={onHandleGearChange}
                         />
                         <label htmlFor="reverse" className="btn">R</label>

@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import SoundManager from "@/app/components/sounds/SoundManager"
 

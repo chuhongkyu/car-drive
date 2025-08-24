@@ -4,5 +4,8 @@ varying vec2 vUv;
 #pragma glslify: random = require(glsl-random)
 
 void main() {
-  gl_FragColor.rgba = vec4(color + sin(time) * 0.2, 1.0);
+  float gradient = (1.0 - vUv.x + vUv.y) * 0.5;
+  vec3 gradientColor = mix(color, color * 1.2, gradient);
+  
+  gl_FragColor.rgba = vec4(gradientColor, 1.0);
 }

@@ -6,7 +6,7 @@ import Image from "next/image";
 import useGameStore from "@/app/utils/gameStore";
 
 const ParkingPlace = ({position, rotationY = 0}:{ position: number[], rotationY?: number}) => {
-    const texture = useTexture('/img/parking.png')
+    const texture = useTexture("/img/parking.png")
     const { checkParking } = useCarStore();
     const { isStart } = useGameStore();
     return(

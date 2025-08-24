@@ -16,7 +16,7 @@ export default function GameSuccess(){
     const { user } = UserAuth()
 
     const saveGameData = async (userId:string, gameData:IData) => {
-        const userDocRef = doc(db, 'users', userId);
+        const userDocRef = doc(db, "users", userId);
         await setDoc(userDocRef, gameData);
     }
 

@@ -1,0 +1,7 @@
+{
+  "extends": "next",
+  "rules": {
+    "quotes": ["error", "double"],
+    "jsx-quotes": ["error", "prefer-double"]
+  }
+}

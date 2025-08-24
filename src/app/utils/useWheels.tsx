@@ -60,7 +60,7 @@ export const useWheels = (front: number, radius: number): [RefObject<Mesh>[], an
         type: ShapeType;
       },
     ],
-    type?: 'Dynamic' | 'Static' | 'Kinematic';
+    type?: "Dynamic" | "Static" | "Kinematic";
   }
 
   const propsFunc = ():IProps => ({
