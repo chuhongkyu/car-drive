@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
-import { motion } from "framer-motion"
+import { PropsWithChildren } from 'react'
 import GoGame from '../ui/GoGame'
 import GameStatus from '../game/GameStatus'
 import useGameStore from '@/utils/gameStore'
@@ -13,13 +13,13 @@ import GameOverAd from '../ui/GameOverAd'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
-const Layout = ({ children }) => {
-  const ref = useRef()
+const Layout = ({ children }: PropsWithChildren) => {
+  const ref = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const { isStart, gameState }= useGameStore();
 
   return (
-      <motion.div
+      <div
         className="body"
         ref={ref}
         style={{
@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
           eventSource={ref}
           eventPrefix='client'
         />
-      </motion.div>
+      </div>
   )
 }
 

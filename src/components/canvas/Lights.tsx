@@ -1,6 +1,5 @@
 import { Environment, useHelper } from "@react-three/drei";
 import { useRef } from "react";
-import { DirectionalLightHelper } from "three";
 
 const DefaultLights = () => {
     const dirLight = useRef(null);

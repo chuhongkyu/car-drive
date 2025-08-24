@@ -1,11 +1,11 @@
 import { motion } from "framer-motion-3d";
 import { Html, useTexture } from "@react-three/drei";
-import useCarStore, {  } from "@/utils/carStore";
+import useCarStore from "@/utils/carStore";
 import { easeInOut } from "framer-motion";
 import Image from "next/image";
 import useGameStore from "@/utils/gameStore";
 
-const ParkingPlace = (props) => {
+const ParkingPlace = (props: { position: [number, number, number]; rotationY?: number }) => {
     const { position, rotationY = 0 } = props
     const texture = useTexture('/img/parking.png')
     const { checkParking } = useCarStore();
